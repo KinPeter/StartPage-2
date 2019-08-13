@@ -9,7 +9,7 @@ import { LoginData } from 'src/app/interfaces/login-data';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    @ViewChild('f', { static: false }) loginForm: NgForm;
+    @ViewChild('f', { static: true }) loginForm: NgForm;
 
     isLoggingIn = false;
     isLoggedIn: boolean;
@@ -19,6 +19,12 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.checkAuthStatus();
+        console.log('logged in?', this.isLoggedIn);
+
+        // FOR TESTING
+        setTimeout(() => {
+            this.loginForm.setValue({email: 'kinpeter85@gmail.com', password: 'petike1205'});
+        }, 1000);
     }
 
     checkAuthStatus(): void {
@@ -32,14 +38,15 @@ export class LoginComponent implements OnInit {
     }
 
     logout(): void {
-
+        this.auth.logout();
     }
 
     onSubmit(): void {
         console.log(this.loginForm);
         this.loginData.email = this.loginForm.value.email;
         this.loginData.password = this.loginForm.value.password;
-        this.loginForm.reset();
         this.isLoggingIn = false;
+        this.auth.login(this.loginData);
+        this.loginForm.reset();
     }
 }

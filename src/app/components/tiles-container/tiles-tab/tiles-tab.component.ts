@@ -16,7 +16,7 @@ export class TilesTabComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        console.log(this.tabTitle);
+
     }
 
 }
