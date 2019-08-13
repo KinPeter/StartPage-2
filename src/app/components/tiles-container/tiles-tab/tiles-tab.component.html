@@ -1,0 +1,34 @@
+<section 
+    class="tiles-tab" 
+    (mouseenter)="isOpen = true" 
+    (mouseleave)="isOpen = false"
+    ngClass="{{tabNumber}}">
+    <header>
+        <div class="tab-title-open" >{{ tabTitle }}</div>
+        <div class="tab-title-closed">{{ tabTitle }}</div>
+    </header>
+
+    <div class="tiles-wrapper">
+        <a *ngFor="let tile of tiles"
+            class="tile" 
+            href="{{ tile.link }}" 
+            target="blank">
+            <div class="tile-content">
+                <img src="/assets/images/icons/{{ tile.icon }}"><br>
+                {{ tile.name }}
+            </div>
+        </a>
+        <!-- <a class="tile" href="https://www.github.com" target="blank">
+            <div class="tile-content">
+                <img src="/assets/images/icons/github.png"><br>
+                GitHub
+            </div>
+        </a>
+        <a class="tile" href="https://www.dev.to" target="blank">
+            <div class="tile-content">
+                <img src="/assets/images/icons/devto.png"><br>
+                Dev.to
+            </div>
+        </a> -->
+    </div>
+</section>

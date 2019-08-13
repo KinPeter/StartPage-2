@@ -1,0 +1,16 @@
+@import "~src/variables";
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 45px;
+    background-color: $darkGrey;
+    z-index: 100;
+    border-bottom: 1px solid #fff;
+    box-shadow:  0 3px 2px rgba(0,0,0,.3);
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: space-between;
+}

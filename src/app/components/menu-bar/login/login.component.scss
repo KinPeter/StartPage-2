@@ -1,0 +1,93 @@
+@import "~src/variables";
+
+a {
+    color: #fff !important;
+    text-transform: uppercase;
+    cursor: pointer;
+    i {
+        margin-left: .3rem;
+    }
+    &:hover {
+        color: $orange !important;
+    }
+}
+
+.login-modal {
+    position: fixed;
+    .overlay, .modal-body {
+        position: fixed;
+        transition: all .3s ease-in-out;
+    }
+    .overlay {
+        top: 45px;
+        left: 0;
+        width: 100vw;
+        height: calc(100vh - 45px);
+        background-color: rgba(0,0,0,.7);
+        display: none;
+        &.open {
+            display: block;
+        }
+    }
+    .modal-body {
+        top: 55px;
+        right: 10px;
+        width: 300px;
+        height: auto;
+        background-color: #fff;
+        opacity: 0;
+        transform: translateX(350px);
+        &.open {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        form {
+            input, label, button {
+                display: block;
+            }
+            label {
+                color: $blue2;
+                margin-bottom: 0;
+            }
+            input {
+                outline: none;
+                border: none;
+                border-bottom: 2px solid $blue2;
+                width: 100%;
+                margin-bottom: 1rem;
+                padding-left: 0.5rem;  
+            }
+            button {
+                position: relative;
+                background-color: $blue2;
+                color: #fff;
+                border: none;
+                padding: .3rem 1rem;
+                float: right;
+                z-index: 1;
+                &:disabled {
+                    background-color: #b8b8b8;
+                    cursor: not-allowed;
+                }
+                &:before {
+                    content: '';
+                    position: absolute;
+                    background-color: $blue4;
+                    top: 0;
+                    right: 0;
+                    left: 100%;
+                    bottom: 0;
+                    z-index: -1;
+                    transition: all .2s ease-in;
+                }
+                &:hover:before {
+                    left: 0;
+                }
+                &:hover:disabled:before {
+                    left: 100%;
+                }
+            }
+        }
+    }
+}
