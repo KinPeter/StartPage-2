@@ -3,6 +3,7 @@ import { AngularFirestore, QuerySnapshot, QueryDocumentSnapshot } from '@angular
 import { Observable } from 'rxjs';
 import { Tile } from '../interfaces/tile';
 import { Tiles } from '../interfaces/tiles';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,9 @@ export class TileService {
     public tilesCollection = this.db.collection<Tile>('tiles');
     public tiles: Observable<QuerySnapshot<any>>;
 
-    constructor(public db: AngularFirestore) {
+    constructor(
+            public db: AngularFirestore,
+        ) {
         this.fetchTiles();
     }
 

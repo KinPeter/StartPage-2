@@ -3,6 +3,7 @@ import { TileService } from 'src/app/services/tile.service';
 import { Tiles } from 'src/app/interfaces/tiles';
 import { Tile } from 'src/app/interfaces/tile';
 import { QuerySnapshot, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
     selector: 'app-tiles-container',
@@ -13,7 +14,10 @@ export class TilesContainerComponent implements OnInit {
 
     public tiles: Tiles;
 
-    constructor(public tileService: TileService) {
+    constructor(
+            public tileService: TileService,
+            public spinner: SpinnerService
+        ) {
         this.tiles = {
             top: [],
             coding: [],
@@ -24,9 +28,11 @@ export class TilesContainerComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.spinner.show();
         this.tileService.tiles.subscribe((data: QuerySnapshot<any>) => {
             this.tileService.distributeTilesFromQuerySnapshot(data, this.tiles);
             this.tileService.sortTilesByPriority(this.tiles);
+            this.spinner.hide();
             console.log(this.tiles);
         });
     }
