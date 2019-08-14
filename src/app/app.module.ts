@@ -12,6 +12,7 @@ import { TilesTabComponent } from './components/tiles-container/tiles-tab/tiles-
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { LogoComponent } from './components/menu-bar/logo/logo.component';
 import { LoginComponent } from './components/menu-bar/login/login.component';
+import { SpinnerComponent } from './components/ui/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoginComponent } from './components/menu-bar/login/login.component';
     TilesTabComponent,
     MenuBarComponent,
     LogoComponent,
-    LoginComponent
+    LoginComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
