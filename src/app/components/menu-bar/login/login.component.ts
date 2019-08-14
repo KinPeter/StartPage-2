@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.checkAuthStatus();
-        console.log('logged in?', this.isLoggedIn);
 
         // FOR TESTING
         setTimeout(() => {
@@ -33,11 +32,11 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    login(): void {
+    onLoginClicked(): void {
         this.isLoggingIn = true;
     }
 
-    logout(): void {
+    onLogoutClicked(): void {
         this.auth.logout();
     }
 

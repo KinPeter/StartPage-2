@@ -1,9 +1,9 @@
-<a (click)="login()"
+<a (click)="onLoginClicked()"
     *ngIf="!isLoggedIn">
     Log in
     <i class="fas fa-sign-in-alt"></i>
 </a>
-<a (click)="logout()"
+<a (click)="onLogoutClicked()"
     *ngIf="isLoggedIn">
     Log out
     <i class="fas fa-sign-out-alt"></i>

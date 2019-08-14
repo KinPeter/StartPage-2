@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TileService } from 'src/app/services/tile.service';
 import { Tiles } from 'src/app/interfaces/tiles';
 import { Tile } from 'src/app/interfaces/tile';
+import { QuerySnapshot, QueryDocumentSnapshot } from '@angular/fire/firestore';
 
 @Component({
     selector: 'app-tiles-container',
@@ -23,18 +24,9 @@ export class TilesContainerComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.tileService.tiles.subscribe((data: Tile[]) => {
-            data.forEach((tile: Tile) => {
-                this.tiles[tile.category].push(tile);
-            });
-
-            // sort
-            Object.keys(this.tiles).forEach((key) => {
-                this.tiles[key].sort((t1: Tile, t2: Tile) => {
-                    return t1.priority - t2.priority;
-                });
-            });
-
+        this.tileService.tiles.subscribe((data: QuerySnapshot<any>) => {
+            this.tileService.distributeTilesFromQuerySnapshot(data, this.tiles);
+            this.tileService.sortTilesByPriority(this.tiles);
             console.log(this.tiles);
         });
     }
