@@ -1,0 +1,24 @@
+.app-alert {
+    z-index: 10000;
+    display: inline-block;
+    position: fixed;
+    top: 1rem;
+    left: calc(100vw / 2 - 200px);
+    box-shadow:  3px 3px 3px rgba(0,0,0,.3);
+    text-align: center;
+    width: 400px;
+    padding: 1rem 2rem;
+    transform: translateY(-200px);
+    opacity: 0;
+    transition: all .3s ease-in-out;
+    p {
+        margin: 0;
+        i {
+            margin-right: 0.5rem;
+        }
+    }
+    &.show {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

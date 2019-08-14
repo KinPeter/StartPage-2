@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginData } from '../interfaces/login-data';
 import { SpinnerService } from './spinner.service';
+import { AlertService } from './alert.service';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +15,8 @@ export class AuthService {
 
     constructor(
             public fireAuth: AngularFireAuth,
-            public spinner: SpinnerService
+            public spinner: SpinnerService,
+            public alert: AlertService
         ) {
         this.loggedIn = new BehaviorSubject(false);
         this.uid = new BehaviorSubject(null);
@@ -43,6 +45,12 @@ export class AuthService {
             this.loggedIn.next(true);
             sessionStorage.setItem('startpageUid', response.user.uid);
             this.spinner.hide();
+            this.alert.show('Logged in successfully', 'success');
+        })
+        .catch((error: any) => {
+            this.spinner.hide();
+            this.alert.show('Login failed. ' + error.message, 'danger');
+            console.log(error);
         });
     }
 
@@ -55,6 +63,7 @@ export class AuthService {
             this.loggedIn.next(false);
             sessionStorage.removeItem('startpageUid');
             this.spinner.hide();
+            this.alert.show('Logged out.', 'success');
         });
     }
 }

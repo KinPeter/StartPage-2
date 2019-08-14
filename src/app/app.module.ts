@@ -13,6 +13,7 @@ import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { LogoComponent } from './components/menu-bar/logo/logo.component';
 import { LoginComponent } from './components/menu-bar/login/login.component';
 import { SpinnerComponent } from './components/ui/spinner/spinner.component';
+import { AlertComponent } from './components/ui/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SpinnerComponent } from './components/ui/spinner/spinner.component';
     MenuBarComponent,
     LogoComponent,
     LoginComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
