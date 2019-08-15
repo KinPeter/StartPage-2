@@ -9,14 +9,15 @@
     </header>
 
     <div class="tiles-wrapper">
-        <a *ngFor="let tile of tiles"
-            class="tile" 
-            href="{{ tile.link }}" 
-            target="blank">
-            <div class="tile-content">
-                <img src="/assets/images/icons/{{ tile.icon }}"><br>
-                {{ tile.name }}
-            </div>
-        </a>
+        <div class="tile-perspective" *ngFor="let tile of tiles">
+            <a  class="tile" 
+                href="{{ tile.link }}" 
+                target="blank">
+                <div class="tile-content">
+                    <img src="/assets/images/icons/{{ tile.icon }}"><br>
+                    {{ tile.name }}
+                </div>
+            </a>
+        </div>
     </div>
 </section>
