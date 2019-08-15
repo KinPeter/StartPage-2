@@ -25,7 +25,6 @@ export class AuthService {
 
     checkStorage(): void {
         const storedId = sessionStorage.getItem('startpageUid');
-        console.log(storedId);
         if (storedId) {
             this.loggedIn.next(true);
             this.uid.next(storedId);
@@ -40,7 +39,7 @@ export class AuthService {
         this.spinner.show();
         this.fireAuth.auth.signInWithEmailAndPassword(loginData.email, loginData.password)
         .then((response: firebase.auth.UserCredential) => {
-            console.log(response);
+            // console.log(response);
             this.uid.next(response.user.uid);
             this.loggedIn.next(true);
             sessionStorage.setItem('startpageUid', response.user.uid);
@@ -57,13 +56,17 @@ export class AuthService {
     logout(): void {
         this.spinner.show();
         this.fireAuth.auth.signOut()
-        .then((response) => {
-            console.log(response);
+        .then(() => {
             this.uid.next(null);
             this.loggedIn.next(false);
             sessionStorage.removeItem('startpageUid');
             this.spinner.hide();
             this.alert.show('Logged out.', 'success');
+        })
+        .catch((error: any) => {
+            this.spinner.hide();
+            this.alert.show('Couldn\'t log you out. ' + error.message, 'danger');
+            console.log(error);
         });
     }
 }
