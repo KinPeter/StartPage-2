@@ -1,0 +1,68 @@
+@import "~src/variables";
+
+.note-wrapper {
+    perspective: 1000px;
+    .note {
+        width: 100%;
+        height: auto;
+        background: linear-gradient(135deg, #fff 0%, $lightBlue 50%, $lightBlue 100%);
+        border: 1px solid #fff;
+        margin-bottom: .5rem;
+        padding: 0.5rem;
+        color: $blue1;
+        transform-style: preserve-3d;
+        transform-origin: top center;
+        animation: flipIn .5s ease-in-out;
+        @keyframes flipIn {
+            from { transform: rotateX(180deg); opacity: 0; }
+            to   { transform: rotateX(360deg); opacity: 1; }
+        }
+
+        .note-text {
+            font-weight: bold;
+            margin: 0;
+        }
+        .note-links {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            a {
+                color: $orange;
+                text-decoration: none;
+                font-weight: bold;
+                i {
+                    margin: 0 0.2rem;
+                    font-size: .9rem;
+                    transition: all .2s ease;
+                }
+                &:hover {
+                    color: $blue5;
+                    i {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+        footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .note-buttons i {
+            cursor: pointer;
+            margin-left: 0.2rem;
+            &:hover {
+                color: $blue5;
+            }
+        }
+
+        &.archived {
+            background: linear-gradient(135deg, #fff 0%, $lightGrey 50%, $lightGrey 100%);
+            color: grey;
+            opacity: .5;
+            .note-buttons i:hover {
+                color: $darkGrey;
+            }
+        }
+    }
+}

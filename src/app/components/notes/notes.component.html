@@ -1,1 +1,9 @@
-<p>notes works!</p>
+<div class="app-notes">
+    <header>Notes</header>
+    <div class="notes-wrapper">
+        <app-note *ngFor="let note of notes" [note]="note"></app-note>
+    </div>
+    <footer *ngIf="isLoggedIn">
+        <app-floating-circle-button></app-floating-circle-button>
+    </footer>
+</div>

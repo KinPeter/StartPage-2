@@ -16,6 +16,7 @@ import { SpinnerComponent } from './components/ui/spinner/spinner.component';
 import { AlertComponent } from './components/ui/alert/alert.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { NoteComponent } from './components/notes/note/note.component';
+import { FloatingCircleButtonComponent } from './components/ui/floating-circle-button/floating-circle-button.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NoteComponent } from './components/notes/note/note.component';
     SpinnerComponent,
     AlertComponent,
     NotesComponent,
-    NoteComponent
+    NoteComponent,
+    FloatingCircleButtonComponent
   ],
   imports: [
     BrowserModule,

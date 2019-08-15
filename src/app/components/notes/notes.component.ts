@@ -3,6 +3,7 @@ import { NotesService } from 'src/app/services/notes.service';
 import { Note } from 'src/app/interfaces/note';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'app-notes',
@@ -12,9 +13,11 @@ import { AlertService } from 'src/app/services/alert.service';
 export class NotesComponent implements OnInit {
 
     public notes: Note[];
+    public isLoggedIn: boolean;
 
     constructor(
         public notesService: NotesService,
+        public auth: AuthService,
         public spinner: SpinnerService,
         public alert: AlertService
     ) {
@@ -32,6 +35,9 @@ export class NotesComponent implements OnInit {
             this.spinner.hide();
             this.alert.show('Fetch of notes failed. ' + error.message, 'danger');
             console.log(error);
+        });
+        this.auth.loggedIn.subscribe((value) => {
+            this.isLoggedIn = value;
         });
     }
 

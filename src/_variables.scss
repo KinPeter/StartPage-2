@@ -4,5 +4,13 @@ $blue3: #165B9D;
 $blue4: #206BB0;
 $blue5: #237EBB;
 $darkGrey: #454545;
-$orange: #ff8000;
+$lightGrey: #acacac;
+// $orange: #ff8000;
+$orange: #FE7F01;
 $lightBlue: #b1d8f5;
+
+%tabTitle {
+    font-weight: bold;
+    color: white;
+    font-size: 1.5rem;
+}

@@ -1,1 +1,30 @@
-<p>note works!</p>
+<div class="note-wrapper">
+    <div class="note" [class.archived]="note.archived">
+        <p class="note-text" *ngIf="note.text.length > 1">{{ note.text }}</p>
+        <ul *ngIf="note.links" class="note-links">
+            <li *ngFor="let link of note.links">
+                <a href="{{ link.url }}" target="blank">
+                    <i class="fas fa-link"></i>
+                    {{ link.name }}
+                </a>
+            </li>
+        </ul>
+        <footer>
+            <span class="note-added">{{ note.added | date:'yyyy.M.d H:mm' }}</span>
+            <span class="note-buttons">
+                <i 
+                    class="fas fa-edit"
+                    (click)="editNote()">
+                </i>
+                <i 
+                    class="fas fa-archive"
+                    (click)="archiveNote()">
+                </i>
+                <i 
+                    class="fas fa-trash-alt"
+                    (click)="deleteNote()">
+                </i>
+            </span>
+        </footer>
+    </div>
+</div>
