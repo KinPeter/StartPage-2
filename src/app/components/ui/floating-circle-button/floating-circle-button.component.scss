@@ -1,0 +1,60 @@
+@import "~src/variables";
+
+$size: 70px;
+
+button {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;    
+    background-color: $orange;
+    border-radius: 50%;
+    border: 1px solid white;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $size;
+    height: $size;
+    font-size: 2.2rem;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+    transition: all .3s ease;
+    animation: hopIn .3s ease-in-out;
+    i {
+        color: $blue3;
+        transition: all .3s ease;
+    }
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: $size;
+        height: $size;                
+        content: '';
+        transition: all .3s ease;
+        background: rgb(226, 94, 17);
+        z-index: -1;
+        border-radius: 50%;
+        transform: scale(0);
+    }
+    &:hover {
+        box-shadow: 5px 5px 8px rgba(0,0,0,0.6);
+        &:after {
+            transform: scale(1);
+        }
+        i {
+            color: rgba(255, 255, 255, 0.9);
+            transform: rotate(90deg);
+        }
+    }
+
+    @keyframes hopIn {
+        from {
+            transform: translateY(100px) scale(0);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+}
