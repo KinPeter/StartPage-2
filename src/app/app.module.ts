@@ -14,6 +14,8 @@ import { LogoComponent } from './components/menu-bar/logo/logo.component';
 import { LoginComponent } from './components/menu-bar/login/login.component';
 import { SpinnerComponent } from './components/ui/spinner/spinner.component';
 import { AlertComponent } from './components/ui/alert/alert.component';
+import { NotesComponent } from './components/notes/notes.component';
+import { NoteComponent } from './components/notes/note/note.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AlertComponent } from './components/ui/alert/alert.component';
     LogoComponent,
     LoginComponent,
     SpinnerComponent,
-    AlertComponent
+    AlertComponent,
+    NotesComponent,
+    NoteComponent
   ],
   imports: [
     BrowserModule,
