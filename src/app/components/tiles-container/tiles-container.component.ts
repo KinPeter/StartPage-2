@@ -5,6 +5,7 @@ import { Tile } from 'src/app/interfaces/tile';
 import { QuerySnapshot, QueryDocumentSnapshot } from '@angular/fire/firestore';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'app-tiles-container',
@@ -14,11 +15,13 @@ import { AlertService } from 'src/app/services/alert.service';
 export class TilesContainerComponent implements OnInit {
 
     public tiles: Tiles;
+    public isLoggedIn: boolean;
 
     constructor(
             public tileService: TileService,
             public spinner: SpinnerService,
-            public alert: AlertService
+            public alert: AlertService,
+            public auth: AuthService
         ) {
         this.tiles = {
             top: [],
@@ -41,6 +44,9 @@ export class TilesContainerComponent implements OnInit {
             this.spinner.hide();
             this.alert.show('Fetch of tiles failed.', 'danger');
             console.log(error);
+        });
+        this.auth.loggedIn.subscribe((value) => {
+            this.isLoggedIn = value;
         });
     }
 

@@ -4,4 +4,9 @@
     right: 0;
     display: flex;
     flex-direction: row-reverse;
+    footer {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+    }
 }

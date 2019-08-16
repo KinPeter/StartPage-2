@@ -2,8 +2,9 @@
     <header>Notes</header>
     <div class="notes-wrapper">
         <app-note *ngFor="let note of notes" [note]="note"></app-note>
+        <div class="placeholder"></div>
     </div>
     <footer *ngIf="isLoggedIn">
-        <app-floating-circle-button></app-floating-circle-button>
+        <app-floating-circle-button [message]="'Add new note'" [side]="'to-right'"></app-floating-circle-button>
     </footer>
 </div>

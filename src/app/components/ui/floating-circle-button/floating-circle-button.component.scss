@@ -1,12 +1,12 @@
 @import "~src/variables";
 
-$size: 70px;
+$size: 55px;
 
 button {
     position: relative;
     z-index: 1;
     overflow: hidden;    
-    background-color: $orange;
+    background-color: $blue5;
     border-radius: 50%;
     border: 1px solid white;
     outline: none;
@@ -15,12 +15,12 @@ button {
     align-items: center;
     width: $size;
     height: $size;
-    font-size: 2.2rem;
     box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
     transition: all .3s ease;
     animation: hopIn .3s ease-in-out;
     i {
-        color: $blue3;
+        font-size: 1.8rem;
+        color: $blue1;
         transition: all .3s ease;
     }
     &:after {
@@ -36,6 +36,7 @@ button {
         border-radius: 50%;
         transform: scale(0);
     }
+
     &:hover {
         box-shadow: 5px 5px 8px rgba(0,0,0,0.6);
         &:after {
@@ -44,6 +45,10 @@ button {
         i {
             color: rgba(255, 255, 255, 0.9);
             transform: rotate(90deg);
+        }
+        &+div.to-right, &+div.to-left  {
+            transform: translateX(0);
+            opacity: 1;
         }
     }
 
@@ -58,3 +63,32 @@ button {
         }
     }
 }
+
+div {
+    position: absolute;
+    transition: all .3s ease;
+    p {
+        margin: 0;
+        width: 200px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: white;
+        text-shadow: 5px 5px 8px rgba(0,0,0,0.6);
+    }
+    &.to-right {
+        top: -5px;
+        left: $size;
+        transform-origin: left center;
+        transform: translateX(-50%);
+        opacity: 0;
+    }
+    &.to-left {
+        text-align: right;
+        top: -5px;
+        right: $size;
+        transform-origin: center right;
+        transform: translateX(50%);
+        opacity: 0;
+    }
+}
+
