@@ -19,11 +19,7 @@ a {
         transition: all .3s ease-in-out;
     }
     .overlay {
-        top: 45px;
-        left: 0;
-        width: 100vw;
-        height: calc(100vh - 45px);
-        background-color: rgba(0,0,0,.7);
+        @extend %overlay;
         display: none;
         &.open {
             display: block;
@@ -43,50 +39,9 @@ a {
         }
 
         form {
-            input, label, button {
-                display: block;
-            }
-            label {
-                color: $blue2;
-                margin-bottom: 0;
-            }
-            input {
-                outline: none;
-                border: none;
-                border-bottom: 2px solid $blue2;
-                width: 100%;
-                margin-bottom: 1rem;
-                padding-left: 0.5rem;  
-            }
+            @include form();
             button {
-                position: relative;
-                background-color: $blue2;
-                color: #fff;
-                border: none;
-                padding: .3rem 1rem;
-                float: right;
-                z-index: 1;
-                &:disabled {
-                    background-color: #b8b8b8;
-                    cursor: not-allowed;
-                }
-                &:before {
-                    content: '';
-                    position: absolute;
-                    background-color: $blue4;
-                    top: 0;
-                    right: 0;
-                    left: 100%;
-                    bottom: 0;
-                    z-index: -1;
-                    transition: all .2s ease-in;
-                }
-                &:hover:before {
-                    left: 0;
-                }
-                &:hover:disabled:before {
-                    left: 100%;
-                }
+                @include button($blue2, $blue4, right);
             }
         }
     }

@@ -3,14 +3,79 @@ $blue2: #045192;
 $blue3: #165B9D;
 $blue4: #206BB0;
 $blue5: #237EBB;
+$lightBlue: #b1d8f5;
 $darkGrey: #454545;
 $lightGrey: #acacac;
-// $orange: #ff8000;
 $orange: #FE7F01;
-$lightBlue: #b1d8f5;
+$success: #28a745;
+$danger: #dc3545;
 
 %tabTitle {
     font-weight: bold;
     color: white;
     font-size: 1.5rem;
+}
+
+%overlay {
+    top: 45px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 45px);
+    background-color: rgba(0,0,0,.7);
+}
+
+@mixin button($bgColor, $hoverColor, $float) {
+    position: relative;
+    background-color: $bgColor;
+    color: #fff;
+    border: none;
+    padding: .3rem 1rem;
+    float: $float;
+    z-index: 1;
+    &:disabled {
+        background-color: #b8b8b8;
+        cursor: not-allowed;
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        background-color: $hoverColor;
+        top: 0;
+        right: 0;
+        left: 100%;
+        bottom: 0;
+        z-index: -1;
+        transition: all .2s ease-in;
+    }
+    &:hover:before {
+        left: 0;
+    }
+    &:hover:disabled:before {
+        left: 100%;
+    }
+}
+
+@mixin form() {
+    input, label, textarea, button {
+        display: block;
+    }
+    label {
+        color: $blue2;
+        margin-bottom: 0;
+    }
+    input {
+        outline: none;
+        border: none;
+        border-bottom: 2px solid $blue2;
+        width: 100%;
+        margin-bottom: 1rem;
+        padding-left: 0.5rem;  
+        &:focus {
+            background: rgba(35, 126, 187, 0.1);
+        }
+    }
+    textarea {
+        @extend input;
+        border: 2px solid $blue2;
+    }
 }
