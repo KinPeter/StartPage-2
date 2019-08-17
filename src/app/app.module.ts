@@ -7,16 +7,17 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import { AlertComponent } from './components/ui/alert/alert.component';
+import { SpinnerComponent } from './components/ui/spinner/spinner.component';
+import { FloatingCircleButtonComponent } from './components/ui/floating-circle-button/floating-circle-button.component';
 import { TilesContainerComponent } from './components/tiles-container/tiles-container.component';
 import { TilesTabComponent } from './components/tiles-container/tiles-tab/tiles-tab.component';
 import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 import { LogoComponent } from './components/menu-bar/logo/logo.component';
 import { LoginComponent } from './components/menu-bar/login/login.component';
-import { SpinnerComponent } from './components/ui/spinner/spinner.component';
-import { AlertComponent } from './components/ui/alert/alert.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { NoteComponent } from './components/notes/note/note.component';
-import { FloatingCircleButtonComponent } from './components/ui/floating-circle-button/floating-circle-button.component';
+import { AddNoteComponent } from './components/notes/add-note/add-note.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FloatingCircleButtonComponent } from './components/ui/floating-circle-b
     AlertComponent,
     NotesComponent,
     NoteComponent,
-    FloatingCircleButtonComponent
+    FloatingCircleButtonComponent,
+    AddNoteComponent
   ],
   imports: [
     BrowserModule,

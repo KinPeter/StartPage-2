@@ -1,0 +1,39 @@
+<div class="add-note">
+    <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <label for="text">Text</label>
+        <textarea 
+            id="text" 
+            name="text" 
+            ngModel 
+            required>
+        </textarea>
+        
+        <input 
+            type="text" 
+            id="linkName" 
+            name="currentLinkName"
+            placeholder="Link name" 
+            [(ngModel)]="currentLinkName">
+        <input 
+            type="text" 
+            id="linkUrl" 
+            name="currentLinkUrl" 
+            placeholder="Link URL" 
+            [(ngModel)]="currentLinkUrl">
+        <button
+            type="button"
+            class="add-link-btn"
+            (click)="onAddLink()">
+            Add link
+        </button>
+        <ul>
+            <li *ngFor="let link of note.links">{{ link.name }}</li>
+        </ul>
+        <button 
+            type="submit" 
+            [disabled]="!f.valid">
+            Save
+        </button>
+    </form>
+</div>
+<textarea name="" id="" cols="30" rows="10"></textarea>
