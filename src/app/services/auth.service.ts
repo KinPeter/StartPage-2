@@ -39,7 +39,6 @@ export class AuthService {
         this.spinner.show();
         this.fireAuth.auth.signInWithEmailAndPassword(loginData.email, loginData.password)
         .then((response: firebase.auth.UserCredential) => {
-            // console.log(response);
             this.uid.next(response.user.uid);
             this.loggedIn.next(true);
             sessionStorage.setItem('startpageUid', response.user.uid);

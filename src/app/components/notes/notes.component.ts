@@ -29,7 +29,6 @@ export class NotesComponent implements OnInit {
         this.notesService.notes.subscribe((response) => {
             this.spinner.hide();
             this.notes = this.notesService.distributeAndSortNotes(response);
-            console.log(this.notes);
         },
         (error: any) => {
             this.spinner.hide();

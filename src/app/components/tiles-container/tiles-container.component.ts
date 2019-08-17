@@ -38,7 +38,6 @@ export class TilesContainerComponent implements OnInit {
             this.tileService.distributeTilesFromQuerySnapshot(data, this.tiles);
             this.tileService.sortTilesByPriority(this.tiles);
             this.spinner.hide();
-            console.log(this.tiles);
         },
         (error: any) => {
             this.spinner.hide();
