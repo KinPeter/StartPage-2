@@ -13,7 +13,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NotesComponent implements OnInit {
 
     public notes: Note[];
+    public noteToEdit: Note;
     public isLoggedIn: boolean;
+    public addingNote: boolean;
 
     constructor(
         public notesService: NotesService,
@@ -22,6 +24,8 @@ export class NotesComponent implements OnInit {
         public alert: AlertService
     ) {
         this.notes = [];
+        this.noteToEdit = null;
+        this.addingNote = false;
     }
 
     ngOnInit() {
@@ -38,6 +42,20 @@ export class NotesComponent implements OnInit {
         this.auth.loggedIn.subscribe((value) => {
             this.isLoggedIn = value;
         });
+    }
+
+    onAddNote() {
+        this.noteToEdit = null;
+        this.addingNote = true;
+    }
+
+    onCancel() {
+        this.addingNote = false;
+    }
+
+    onEditNote(note: Note): void {
+        this.noteToEdit = note;
+        this.addingNote = true;
     }
 
 }

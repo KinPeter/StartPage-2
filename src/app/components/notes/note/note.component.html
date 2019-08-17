@@ -25,9 +25,23 @@
                 <i 
                     class="fas fa-trash-alt"
                     *ngIf="isLoggedIn"
-                    (click)="deleteNote()">
+                    (click)="onDeleteClicked()">
                 </i>
             </span>
         </footer>
+        <section 
+            class="delete-confirm-wrapper"
+            *ngIf="isConfirmingDeletion">
+            <div 
+                class="confirm-delete"
+                (click)="onConfirmDelete()">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+            <div 
+                class="cancel-delete"
+                (click)="onCancelDelete()">
+                <i class="fas fa-times"></i>
+            </div>
+        </section>
     </div>
 </div>

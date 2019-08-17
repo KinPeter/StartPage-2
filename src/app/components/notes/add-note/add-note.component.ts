@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Note } from 'src/app/interfaces/note';
 import { NotesService } from 'src/app/services/notes.service';
@@ -9,40 +9,87 @@ import { NotesService } from 'src/app/services/notes.service';
     styleUrls: ['./add-note.component.scss']
 })
 export class AddNoteComponent implements OnInit {
-
+    @Input() noteToUpdate: Note | null;
     @ViewChild('f', { static: true }) noteForm: NgForm;
-
+    @Output() canceling = new EventEmitter<void>();
+    closing = false;
+    isEditing = false;
     note: Note = {
         text: '',
         added: null,
         archived: false,
         links: []
     };
-    currentLinkName: string;
-    currentLinkUrl: string;
+    currentLinkName = '';
+    currentLinkUrl = '';
 
     constructor( public noteService: NotesService ) {
-
     }
 
     ngOnInit() {
+        if (this.noteToUpdate) {
+            this.isEditing = true;
+            this.note = {
+                id: this.noteToUpdate.id,
+                text: this.noteToUpdate.text,
+                added: this.noteToUpdate.added,
+                archived: this.noteToUpdate.archived,
+                links: this.noteToUpdate.links ? [...this.noteToUpdate.links] : null
+            };
+        }
     }
 
 
     onAddLink(): void {
+        if (!this.note.links) {
+            this.note.links = [];
+        }
         this.note.links.push({name: this.currentLinkName, url: this.currentLinkUrl});
         this.currentLinkName = '';
         this.currentLinkUrl = '';
-        console.log(this.note.links);
+    }
+
+    onRemoveLink(index: number): void {
+        this.note.links.splice(index, 1);
     }
 
     onSubmit(): void {
-        this.note.text = this.noteForm.value.text;
         this.note.added = new Date();
-        this.note.links = this.note.links.length > 0 ? this.note.links : null;
+        if (!this.note.links) {
+            this.note.links = null;
+        } else {
+            this.note.links = this.note.links.length > 0 ? this.note.links : null;
+        }
+        if (this.isEditing) {
+            this.noteService.updateNote(this.note.id, this.note);
+        } else {
+            this.noteService.addNewNote(this.note);
+        }
+        this.closing = true;
+        setTimeout(() => {
+            this.canceling.emit();
+        }, 300);
+        this.resetThisNote();
+    }
+
+    onCancel(): void {
         this.noteForm.reset();
-        console.log(this.note);
-        this.noteService.addNewNote(this.note);
+        this.noteToUpdate = null;
+        this.resetThisNote();
+        this.isEditing = false;
+        this.closing = true;
+        setTimeout(() => {
+            this.canceling.emit();
+        }, 300);
+    }
+
+    private resetThisNote(): void {
+        this.note = {
+            text: '',
+            added: null,
+            archived: false,
+            links: []
+        };
     }
 
 }

@@ -60,7 +60,6 @@ export class NotesService {
         .then((response: DocumentReference) => {
             this.alert.show('Note added successfully.', 'success');
             this.fetchNotes();
-            console.log(response);
         })
         .catch((error) => {
             console.log(error);
@@ -105,4 +104,22 @@ export class NotesService {
         });
     }
 
+    updateNote(id: string, note: Note): void {
+        this.spinner.show();
+        delete note.id;
+        this.notesCollection.doc(id).set({
+            ...note
+        })
+        .then(() => {
+            this.alert.show('Note updated successfully.', 'success');
+            this.fetchNotes();
+        })
+        .catch((error) => {
+            console.log(error);
+            this.alert.show('Error updating note. ' + error.message, 'danger');
+        })
+        .finally(() => {
+            this.spinner.hide();
+        });
+    }
 }

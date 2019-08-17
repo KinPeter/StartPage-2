@@ -3,6 +3,7 @@
 .note-wrapper {
     perspective: 1000px;
     .note {
+        position: relative;
         width: 100%;
         height: auto;
         background: linear-gradient(135deg, #fff 0%, $lightBlue 50%, $lightBlue 100%);
@@ -62,6 +63,46 @@
             opacity: .5;
             .note-buttons i:hover {
                 color: $darkGrey;
+            }
+        }
+
+        .delete-confirm-wrapper {
+            position: absolute;
+            bottom: 1.9rem;
+            right: 0.2rem;
+
+            transform: translateY(50px); opacity: 0;
+            animation: slideUp .2s ease forwards;
+            @keyframes slideUp {
+                from { transform: translateY(50px); opacity: 0; }
+                to   { transform: translateY(0); opacity: 1; }
+            }
+            div {
+                cursor: pointer;
+                width: 25px;
+                height: 25px;
+                margin-bottom: 5px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+                font-size: .8rem;
+                box-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+                &.confirm-delete {
+                    background-color: $danger;
+                    &:hover {
+                        background-color: white;
+                        color: $danger;
+                    }
+                }
+                &.cancel-delete {
+                    background-color: $lightGrey;
+                    &:hover {
+                        background-color: white;
+                        color: $lightGrey;
+                    }
+                }
             }
         }
     }

@@ -2,9 +2,97 @@
 
 .add-note {
     position: fixed;
-    top: 70px;
-    left: 500px;
-    input, textarea, button {
-        display: block;
+    left: 62px;
+    bottom: 62px;
+    width: 270px;
+    background-color: #fff;
+    padding: 1rem;
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+
+    transform-origin: bottom left;
+    transform: translate(-100px, 100px) scale(0.1);
+    opacity: 0;
+    animation: comeIn .3s ease forwards;
+
+    @keyframes comeIn {
+        from { transform: translate(-100px, 100px) scale(0.1); opacity: 0; }
+        to { transform: translate(0, 0) scale(1); opacity: 1; }
+    }
+
+    &.closing {
+        animation: goOut .2s ease;
+        @keyframes goOut {
+            from { transform: translate(0, 0) scale(1); opacity: 1; }
+            to { transform: translate(-100px, 100px) scale(0.1); opacity: 0; }
+        }
+    }
+
+    h5 {
+        color: $blue1;
+    }
+
+    form {
+        @include form();
+
+        .add-links-section {
+            .row, .col-sm-10, .col-sm-2 {
+                margin: 0;
+                padding: 0;
+            }
+            input {
+                margin: 0;
+                &:first-child {
+                    margin-bottom: 0.2rem;
+                }
+            }
+            .col-sm-2 {
+                padding-left: .2rem;
+                button {
+                    @include button($blue2, $blue4, none);
+                    height: 100%;
+                    width: 100%;
+                    margin: 0;
+                    margin-bottom: 0.2rem;
+                    padding: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+            ul {
+                padding: 0;
+                list-style: none;
+                margin-top: 1rem;
+                max-height: 70px;
+                overflow-y: auto;
+                li {
+                    font-weight: bold;
+                    color: $orange;
+                    i {
+                        margin-right: 0.2rem;
+                        &.fa-times {
+                            color: $lightGrey;
+                            margin-right: .5rem;
+                            cursor: pointer;
+                            &:hover {
+                                color: $darkGrey;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+            .cancel-btn {
+                @include button($darkGrey, $lightGrey, none);
+            }
+            .save-btn {
+                @include button($blue2, $blue4, none);
+            }
+        }
     }
 }
