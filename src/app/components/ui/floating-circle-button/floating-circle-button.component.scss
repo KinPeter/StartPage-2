@@ -6,9 +6,9 @@ button {
     position: relative;
     z-index: 1;
     overflow: hidden;    
-    background-color: $blue5;
+    background-color: white;
     border-radius: 50%;
-    border: 1px solid white;
+    border: none;
     outline: none;
     display: flex;
     justify-content: center;
@@ -40,7 +40,7 @@ button {
     &:hover {
         box-shadow: 5px 5px 8px rgba(0,0,0,0.6);
         &:after {
-            transform: scale(1);
+            transform: scale(1.1);
         }
         i {
             color: rgba(255, 255, 255, 0.9);
@@ -79,7 +79,7 @@ div {
         top: -5px;
         left: $size;
         transform-origin: left center;
-        transform: translateX(-50%);
+        transform: translateX(-25%);
         opacity: 0;
     }
     &.to-left {
@@ -87,7 +87,7 @@ div {
         top: -5px;
         right: $size;
         transform-origin: center right;
-        transform: translateX(50%);
+        transform: translateX(25%);
         opacity: 0;
     }
 }
