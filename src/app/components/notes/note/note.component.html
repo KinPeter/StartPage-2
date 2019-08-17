@@ -14,14 +14,17 @@
             <span class="note-buttons">
                 <i 
                     class="fas fa-edit"
+                    *ngIf="isLoggedIn"
                     (click)="editNote()">
                 </i>
                 <i 
                     class="fas fa-archive"
+                    *ngIf="isLoggedIn"
                     (click)="archiveNote()">
                 </i>
                 <i 
                     class="fas fa-trash-alt"
+                    *ngIf="isLoggedIn"
                     (click)="deleteNote()">
                 </i>
             </span>
