@@ -25,6 +25,10 @@
         [tiles]="tiles.top">
     </app-tiles-tab>
     <footer *ngIf="isLoggedIn">
-        <app-floating-circle-button [message]="'Add new tile'" [side]="'to-left'"></app-floating-circle-button>
+        <app-floating-circle-button 
+            [message]="'Add new tile'" 
+            [side]="'to-left'"
+            [icon]="'plus'">
+        </app-floating-circle-button>
     </footer>
 </section>
