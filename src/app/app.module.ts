@@ -18,6 +18,11 @@ import { LoginComponent } from './components/menu-bar/login/login.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { NoteComponent } from './components/notes/note/note.component';
 import { AddNoteComponent } from './components/notes/add-note/add-note.component';
+import { LinksContainerComponent } from './components/links-container/links-container.component';
+import { AddLinkComponent } from './components/links-container/add-link/add-link.component';
+import { SearchLinkComponent } from './components/links-container/search-link/search-link.component';
+import { LinkResultsComponent } from './components/links-container/link-results/link-results.component';
+import { LinkItemComponent } from './components/links-container/link-results/link-item/link-item.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +37,12 @@ import { AddNoteComponent } from './components/notes/add-note/add-note.component
     NotesComponent,
     NoteComponent,
     FloatingCircleButtonComponent,
-    AddNoteComponent
+    AddNoteComponent,
+    LinksContainerComponent,
+    AddLinkComponent,
+    SearchLinkComponent,
+    LinkResultsComponent,
+    LinkItemComponent
   ],
   imports: [
     BrowserModule,

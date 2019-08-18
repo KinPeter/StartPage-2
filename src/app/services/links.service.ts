@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Link } from '../interfaces/link';
-import { Tags } from '../data/link-tags';
 import { AngularFirestore, QuerySnapshot } from '@angular/fire/firestore';
 import { AlertService } from './alert.service';
 import { SpinnerService } from './spinner.service';
+import { LinkTagsService } from './link-tags.service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +18,8 @@ export class LinksService {
     constructor(
         public db: AngularFirestore,
         public alert: AlertService,
-        public spinner: SpinnerService
+        public spinner: SpinnerService,
+        public lt: LinkTagsService
     ) {
         this.links = new Subject();
         this.linkResults = new Subject();

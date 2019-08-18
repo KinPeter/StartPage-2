@@ -4,3 +4,8 @@ export interface Link {
     url: string;
     tags: string[];
 }
+
+export interface Tag {
+    tag: string;
+    name: string;
+}

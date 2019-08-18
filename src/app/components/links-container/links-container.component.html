@@ -1,0 +1,16 @@
+<section class="links-container" [class.open]="isOpen">
+    <header (click)="toggleView()">
+        Links
+        <small>
+            <i class="fas fa-caret-up"></i>
+        </small>
+    </header>
+    <main class="tag-cloud">
+        <article
+            *ngFor="let tag of tagsArray"
+            (click)="loadLinksByTag(tag[0])">
+            <span class="dot"></span>
+            {{ tag[1].name }}
+        </article>
+    </main>
+</section>
