@@ -6,8 +6,7 @@
         position: relative;
         width: 100%;
         height: auto;
-        background: linear-gradient(135deg, #fff 0%, $lightBlue 50%, $lightBlue 100%);
-        border: 1px solid #fff;
+        @extend %lightBackgroundWhiteBorder;
         margin-bottom: .5rem;
         padding: 0.5rem;
         color: $blue1;

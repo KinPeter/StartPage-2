@@ -69,8 +69,7 @@
             flex-grow: 0;
             margin-bottom: 1rem;
             margin-right: 5px;
-            background: linear-gradient(135deg, #fff 0%, $lightBlue 50%, $lightBlue 100%);
-            border: 1px solid #fff;
+            @extend %lightBackgroundWhiteBorder;
             overflow: hidden;
 
             .tile-content {

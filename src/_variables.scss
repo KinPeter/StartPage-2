@@ -24,6 +24,11 @@ $danger: #dc3545;
     background-color: rgba(0,0,0,.7);
 }
 
+%lightBackgroundWhiteBorder {
+    background: linear-gradient(135deg, #fff 0%, $lightBlue 50%, $lightBlue 100%);
+    border: 1px solid #fff;
+}
+
 @mixin button($bgColor, $hoverColor, $float) {
     position: relative;
     background-color: $bgColor;
