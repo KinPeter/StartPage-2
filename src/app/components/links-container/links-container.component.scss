@@ -100,6 +100,9 @@
                 app-link-results {
                     bottom: ($containerHeight - 16) + px;
                 }
+                app-search-link {
+                    bottom: ($containerHeight + 16) + px;
+                }
             }
         }
         @media (max-width: 1023px) {
@@ -117,18 +120,29 @@
             transform: rotate(180deg);
         }
     }
-    
-    app-link-results {
+
+    %linkModalsShared {
         position: fixed;
         z-index: 1000;
         display: inline-block;
+        transition: all .3s .1s ease;
+        bottom: calc(70px - 1rem);
+    }
+
+    app-search-link {
+        @extend %linkModalsShared;
+        bottom: calc(70px + 1rem);
+        left: calc(300px + 1rem);
+        width: 300px;
+        height: 120px;        
+    }
+    
+    app-link-results {
+        @extend %linkModalsShared;
         bottom: calc(70px - 1rem);
         right: calc(300px + 1rem);
         width: 400px;
-        max-height: 400px;
-        transition: all .3s .1s ease;
-
-        
+        max-height: 400px;       
     }
 
 }

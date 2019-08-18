@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { Link } from 'src/app/interfaces/link';
 import { LinksService } from 'src/app/services/links.service';
 
@@ -9,16 +9,20 @@ import { LinksService } from 'src/app/services/links.service';
 })
 export class LinkResultsComponent implements OnInit {
 
+    public closing = false;
     @Input() results: Link[];
     @Output() closeResults = new EventEmitter<void>();
-    public closing = false;
+    @ViewChild('elementRef', { static: true }) eRef: ElementRef;
+    @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent) => { };
 
     constructor(
-        public linkService: LinksService,
-        private eRef: ElementRef
+        public linkService: LinksService
     ) { }
 
     ngOnInit() {
+        setTimeout(() => {
+            this.clickOutside = this.onClickOutside;
+        }, 500);
     }
 
     onCloseResults(): void {
@@ -28,7 +32,6 @@ export class LinkResultsComponent implements OnInit {
         }, 300);
     }
 
-    @HostListener('document:click', ['$event'])
     onClickOutside(event: MouseEvent): void {
         if (!this.eRef.nativeElement.contains(event.target)) {
             this.onCloseResults();

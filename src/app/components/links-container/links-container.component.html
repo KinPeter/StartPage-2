@@ -1,4 +1,9 @@
 <section class="links-container" [class.open]="isOpen">
+    <app-search-link
+        *ngIf="isSearching"
+        (closeSearch)="onCloseSearch()">
+    </app-search-link>
+    
     <app-link-results 
         *ngIf="hasResults" 
         (closeResults)="onCloseResults()"

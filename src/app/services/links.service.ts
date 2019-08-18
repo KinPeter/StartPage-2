@@ -67,6 +67,7 @@ export class LinksService {
         })
         .catch((error) => {
             this.linkResults.error(error);
+            this.alert.show('Unable to fetch links.', 'danger');
         })
         .finally(() => {
             this.spinner.hide();

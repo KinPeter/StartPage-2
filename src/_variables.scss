@@ -22,6 +22,31 @@ $danger: #dc3545;
     font-size: 1.5rem;
 }
 
+%whiteModalHeader {
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 0.5rem;
+        color: $blue1;
+        font-size: 1.25rem;
+        line-height: 1.2;
+        i {
+            cursor: pointer;
+            color: $lightGrey;
+            &:hover {
+                color: $darkGrey;
+            }
+        }
+    }
+}
+
+%whiteModalBasics {
+    background-color: #fff;
+    padding: 1rem;    
+    box-shadow: 3px 3px 2px rgba(0,0,0,0.3);
+}
+
 %overlay {
     top: 45px;
     left: 0;

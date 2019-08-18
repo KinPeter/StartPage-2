@@ -1,23 +1,8 @@
 @import "~src/variables";
 
 .link-results {
-    background-color: #fff;
-    padding: 1rem;    
-    box-shadow: 3px 3px 2px rgba(0,0,0,0.3);
-
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        @extend %tabTitleBlue;
-        i {
-            cursor: pointer;
-            color: $lightGrey;
-            &:hover {
-                color: $darkGrey;
-            }
-        }
-    }
+    @extend %whiteModalBasics;
+    @extend %whiteModalHeader;
 
     .results-wrapper {
         overflow-Y: auto;
