@@ -1,1 +1,9 @@
-<p>link-results works!</p>
+<section class="link-results" [class.closing]="closing">
+    <header>
+        Search results:
+        <i (click)="onCloseResults()" class="fas fa-times"></i>
+    </header>
+    <main class="results-wrapper">
+        <app-link-item *ngFor="let link of results" [link]="link"></app-link-item>
+    </main>
+</section>

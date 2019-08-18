@@ -53,6 +53,7 @@ export class LinksService {
     }
 
     fetchLinksByTag(tag: string): void {
+        this.spinner.show();
         this.db.collection<Link>('links', (ref) => ref.where('tags', 'array-contains', tag))
         .get()
         .toPromise()
@@ -66,6 +67,9 @@ export class LinksService {
         })
         .catch((error) => {
             this.linkResults.error(error);
+        })
+        .finally(() => {
+            this.spinner.hide();
         });
     }
 

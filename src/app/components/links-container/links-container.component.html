@@ -1,10 +1,42 @@
 <section class="links-container" [class.open]="isOpen">
+    <app-link-results 
+        *ngIf="hasResults" 
+        (closeResults)="onCloseResults()"
+        [results]="results">
+    </app-link-results>
+
     <header (click)="toggleView()">
         Links
         <small>
             <i class="fas fa-caret-up"></i>
         </small>
     </header>
+
+    <app-floating-circle-button
+        *ngIf="isLoggedIn"
+        class="search-link-circle logged-in"
+        [message]="'Search'" 
+        [side]="'to-left'"
+        [icon]="'search'"
+        (click)="onSearchLink()">
+    </app-floating-circle-button>
+    <app-floating-circle-button
+        *ngIf="!isLoggedIn"
+        class="search-link-circle logged-out"
+        [message]="'Search'" 
+        [side]="'to-right'"
+        [icon]="'search'"
+        (click)="onSearchLink()">
+    </app-floating-circle-button>
+    <app-floating-circle-button
+        *ngIf="isLoggedIn"
+        class="add-link-circle"
+        [message]="'Add new link'" 
+        [side]="'to-right'"
+        [icon]="'plus'"
+        (click)="onAddLink()">
+    </app-floating-circle-button>
+
     <main class="tag-cloud">
         <article
             *ngFor="let tag of tagsArray"

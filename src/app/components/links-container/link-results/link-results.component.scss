@@ -1,0 +1,46 @@
+@import "~src/variables";
+
+.link-results {
+    background-color: #fff;
+    padding: 1rem;    
+    box-shadow: 3px 3px 2px rgba(0,0,0,0.3);
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        @extend %tabTitleBlue;
+        i {
+            cursor: pointer;
+            color: $lightGrey;
+            &:hover {
+                color: $darkGrey;
+            }
+        }
+    }
+
+    .results-wrapper {
+        overflow-Y: auto;
+        max-height: calc(400px - 4.25rem);
+        &::-webkit-scrollbar { 
+            display: none; 
+        }
+    }
+
+    transform-origin: bottom right;
+    transform: translate(100px, 100px) scale(0.1);
+    opacity: 0;
+    animation: comeIn .3s ease forwards;
+    @keyframes comeIn {
+        from { transform: translate(100px, 100px) scale(0.1); opacity: 0; }
+        to { transform: translate(0, 0) scale(1); opacity: 1; }
+    }
+
+    &.closing {
+        animation: goOut .2s ease;
+        @keyframes goOut {
+            from { transform: translate(0, 0) scale(1); opacity: 1; }
+            to { transform: translate(100px, 100px) scale(0.1); opacity: 0; }
+        }
+    }
+}

@@ -5,6 +5,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { Link } from 'src/app/interfaces/link';
 import { Subject } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'app-links-container',
@@ -13,25 +14,33 @@ import { Subject } from 'rxjs';
 })
 export class LinksContainerComponent implements OnInit {
 
-    isOpen: boolean;
-    tagsArray: Array<any>;
-    results: Subject<Link[]>;
+    public isOpen: boolean;
+    public tagsArray: Array<any>;
+    public results: Link[];
+    public hasResults: boolean;
+    public isLoggedIn: boolean;
 
     constructor(
         public linkService: LinksService,
+        public auth: AuthService,
         public lt: LinkTagsService,
         public alert: AlertService,
         public spinner: SpinnerService
     ) {
         this.isOpen = false;
-        this.results = new Subject(); // elég csak a result componentben??
+        this.results = [];
+        this.hasResults = false;
     }
 
     ngOnInit() {
         this.tagsArray = Object.entries(this.lt.tags);
-        this.linkService.linkResults.subscribe((result: Link[]) => { // elég csak a result componentben??
+        this.linkService.linkResults.subscribe((result: Link[]) => {
             console.log(result);
-            this.results.next(result);
+            this.results = result;
+            this.hasResults = true;
+        });
+        this.auth.loggedIn.subscribe((value) => {
+            this.isLoggedIn = value;
         });
     }
 
@@ -43,4 +52,16 @@ export class LinksContainerComponent implements OnInit {
         this.linkService.fetchLinksByTag(tag);
     }
 
+    onAddLink(): void {
+
+    }
+
+    onSearchLink(): void {
+
+    }
+
+    onCloseResults(): void {
+        this.results = [];
+        this.hasResults = false;
+    }
 }

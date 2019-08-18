@@ -1,1 +1,6 @@
-<p>link-item works!</p>
+<article>
+    <a href="{{ link.url }}" target="blank">{{ link.name }}</a>
+    <ul>
+        <li *ngFor="let tag of link.tags">{{ getTagName(tag) }}</li>
+    </ul>
+</article>
