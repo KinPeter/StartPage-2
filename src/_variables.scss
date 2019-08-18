@@ -16,6 +16,12 @@ $danger: #dc3545;
     font-size: 1.5rem;
 }
 
+%tabTitleBlue {
+    font-weight: bold;
+    color: $blue1;
+    font-size: 1.5rem;
+}
+
 %overlay {
     top: 45px;
     left: 0;
@@ -27,6 +33,23 @@ $danger: #dc3545;
 %lightBackgroundWhiteBorder {
     background: linear-gradient(135deg, #fff 0%, $lightBlue 50%, $lightBlue 100%);
     border: 1px solid #fff;
+}
+
+%tilePseudoAfterLightblueRadial {
+    &:after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;                
+        content: '';
+        transition: all .2s ease;
+        background: radial-gradient(circle, white, $blue5);
+        opacity: .2;
+        z-index: -1;
+        border-radius: 50%;
+        transform: scale(0);
+    }
 }
 
 @mixin button($bgColor, $hoverColor, $float) {
