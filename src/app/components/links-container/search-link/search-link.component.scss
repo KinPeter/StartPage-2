@@ -6,4 +6,10 @@
     height: 100%;
 
     @include whiteModalAnimations(left);
+
+    form {
+        @include form();
+        @include customInlineInputWithButton();
+        margin-top: 1rem;
+    }
 }

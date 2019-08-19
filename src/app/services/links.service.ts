@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject, Subscription } from 'rxjs';
 import { Link } from '../interfaces/link';
 import { AngularFirestore, QuerySnapshot } from '@angular/fire/firestore';
 import { AlertService } from './alert.service';
@@ -12,7 +12,8 @@ import { LinkTagsService } from './link-tags.service';
 export class LinksService {
 
     public linksCollection = this.db.collection<Link>('links');
-    public links: Subject<Link[]>;
+    public links: BehaviorSubject<Link[]>;
+    public linksSubscription: Subscription;
     public linkResults: Subject<Link[]>;
 
     constructor(
@@ -21,7 +22,7 @@ export class LinksService {
         public spinner: SpinnerService,
         public lt: LinkTagsService
     ) {
-        this.links = new Subject();
+        this.links = new BehaviorSubject([]);
         this.linkResults = new Subject();
     }
 
@@ -41,15 +42,20 @@ export class LinksService {
                 }
             })
             .catch((error) => {
+                console.log(error);
                 this.links.error(error);
                 this.alert.show('Unable to fetch links.', 'danger');
             })
             .finally(() => {
                 this.spinner.hide();
             });
-        } else {
+        } else if (!this.links.value.length) {
+            // only push links if they are not there already
+            // thus avoid triggering subscribers
             this.links.next(JSON.parse(localLinks));
         }
+        // clear results subject
+        this.linkResults.next(null);
     }
 
     fetchLinksByTag(tag: string): void {
@@ -66,6 +72,7 @@ export class LinksService {
             }
         })
         .catch((error) => {
+            console.log(error);
             this.linkResults.error(error);
             this.alert.show('Unable to fetch links.', 'danger');
         })
@@ -75,16 +82,22 @@ export class LinksService {
     }
 
     searchLink(text: string): void {
+        if (this.linksSubscription) {
+            this.linksSubscription.unsubscribe();
+        }
+        this.linkResults.next(null);
         const results: Link[] = [];
-        const subscription = this.links.subscribe((links) => {
+        this.linksSubscription = this.links.subscribe((links) => {
             links.forEach((link: Link) => {
                 if (link.name.toLowerCase().includes(text.trim().toLowerCase())) {
                     results.push(link);
                 }
             });
-            this.linkResults.next(results);
-            subscription.unsubscribe();
-            console.log('LinkService - Search results: ', results);
+            if (results.length === 0) {
+                this.alert.show('Sorry, no matches.', 'danger');
+            } else {
+                this.linkResults.next(results);
+            }
         });
     }
 

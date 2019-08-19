@@ -1,15 +1,19 @@
-import { Component, OnInit, Output, EventEmitter, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ElementRef, HostListener, ViewChild, AfterViewInit } from '@angular/core';
 import { LinksService } from 'src/app/services/links.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
     selector: 'app-search-link',
     templateUrl: './search-link.component.html',
     styleUrls: ['./search-link.component.scss']
 })
-export class SearchLinkComponent implements OnInit {
+export class SearchLinkComponent implements OnInit, AfterViewInit {
 
     public closing = false;
+    public searchTerm: string;
     @Output() closeSearch = new EventEmitter<void>();
+    @ViewChild('f', {static: true}) searchForm: NgForm;
+    @ViewChild('searchInput', {static: true}) searchInput: ElementRef;
     @ViewChild('elementRef', {static: true}) eRef: ElementRef;
     @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent) => {};
 
@@ -22,6 +26,15 @@ export class SearchLinkComponent implements OnInit {
             // need some delay before assigning listener function to avoid catching the initial click
             this.clickOutside = this.onClickOutsideSearch;
         }, 500);
+    }
+
+    ngAfterViewInit() {
+        this.searchInput.nativeElement.focus();
+    }
+
+    onSubmit() {
+        this.linkService.searchLink(this.searchTerm);
+        this.onCloseSearch();
     }
 
     onCloseSearch(): void {

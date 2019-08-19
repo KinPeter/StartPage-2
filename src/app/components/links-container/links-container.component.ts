@@ -37,9 +37,10 @@ export class LinksContainerComponent implements OnInit {
     ngOnInit() {
         this.tagsArray = Object.entries(this.lt.tags);
         this.linkService.linkResults.subscribe((result: Link[]) => {
-            console.log(result);
-            this.results = result;
-            this.hasResults = true;
+            if (result) {
+                this.results = result;
+                this.hasResults = true;
+            }
         });
         this.auth.loggedIn.subscribe((value) => {
             this.isLoggedIn = value;
@@ -60,6 +61,9 @@ export class LinksContainerComponent implements OnInit {
 
     onSearchLink(): void {
         this.linkService.fetchAllLinks();
+        this.results = [];
+        this.hasResults = false;
+        this.linkService.linkResults.next(null);
         this.isSearching = true;
     }
 
@@ -70,5 +74,6 @@ export class LinksContainerComponent implements OnInit {
     onCloseResults(): void {
         this.results = [];
         this.hasResults = false;
+        this.linkService.linkResults.next(null);
     }
 }

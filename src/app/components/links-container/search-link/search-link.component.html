@@ -4,6 +4,26 @@
         <i (click)="onCloseSearch()" class="fas fa-times"></i>
     </header>
     <form 
-        >
+        (ngSubmit)="onSubmit()" 
+        #f="ngForm">
+        <div class="row">
+            <div class="col-sm-10">
+                <input 
+                    #searchInput
+                    type="text" 
+                    id="searchTerm" 
+                    name="searchTerm" 
+                    placeholder="Search for a link" 
+                    [(ngModel)]="searchTerm"
+                    required>
+            </div>
+            <div class="col-sm-2">
+                <button 
+                    type="submit"
+                    [disabled]="!f.valid">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
     </form>
 </section>
