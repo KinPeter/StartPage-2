@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, QuerySnapshot, QueryDocumentSnapshot, DocumentReference } from '@angular/fire/firestore';
+import { AngularFirestore, QuerySnapshot, QueryDocumentSnapshot, DocumentReference, CollectionReference } from '@angular/fire/firestore';
 import { Observable, Subject } from 'rxjs';
 import { Note } from '../interfaces/note';
 import { AlertService } from './alert.service';
@@ -22,19 +22,19 @@ export class NotesService {
         this.fetchNotes();
     }
 
-    fetchNotes(): void {
-        this.db.collection<Note>('notes', (ref) => ref.orderBy('added', 'desc')).get()
-        .toPromise()
-        .then((data: QuerySnapshot<any>) => {
+    async fetchNotes(): Promise<void> {
+        let data: QuerySnapshot<any>;
+        const query = (ref: CollectionReference) => ref.orderBy('added', 'desc');
+        try {
+            data = await this.db.collection<Note>('notes', query).get().toPromise();
             if (data.empty) {
                 this.notes.error(new Error('No notes found.'));
             } else {
                 this.notes.next(data);
             }
-        })
-        .catch((error) => {
+        } catch (error) {
             this.notes.error(error);
-        });
+        }
     }
 
     distributeAndSortNotes(data: QuerySnapshot<any>): Note[] {
@@ -54,72 +54,65 @@ export class NotesService {
         return active.concat(archived);
     }
 
-    addNewNote(note: Note): void {
+    async addNewNote(note: Note): Promise<void> {
         this.spinner.show();
-        this.notesCollection.add(note)
-        .then((response: DocumentReference) => {
+        let response: DocumentReference;
+        try {
+            response = await this.notesCollection.add(note);
             this.alert.show('Note added successfully.', 'success');
             this.fetchNotes();
-        })
-        .catch((error) => {
+        } catch (error) {
             console.log(error);
             this.alert.show('Error adding note. ' + error.message, 'danger');
-        })
-        .finally(() => {
+        } finally {
             this.spinner.hide();
-        });
+        }
     }
 
-    deleteNote(id: string): void {
+    async deleteNote(id: string): Promise<void> {
         this.spinner.show();
-        this.notesCollection.doc(id).delete()
-        .then(() => {
+        try {
+            await this.notesCollection.doc(id).delete();
             this.alert.show('Note deleted successfully.', 'success');
             this.fetchNotes();
-        })
-        .catch((error) => {
+        } catch (error) {
             console.log(error);
             this.alert.show('Error deleting note. ' + error.message, 'danger');
-        })
-        .finally(() => {
+        } finally {
             this.spinner.hide();
-        });
+        }
     }
 
-    archiveNote(id: string, archived: boolean): void {
+    async archiveNote(id: string, archived: boolean): Promise<void> {
         this.spinner.show();
-        this.notesCollection.doc(id).update({
-            archived: !archived
-        })
-        .then(() => {
+        try {
+            await this.notesCollection.doc(id).update({
+                archived: !archived
+            });
             this.alert.show('Note updated successfully.', 'success');
             this.fetchNotes();
-        })
-        .catch((error) => {
+        } catch (error) {
             console.log(error);
             this.alert.show('Error updating note. ' + error.message, 'danger');
-        })
-        .finally(() => {
+        } finally {
             this.spinner.hide();
-        });
+        }
     }
 
-    updateNote(id: string, note: Note): void {
+    async updateNote(id: string, note: Note): Promise<void> {
         this.spinner.show();
         delete note.id;
-        this.notesCollection.doc(id).set({
-            ...note
-        })
-        .then(() => {
+        try {
+            await this.notesCollection.doc(id).set({
+                ...note
+            });
             this.alert.show('Note updated successfully.', 'success');
             this.fetchNotes();
-        })
-        .catch((error) => {
+        } catch (error) {
             console.log(error);
             this.alert.show('Error updating note. ' + error.message, 'danger');
-        })
-        .finally(() => {
+        } finally {
             this.spinner.hide();
-        });
+        }
     }
 }

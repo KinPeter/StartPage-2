@@ -40,40 +40,40 @@ export class AuthService {
         }
     }
 
-    login(loginData: LoginData): void {
+    async login(loginData: LoginData): Promise<void> {
         this.spinner.show();
-        this.fireAuth.auth.signInWithEmailAndPassword(loginData.email, loginData.password)
-        .then((response: firebase.auth.UserCredential) => {
+        let response: firebase.auth.UserCredential;
+        try {
+            response = await this.fireAuth.auth.signInWithEmailAndPassword(loginData.email, loginData.password);
             this.uid.next(response.user.uid);
             this.displayName.next(response.user.displayName);
             this.loggedIn.next(true);
             sessionStorage.setItem('startpageUid', response.user.uid);
             sessionStorage.setItem('startpageDisplayName', response.user.displayName);
-            this.spinner.hide();
             this.alert.show('Logged in successfully', 'success');
-        })
-        .catch((error: any) => {
-            this.spinner.hide();
+        } catch (error) {
             this.alert.show('Login failed. ' + error.message, 'danger');
             console.log(error);
-        });
+        } finally {
+            this.spinner.hide();
+        }
     }
 
-    logout(): void {
+    async logout(): Promise<void> {
         this.spinner.show();
-        this.fireAuth.auth.signOut()
-        .then(() => {
+        try {
+            await this.fireAuth.auth.signOut();
             this.uid.next(null);
+            this.displayName.next(null);
             this.loggedIn.next(false);
             sessionStorage.removeItem('startpageUid');
             sessionStorage.removeItem('startpageDisplayName');
-            this.spinner.hide();
             this.alert.show('Logged out.', 'success');
-        })
-        .catch((error: any) => {
-            this.spinner.hide();
+        } catch (error) {
             this.alert.show('Couldn\'t log you out. ' + error.message, 'danger');
             console.log(error);
-        });
+        } finally {
+            this.spinner.hide();
+        }
     }
 }
