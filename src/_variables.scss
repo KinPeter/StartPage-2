@@ -134,6 +134,33 @@ $danger: #dc3545;
     }
 }
 
+@mixin customInlineInputWithButton() {
+    .row, .col-sm-10, .col-sm-2 {
+        margin: 0;
+        padding: 0;
+    }
+    input {
+        margin: 0;
+        &:first-child {
+            margin-bottom: 0.2rem;
+        }
+    }
+    .col-sm-2 {
+        padding-left: .2rem;
+        button {
+            @include button($blue2, $blue4, none);
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            margin-bottom: 0.2rem;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
 @mixin whiteModalAnimations($transformOriginX) {
     $transformParams: none;
     @if $transformOriginX == left {
