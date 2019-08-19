@@ -37,6 +37,7 @@ export class TilesContainerComponent implements OnInit {
     ngOnInit() {
         this.spinner.show();
         this.tileService.tiles.subscribe((data: QuerySnapshot<any>) => {
+            Object.keys(this.tiles).forEach((key) => { this.tiles[key] = []; });
             this.tileService.distributeTilesFromQuerySnapshot(data, this.tiles);
             this.tileService.sortTilesByPriority(this.tiles);
             this.spinner.hide();
