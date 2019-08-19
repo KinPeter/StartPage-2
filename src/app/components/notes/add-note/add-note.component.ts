@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input, HostListener, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Note } from 'src/app/interfaces/note';
 import { NotesService } from 'src/app/services/notes.service';
@@ -11,6 +11,7 @@ import { NotesService } from 'src/app/services/notes.service';
 export class AddNoteComponent implements OnInit {
     @Input() noteToUpdate: Note | null;
     @ViewChild('f', { static: true }) noteForm: NgForm;
+    @ViewChild('elementRef', { static: true }) eRef: ElementRef;
     @Output() canceling = new EventEmitter<void>();
     closing = false;
     isEditing = false;
@@ -22,6 +23,7 @@ export class AddNoteComponent implements OnInit {
     };
     currentLinkName = '';
     currentLinkUrl = '';
+    @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent) => { };
 
     constructor( public noteService: NotesService ) {
     }
@@ -37,6 +39,9 @@ export class AddNoteComponent implements OnInit {
                 links: this.noteToUpdate.links ? [...this.noteToUpdate.links] : null
             };
         }
+        setTimeout(() => {
+            this.clickOutside = this.onClickOutside;
+        }, 500);
     }
 
 
@@ -90,6 +95,12 @@ export class AddNoteComponent implements OnInit {
             archived: false,
             links: []
         };
+    }
+
+    onClickOutside(event: MouseEvent): void {
+        if (!this.eRef.nativeElement.contains(event.target)) {
+            this.onCancel();
+        }
     }
 
 }

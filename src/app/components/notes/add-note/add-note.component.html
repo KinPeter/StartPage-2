@@ -1,6 +1,9 @@
-<div class="add-note" [class.closing]="closing">
-    <h5 *ngIf="!isEditing">Add new note</h5>
-    <h5 *ngIf="isEditing">Edit note</h5>
+<div class="add-note" [class.closing]="closing" #elementRef>
+    <header>
+        <span *ngIf="!isEditing">Add new note</span>
+        <span *ngIf="isEditing">Edit note</span>
+        <i (click)="onCancel()" class="fas fa-times"></i>
+    </header>
     <form (ngSubmit)="onSubmit()" #f="ngForm">
         <textarea 
             id="text" 

@@ -5,9 +5,8 @@
     left: 62px;
     bottom: 62px;
     width: 270px;
-    background-color: #fff;
-    padding: 1rem;
-    box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+    @extend %whiteModalBasics;
+    @extend %whiteModalHeader;
 
     transform-origin: bottom left;
     transform: translate(-100px, 100px) scale(0.1);
@@ -25,10 +24,6 @@
             from { transform: translate(0, 0) scale(1); opacity: 1; }
             to { transform: translate(-100px, 100px) scale(0.1); opacity: 0; }
         }
-    }
-
-    h5 {
-        color: $blue1;
     }
 
     form {
