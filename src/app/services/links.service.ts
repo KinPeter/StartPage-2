@@ -85,7 +85,7 @@ export class LinksService {
 
     async fetchLinksByTag(tag: string): Promise<void> {
         this.spinner.show();
-        const query = (ref: CollectionReference) => ref.where('tags', 'array-contains', tag);
+        const query = (ref: CollectionReference) => ref.where('tags', 'array-contains', tag).orderBy('name', 'asc');
         let data: QuerySnapshot<any>;
         try {
             data = await this.db.collection<Link>('links', query).get().toPromise();
@@ -131,6 +131,7 @@ export class LinksService {
                     results.push(link);
                 }
             });
+            results.sort(this.sortByName);
             if (results.length === 0) {
                 this.alert.show('Sorry, no matches.', 'danger');
             } else {
@@ -152,5 +153,17 @@ export class LinksService {
             links.push(currentLink);
         });
         return links;
+    }
+
+    sortByName(a: Link, b: Link): number {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+            return -1;
+        }
+        if (nameA > nameB) {
+            return 1;
+        }
+        return 0;
     }
 }
