@@ -135,7 +135,7 @@ $danger: #dc3545;
 }
 
 @mixin customInlineInputWithButton() {
-    .row, .col-sm-10, .col-sm-2 {
+    .row, .col-sm-10, .col-sm-11, .col-sm-1, .col-sm-2 {
         margin: 0;
         padding: 0;
     }
@@ -145,7 +145,7 @@ $danger: #dc3545;
             margin-bottom: 0.2rem;
         }
     }
-    .col-sm-2 {
+    .col-sm-2, .col-sm-1 {
         padding-left: .2rem;
         button {
             @include button($blue2, $blue4, none);

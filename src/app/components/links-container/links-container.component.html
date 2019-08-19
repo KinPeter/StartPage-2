@@ -4,6 +4,11 @@
         (closeSearch)="onCloseSearch()">
     </app-search-link>
     
+    <app-add-link
+        *ngIf="isAdding"
+        (closeAddLink)="onCloseAddLink()">
+    </app-add-link>
+    
     <app-link-results 
         *ngIf="hasResults" 
         (closeResults)="onCloseResults()"

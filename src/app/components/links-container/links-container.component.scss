@@ -100,7 +100,7 @@
                 app-link-results {
                     bottom: ($containerHeight - 16) + px;
                 }
-                app-search-link {
+                app-search-link, app-add-link {
                     bottom: ($containerHeight + 16) + px;
                 }
             }
@@ -135,6 +135,14 @@
         left: calc(300px + 1rem);
         width: 300px;
         height: 110px;        
+    }
+
+    app-add-link {
+        @extend %linkModalsShared;
+        bottom: calc(70px + 1rem);
+        left: calc(300px + 1rem);
+        width: 400px;
+        height: auto;  
     }
     
     app-link-results {

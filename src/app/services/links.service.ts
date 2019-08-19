@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject, Subscription } from 'rxjs';
 import { Link } from '../interfaces/link';
-import { AngularFirestore, QuerySnapshot, CollectionReference } from '@angular/fire/firestore';
+import { AngularFirestore, QuerySnapshot, CollectionReference, DocumentReference } from '@angular/fire/firestore';
 import { AlertService } from './alert.service';
 import { SpinnerService } from './spinner.service';
 import { LinkTagsService } from './link-tags.service';
@@ -57,6 +57,32 @@ export class LinksService {
         this.linkResults.next(null);
     }
 
+    async forceFetchAllLinks(): Promise<void> {
+        if (sessionStorage.getItem('localLinks')) {
+            sessionStorage.removeItem('localLinks');
+        }
+        this.linkResults.next(null);
+        this.links.next(null);
+        this.spinner.show();
+        let data: QuerySnapshot<any>;
+        try {
+            data = await this.linksCollection.get().toPromise();
+            if (data.empty) {
+                this.links.error(new Error('No links found.'));
+            } else {
+                const linksArray = this.transformData(data);
+                this.links.next(linksArray);
+                sessionStorage.setItem('localLinks', JSON.stringify(linksArray));
+            }
+        } catch (error) {
+            console.log(error);
+            this.links.error(error);
+            this.alert.show('Unable to fetch links.', 'danger');
+        } finally {
+            this.spinner.hide();
+        }
+    }
+
     async fetchLinksByTag(tag: string): Promise<void> {
         this.spinner.show();
         const query = (ref: CollectionReference) => ref.where('tags', 'array-contains', tag);
@@ -73,6 +99,21 @@ export class LinksService {
             console.log(error);
             this.linkResults.error(error);
             this.alert.show('Unable to fetch links.', 'danger');
+        } finally {
+            this.spinner.hide();
+        }
+    }
+
+    async addNewLink(link: Link): Promise<void> {
+        this.spinner.show();
+        let response: DocumentReference;
+        try {
+            response = await this.linksCollection.add(link);
+            this.alert.show('Link added successfully.', 'success');
+            this.forceFetchAllLinks();
+        } catch (error) {
+            console.log(error);
+            this.alert.show('Error adding link. ' + error.message, 'danger');
         } finally {
             this.spinner.hide();
         }

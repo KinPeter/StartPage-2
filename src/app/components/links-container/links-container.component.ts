@@ -20,6 +20,7 @@ export class LinksContainerComponent implements OnInit {
     public hasResults: boolean;
     public isLoggedIn: boolean;
     public isSearching: boolean;
+    public isAdding: boolean;
 
     constructor(
         public linkService: LinksService,
@@ -32,6 +33,7 @@ export class LinksContainerComponent implements OnInit {
         this.results = [];
         this.hasResults = false;
         this.isSearching = false;
+        this.isAdding = false;
     }
 
     ngOnInit() {
@@ -56,7 +58,11 @@ export class LinksContainerComponent implements OnInit {
     }
 
     onAddLink(): void {
+        this.isAdding = true;
+    }
 
+    onCloseAddLink(): void {
+        this.isAdding = false;
     }
 
     onSearchLink(): void {
