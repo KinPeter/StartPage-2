@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginData } from 'src/app/interfaces/login-data';
+import { myPassword } from 'keys';
 
 @Component({
     selector: 'app-login',
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
 
         // FOR TESTING
         setTimeout(() => {
-            this.loginForm.setValue({email: 'kinpeter85@gmail.com', password: 'petike1205'});
+            this.loginForm.setValue({email: 'kinpeter85@gmail.com', password: myPassword});
         }, 1000);
     }
 

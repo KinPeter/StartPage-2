@@ -11,6 +11,7 @@ import { AlertService } from './alert.service';
 export class AuthService {
 
     uid: BehaviorSubject<string>;
+    displayName: BehaviorSubject<string>;
     loggedIn: BehaviorSubject<boolean>;
 
     constructor(
@@ -20,18 +21,22 @@ export class AuthService {
         ) {
         this.loggedIn = new BehaviorSubject(false);
         this.uid = new BehaviorSubject(null);
+        this.displayName = new BehaviorSubject(null);
         this.checkStorage();
     }
 
     checkStorage(): void {
         const storedId = sessionStorage.getItem('startpageUid');
+        const storedName = sessionStorage.getItem('startpageDisplayName');
         if (storedId) {
             this.loggedIn.next(true);
             this.uid.next(storedId);
+            this.displayName.next(storedName);
         } else {
             this.fireAuth.auth.signOut();
             this.loggedIn.next(false);
             this.uid.next(null);
+            this.displayName.next(null);
         }
     }
 
@@ -40,8 +45,10 @@ export class AuthService {
         this.fireAuth.auth.signInWithEmailAndPassword(loginData.email, loginData.password)
         .then((response: firebase.auth.UserCredential) => {
             this.uid.next(response.user.uid);
+            this.displayName.next(response.user.displayName);
             this.loggedIn.next(true);
             sessionStorage.setItem('startpageUid', response.user.uid);
+            sessionStorage.setItem('startpageDisplayName', response.user.displayName);
             this.spinner.hide();
             this.alert.show('Logged in successfully', 'success');
         })
@@ -59,6 +66,7 @@ export class AuthService {
             this.uid.next(null);
             this.loggedIn.next(false);
             sessionStorage.removeItem('startpageUid');
+            sessionStorage.removeItem('startpageDisplayName');
             this.spinner.hide();
             this.alert.show('Logged out.', 'success');
         })
