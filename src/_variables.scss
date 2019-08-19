@@ -133,3 +133,28 @@ $danger: #dc3545;
         border: 2px solid $blue2;
     }
 }
+
+@mixin whiteModalAnimations($transformOriginX) {
+    $transformParams: none;
+    @if $transformOriginX == left {
+        $transformParams: translate(-100px, 100px) scale(0.1);
+    }
+    @else if $transformOriginX == right {
+        $transformParams: translate(100px, 100px) scale(0.1);
+    }
+    transform-origin: bottom $transformOriginX;
+    transform: $transformParams;
+    opacity: 0;
+    animation: comeIn .3s ease forwards;
+    @keyframes comeIn {
+        from { transform: $transformParams; opacity: 0; }
+        to { transform: translate(0, 0) scale(1); opacity: 1; }
+    }
+    &.closing {
+        animation: goOut .2s ease;
+        @keyframes goOut {
+            from { transform: translate(0, 0) scale(1); opacity: 1; }
+            to { transform: $transformParams; opacity: 0; }
+        }
+    }
+}

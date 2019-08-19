@@ -8,23 +8,7 @@
     @extend %whiteModalBasics;
     @extend %whiteModalHeader;
 
-    transform-origin: bottom left;
-    transform: translate(-100px, 100px) scale(0.1);
-    opacity: 0;
-    animation: comeIn .3s ease forwards;
-
-    @keyframes comeIn {
-        from { transform: translate(-100px, 100px) scale(0.1); opacity: 0; }
-        to { transform: translate(0, 0) scale(1); opacity: 1; }
-    }
-
-    &.closing {
-        animation: goOut .2s ease;
-        @keyframes goOut {
-            from { transform: translate(0, 0) scale(1); opacity: 1; }
-            to { transform: translate(-100px, 100px) scale(0.1); opacity: 0; }
-        }
-    }
+    @include whiteModalAnimations(left);
 
     form {
         @include form();
