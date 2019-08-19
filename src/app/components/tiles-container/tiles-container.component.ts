@@ -16,6 +16,7 @@ export class TilesContainerComponent implements OnInit {
 
     public tiles: Tiles;
     public isLoggedIn: boolean;
+    public addingTile: boolean;
 
     constructor(
             public tileService: TileService,
@@ -30,6 +31,7 @@ export class TilesContainerComponent implements OnInit {
             fun: [],
             others: []
         };
+        this.addingTile = false;
     }
 
     ngOnInit() {
@@ -49,4 +51,11 @@ export class TilesContainerComponent implements OnInit {
         });
     }
 
+    onAddTile(): void {
+        this.addingTile = true;
+    }
+
+    onCancel() {
+        this.addingTile = false;
+    }
 }

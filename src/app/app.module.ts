@@ -23,6 +23,7 @@ import { AddLinkComponent } from './components/links-container/add-link/add-link
 import { SearchLinkComponent } from './components/links-container/search-link/search-link.component';
 import { LinkResultsComponent } from './components/links-container/link-results/link-results.component';
 import { LinkItemComponent } from './components/links-container/link-results/link-item/link-item.component';
+import { AddTileComponent } from './components/tiles-container/add-tile/add-tile.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { LinkItemComponent } from './components/links-container/link-results/lin
     AddLinkComponent,
     SearchLinkComponent,
     LinkResultsComponent,
-    LinkItemComponent
+    LinkItemComponent,
+    AddTileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,61 @@
+<section class="add-tile" [class.closing]="closing" #elementRef>
+    <header>
+        Add new tile:
+        <i (click)="onCloseAddTile()" class="fas fa-times"></i>
+    </header>
+    <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <select 
+            name="tileCategory" 
+            id="tileCategory"
+            [(ngModel)]="tile.category"
+            required>
+            <option value="" selected>Choose category</option>
+            <option value="top">Top</option>
+            <option value="coding">Coding</option>
+            <option value="google">Google</option>
+            <option value="fun">Fun</option>
+            <option value="others">Others</option>
+        </select>
+        <input 
+            #tileNameInput 
+            type="text" 
+            id="tileName" 
+            name="tileName" 
+            placeholder="Name"
+            [(ngModel)]="tile.name" 
+            required>
+        <input 
+            type="text" 
+            id="tileUrl" 
+            name="tileUrl" 
+            placeholder="URL" 
+            [(ngModel)]="tile.link"
+            required>
+        <input 
+            type="text" 
+            id="tileIcon" 
+            name="tileIcon" 
+            placeholder="Icon filename" 
+            [(ngModel)]="tile.icon"
+            required>
+        <input 
+            type="number" 
+            id="tilePriority" 
+            name="tilePriority" 
+            [(ngModel)]="tile.priority"
+            placeholder="Priority"
+            min="1"
+            max="10"
+            required>
+
+        <footer>
+            <button class="cancel-btn" type="button" (click)=onCloseAddTile()>
+                Cancel
+            </button>
+            <button class="save-btn" type="submit" [disabled]="!f.valid">
+                Save
+            </button>
+        </footer>
+        
+    </form>
+</section>

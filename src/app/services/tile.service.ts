@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, QuerySnapshot, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { AngularFirestore, QuerySnapshot, QueryDocumentSnapshot, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Tile } from '../interfaces/tile';
 import { Tiles } from '../interfaces/tiles';
 import { SpinnerService } from './spinner.service';
+import { AlertService } from './alert.service';
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +16,8 @@ export class TileService {
 
     constructor(
             public db: AngularFirestore,
+            public alert: AlertService,
+            public spinner: SpinnerService
         ) {
         this.fetchTiles();
     }
@@ -39,6 +42,21 @@ export class TileService {
                 return t1.priority - t2.priority;
             });
         });
+    }
+
+    async addNewTile(tile: Tile): Promise<void> {
+        this.spinner.show();
+        let response: DocumentReference;
+        try {
+            response = await this.tilesCollection.add(tile);
+            this.alert.show('Tile added successfully.', 'success');
+            this.fetchTiles();
+        } catch (error) {
+            console.log(error);
+            this.alert.show('Error adding tile. ' + error.message, 'danger');
+        } finally {
+            this.spinner.hide();
+        }
     }
 
 }

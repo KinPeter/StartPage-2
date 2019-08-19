@@ -1,0 +1,30 @@
+@import "~src/variables";
+
+.add-tile {
+    position: fixed;
+    right: 62px;
+    bottom: 62px;
+    width: 270px;
+    z-index: 10;
+    @extend %whiteModalBasics;
+    @extend %whiteModalHeader;
+
+    @include whiteModalAnimations(right);
+
+    form {
+        @include form();
+
+        
+        footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1.5rem;
+            .cancel-btn {
+                @include button($darkGrey, $lightGrey, none);
+            }
+            .save-btn {
+                @include button($blue2, $blue4, none);
+            }
+        }
+    }
+}

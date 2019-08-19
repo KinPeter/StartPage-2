@@ -24,11 +24,18 @@
         [tabNumber]="'tab5'"
         [tiles]="tiles.top">
     </app-tiles-tab>
+
+    <app-add-tile
+        *ngIf="addingTile && isLoggedIn"
+        (canceling)="onCancel()">
+    </app-add-tile>
+
     <footer *ngIf="isLoggedIn">
         <app-floating-circle-button 
             [message]="'Add new tile'" 
             [side]="'to-left'"
-            [icon]="'plus'">
+            [icon]="'plus'"
+            (click)="onAddTile()">
         </app-floating-circle-button>
     </footer>
 </section>
