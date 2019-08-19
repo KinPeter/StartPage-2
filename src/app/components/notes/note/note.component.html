@@ -3,7 +3,7 @@
         <p class="note-text" *ngIf="note.text.length > 1">{{ note.text }}</p>
         <ul *ngIf="note.links" class="note-links">
             <li *ngFor="let link of note.links">
-                <a href="{{ link.url }}" target="blank">
+                <a href="{{ link.url }}" target="_blank">
                     <i class="fas fa-link"></i>
                     {{ link.name }}
                 </a>

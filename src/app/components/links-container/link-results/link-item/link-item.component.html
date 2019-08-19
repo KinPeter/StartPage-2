@@ -1,5 +1,5 @@
 <article>
-    <a href="{{ link.url }}" target="blank">{{ link.name }}</a>
+    <a href="{{ link.url }}" target="_blank">{{ link.name }}</a>
     <ul>
         <li *ngFor="let tag of link.tags">{{ getTagName(tag) }}</li>
     </ul>
