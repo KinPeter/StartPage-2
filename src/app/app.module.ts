@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -24,6 +25,7 @@ import { SearchLinkComponent } from './components/links-container/search-link/se
 import { LinkResultsComponent } from './components/links-container/link-results/link-results.component';
 import { LinkItemComponent } from './components/links-container/link-results/link-item/link-item.component';
 import { AddTileComponent } from './components/tiles-container/add-tile/add-tile.component';
+import { WeatherComponent } from './components/weather/weather.component';
 
 @NgModule({
   declarations: [
@@ -44,14 +46,16 @@ import { AddTileComponent } from './components/tiles-container/add-tile/add-tile
     SearchLinkComponent,
     LinkResultsComponent,
     LinkItemComponent,
-    AddTileComponent
+    AddTileComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'firebaseApp'),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
