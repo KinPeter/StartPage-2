@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TileService } from 'src/app/services/tile.service';
-import { Tiles } from 'src/app/interfaces/tiles';
-import { Tile } from 'src/app/interfaces/tile';
-import { QuerySnapshot, QueryDocumentSnapshot } from '@angular/fire/firestore';
+import { Tiles } from 'src/app/interfaces/tile';
+import { QuerySnapshot } from '@angular/fire/firestore';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { AuthService } from 'src/app/services/auth.service';

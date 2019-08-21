@@ -6,3 +6,11 @@ export interface Tile {
     name: string;
     priority: number;
 }
+
+export interface Tiles {
+    top: Tile[];
+    coding: Tile[];
+    google: Tile[];
+    fun: Tile[];
+    others: Tile[];
+}

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, QuerySnapshot, QueryDocumentSnapshot, DocumentReference } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
-import { Tile } from '../interfaces/tile';
-import { Tiles } from '../interfaces/tiles';
+import { Tile, Tiles } from '../interfaces/tile';
 import { SpinnerService } from './spinner.service';
 import { AlertService } from './alert.service';
 
