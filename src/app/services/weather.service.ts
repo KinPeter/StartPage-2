@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { locationIqApiKey, darkSkyApiKey } from '../../../keys';
-import { LocationParams } from '../interfaces/weather';
+import { LocationParams, WeatherParams } from '../interfaces/weather';
+import { AlertService } from './alert.service';
+import { SpinnerService } from './spinner.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -9,21 +12,35 @@ import { LocationParams } from '../interfaces/weather';
 export class WeatherService {
 
     private locationIqUrl = 'https://eu1.locationiq.com/v1/reverse.php';
-    private darkSkyUrl = '';
+    // private darkSkyUrl = 'https://api.darksky.net/forecast';
+    public city: BehaviorSubject<string>;
+
+    //// LOCAL ONLY
+    private darkSkyUrl = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast';
+    //// ----------
 
     constructor(
         private http: HttpClient,
-    ) { }
+        private alert: AlertService,
+        private spinner: SpinnerService
+    ) {
+        this.city = new BehaviorSubject('');
 
-    async getLocationAndCity(): Promise<void> {
+        this.fetchLocationAndWeatherData();
+    }
+
+    async fetchLocationAndWeatherData(): Promise<void> {
+        this.spinner.show();
         try {
             const coords: Coordinates = await this.getLocation();
             const locResponse = await this.getCity(coords);
-            console.log(locResponse.address.city);
+            this.city.next(locResponse.address.city);
+            this.getWeather(coords);
         } catch (error) {
-            console.log(error);
+            this.alert.show('Error fetching location or weather. ' + error.message, 'danger');
+            console.log('getWeather() Error: ', error.message);
         } finally {
-            //
+            this.spinner.hide();
         }
     }
 
@@ -40,7 +57,7 @@ export class WeatherService {
                 },
                 (err: PositionError) => {
                     const errorMessage: string = this.getLocationErrorMessage(err);
-                    reject(errorMessage);
+                    reject(new Error(errorMessage));
                 },
                 options
             );
@@ -50,11 +67,11 @@ export class WeatherService {
     private getLocationErrorMessage(err: PositionError): string {
         switch (err.code) {
             case 1:
-                return 'Permission denied.';
+                return '[Location] Permission denied.';
             case 2:
-                return 'Location unavailable.';
+                return '[Location] Location unavailable.';
             case 3:
-                return 'Request timeout.';
+                return '[Location] Request timeout.';
         }
     }
 
@@ -66,5 +83,18 @@ export class WeatherService {
             format: 'json'
         };
         return this.http.get(this.locationIqUrl, { params: locationParams }).toPromise();
+    }
+
+    private async getWeather(coords: Coordinates): Promise<any> {
+        const lat = coords.latitude.toString();
+        const lon = coords.longitude.toString();
+        const URL = `${this.darkSkyUrl}/${darkSkyApiKey}/${lat},${lon}`;
+        const weatherParams: WeatherParams = {
+            exclude: 'minutely,hourly,alerts,flags',
+            units: 'si'
+        };
+        const weatherResponse = await this.http.get(URL, { params: weatherParams }).toPromise();
+
+        console.log(weatherResponse);
     }
 }
