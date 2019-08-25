@@ -16,7 +16,7 @@ export class CurrentWeatherComponent implements OnInit {
 
     ngOnInit() {
         if (this.weather) {
-            this.isHighTemp = this.weather.temperature > 28;
+            this.isHighTemp = this.weather.temperature > 26;
             this.isLowTemp = this.weather.temperature < 8;
         }
     }

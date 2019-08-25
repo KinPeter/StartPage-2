@@ -1,8 +1,21 @@
+@import '~src/_variables';
+
 .date-city {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
     p {
         font-size: 1.1rem;
+        margin: 0;
+    }
+}
+.refresh-weather {
+    display: block;
+    text-align: right;
+    cursor: pointer;
+    position: relative;
+    top: -63px;
+    &:hover {
+        color: $orange;
     }
 }

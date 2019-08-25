@@ -2,7 +2,13 @@
     <p>{{ city }}</p>
     <p>{{ today | date:'EEEE, yyyy. LLLL d.' }}</p>
 </section>
+<i class="fas fa-sync-alt refresh-weather" (click)="weatherService.fetchLocationAndWeatherData()"></i>
 <section *ngIf="weather">
-    <app-current-weather [weather]="weather.currentWeather"></app-current-weather>
-    <app-daily-weather *ngFor="let daily of weather.dailyWeather" [weather]="daily"></app-daily-weather>
+    <app-current-weather 
+        [weather]="weather.currentWeather">
+    </app-current-weather>
+    <app-daily-weather 
+        *ngFor="let daily of weather.dailyWeather" 
+        [weather]="daily">
+    </app-daily-weather>
 </section>

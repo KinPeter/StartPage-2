@@ -12,13 +12,9 @@ import { BehaviorSubject } from 'rxjs';
 export class WeatherService {
 
     private locationIqUrl = 'https://eu1.locationiq.com/v1/reverse.php';
-    // private darkSkyUrl = 'https://api.darksky.net/forecast';
+    private darkSkyUrl = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast';
     public city: BehaviorSubject<string>;
     public weather: BehaviorSubject<Weather>;
-
-    //// LOCAL ONLY
-    private darkSkyUrl = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast';
-    //// ----------
 
     constructor(
         private http: HttpClient,
