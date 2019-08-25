@@ -1,0 +1,39 @@
+@import "~src/variables";
+
+main {
+    position: fixed;
+    top: 45px;
+    left: 300px;
+    width: calc(100vw - 600px);
+    min-width: 700px;
+    height: calc(100vh - 115px);
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem;
+    overflow: auto;
+    &::-webkit-scrollbar { 
+        display: none; 
+    }
+    section.column {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 50%;
+        height: 100%;
+        &.left {
+            align-items: flex-end;
+            padding-right: .25rem;
+        }
+        &.right {
+            align-items: flex-start;
+            padding-left: .25rem;
+        }
+        app-content-box {
+            width: 100%;
+            max-width: 420px;
+            margin-bottom: 0.5rem;
+        }
+    }
+}

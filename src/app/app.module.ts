@@ -26,6 +26,7 @@ import { LinkResultsComponent } from './components/links-container/link-results/
 import { LinkItemComponent } from './components/links-container/link-results/link-item/link-item.component';
 import { AddTileComponent } from './components/tiles-container/add-tile/add-tile.component';
 import { WeatherComponent } from './components/weather/weather.component';
+import { ContentBoxComponent } from './components/content-box/content-box.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { WeatherComponent } from './components/weather/weather.component';
     LinkResultsComponent,
     LinkItemComponent,
     AddTileComponent,
-    WeatherComponent
+    WeatherComponent,
+    ContentBoxComponent
   ],
   imports: [
     BrowserModule,
