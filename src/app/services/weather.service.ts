@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { locationIqApiKey, darkSkyApiKey } from '../../../keys';
-import { LocationParams, WeatherParams } from '../interfaces/weather';
+import { LocationParams, WeatherParams, Weather, DailyWeather } from '../interfaces/weather';
 import { AlertService } from './alert.service';
 import { SpinnerService } from './spinner.service';
 import { BehaviorSubject } from 'rxjs';
@@ -14,6 +14,7 @@ export class WeatherService {
     private locationIqUrl = 'https://eu1.locationiq.com/v1/reverse.php';
     // private darkSkyUrl = 'https://api.darksky.net/forecast';
     public city: BehaviorSubject<string>;
+    public weather: BehaviorSubject<Weather>;
 
     //// LOCAL ONLY
     private darkSkyUrl = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast';
@@ -25,7 +26,7 @@ export class WeatherService {
         private spinner: SpinnerService
     ) {
         this.city = new BehaviorSubject('');
-
+        this.weather = new BehaviorSubject(null);
         this.fetchLocationAndWeatherData();
     }
 
@@ -90,11 +91,37 @@ export class WeatherService {
         const lon = coords.longitude.toString();
         const URL = `${this.darkSkyUrl}/${darkSkyApiKey}/${lat},${lon}`;
         const weatherParams: WeatherParams = {
-            exclude: 'minutely,hourly,alerts,flags',
+            exclude: 'minutely,alerts,flags',
             units: 'si'
         };
         const weatherResponse = await this.http.get(URL, { params: weatherParams }).toPromise();
+        const newWeather = this.transformWeather(weatherResponse);
+        console.log(newWeather);
+        this.weather.next(newWeather);
+    }
 
-        console.log(weatherResponse);
+    private transformWeather(response: any): Weather {
+        const weather: Weather = {
+            currentWeather: {
+                summary: response.currently.summary,
+                icon: response.currently.icon,
+                precip: response.currently.precipProbability,
+                temperature: response.currently.temperature,
+                windSpeed: response.currently.windSpeed,
+                forecast: response.hourly.summary
+            },
+            dailyWeather: []
+        };
+        response.daily.data.forEach((data) => {
+            const daily: DailyWeather = {
+                time: data.time,
+                icon: data.icon,
+                temperatureLow: data.temperatureLow,
+                temparatureHigh: data.temperatureHigh,
+                precip: data.precipProbability
+            };
+            weather.dailyWeather.push(daily);
+        });
+        return weather;
     }
 }

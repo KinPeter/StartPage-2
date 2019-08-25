@@ -27,6 +27,8 @@ import { LinkItemComponent } from './components/links-container/link-results/lin
 import { AddTileComponent } from './components/tiles-container/add-tile/add-tile.component';
 import { WeatherComponent } from './components/weather/weather.component';
 import { ContentBoxComponent } from './components/content-box/content-box.component';
+import { CurrentWeatherComponent } from './components/weather/current-weather/current-weather.component';
+import { DailyWeatherComponent } from './components/weather/daily-weather/daily-weather.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { ContentBoxComponent } from './components/content-box/content-box.compon
     LinkItemComponent,
     AddTileComponent,
     WeatherComponent,
-    ContentBoxComponent
+    ContentBoxComponent,
+    CurrentWeatherComponent,
+    DailyWeatherComponent
   ],
   imports: [
     BrowserModule,

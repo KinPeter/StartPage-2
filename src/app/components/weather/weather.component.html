@@ -1,1 +1,33 @@
-<p>weather works!</p>
+<section class="date-city" *ngIf="city">
+    <p>{{ city }}</p>
+    <p>{{ today | date:'EEEE, yyyy. LLLL d.' }}</p>
+</section>
+<section class="current-weather" *ngIf="weather">
+    <div class="current-flex">
+        <div class="left">
+            <p><b>{{ weather.currentWeather.summary }}</b></p>
+            <p>
+                <i class="weather-icon precip"></i>
+                {{ weather.currentWeather.precip | percent}}
+            </p>
+            <p>
+                <i class="weather-icon wind"></i>
+                {{ getWindScale(weather.currentWeather.windSpeed) }}
+            </p>
+        </div>
+        <div class="right">
+            <div class="temp-warning" *ngIf="isLowTemp || isHighTemp">
+                <i *ngIf="isHighTemp" class="weather-icon temp-high-warning"></i>
+                <i *ngIf="isLowTemp" class="weather-icon temp-low-warning"></i>
+            </div>
+            <div class="current-temp">
+                {{ weather.currentWeather.temperature | number:'1.0-0' }}&deg;C
+            </div>
+            <i class="weather-icon" [ngClass]="weather.currentWeather.icon"></i>
+        </div>
+    </div>
+    <p class="current-forecast">
+        <i class="weather-icon future"></i>
+        {{ weather.currentWeather.forecast }}
+    </p>
+</section>
