@@ -112,15 +112,17 @@ export class WeatherService {
             },
             dailyWeather: []
         };
-        response.daily.data.forEach((data) => {
-            const daily: DailyWeather = {
-                time: data.time,
-                icon: data.icon,
-                temperatureLow: data.temperatureLow,
-                temparatureHigh: data.temperatureHigh,
-                precip: data.precipProbability
-            };
-            weather.dailyWeather.push(daily);
+        response.daily.data.forEach((data: any, i: number) => {
+            if (i > 0 && i < 6) {
+                const daily: DailyWeather = {
+                    time: new Date(data.time * 1000),
+                    icon: data.icon,
+                    temperatureLow: data.temperatureLow,
+                    temperatureHigh: data.temperatureHigh,
+                    precip: data.precipProbability
+                };
+                weather.dailyWeather.push(daily);
+            }
         });
         return weather;
     }

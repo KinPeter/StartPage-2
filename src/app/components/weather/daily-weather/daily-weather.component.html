@@ -1,0 +1,17 @@
+<section class="daily-weather">
+    <div class="daily-flex">
+        <div class="left">
+            <p class="date"><b>{{ weather.time | date:'EEEE' }}</b></p>
+            <p class="date">{{ weather.time | date:'LLLL d.' }}</p>
+        </div>
+        <div class="right">
+            <div class="precip">
+                <i class="weather-icon precip"></i>
+                {{ weather.precip | percent}}
+            </div>
+            <div class="daily-high">{{ weather.temperatureHigh | number:'1.0-0' }}&deg;C</div>
+            <div class="daily-low">{{ weather.temperatureLow | number:'1.0-0' }}&deg;C</div>
+            <i class="weather-icon" [ngClass]="weather.icon"></i>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,50 @@
+@import '~src/_weather-icons';
+@import '~src/_variables';
+
+.daily-weather {
+    padding: .25rem .5rem;
+    border-top: 2px solid $blue2;
+
+    p {
+        margin: 0;
+    }
+    .daily-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            i {
+                width: 35px;
+                height: 35px;
+                margin-left: 0.5rem;
+            }
+            .precip {
+                position: relative;
+                top: -5px;
+                width: 80px;
+                i {
+                    position: relative;
+                    top: 2px;
+                    width: 15px;
+                    height: 15px;
+                    margin-right: 0.5rem;
+                }
+            }
+            .daily-low, .daily-high {
+                width: 50px;
+                font-size: 1.5rem;
+                text-align: right;
+            }
+            .daily-low {
+                color: $blue5;
+                margin-right: 1rem;
+            }
+            .daily-high {
+                color: $danger;
+            }
+        }
+    }
+}

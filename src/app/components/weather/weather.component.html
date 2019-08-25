@@ -4,4 +4,5 @@
 </section>
 <section *ngIf="weather">
     <app-current-weather [weather]="weather.currentWeather"></app-current-weather>
+    <app-daily-weather *ngFor="let daily of weather.dailyWeather" [weather]="daily"></app-daily-weather>
 </section>

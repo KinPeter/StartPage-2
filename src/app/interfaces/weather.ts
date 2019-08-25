@@ -26,9 +26,9 @@ export interface CurrentWeather {
 }
 
 export interface DailyWeather {
-    time: number;            // daily.data[i].time
+    time: Date;              // daily.data[i].time
     icon: string;            // daily.data[i].icon
     temperatureLow: number;  // daily.data[i].temperatureLow
-    temparatureHigh: number; // daily.data[i].temperatureHigh
+    temperatureHigh: number; // daily.data[i].temperatureHigh
     precip: number;          // daily.data[i].precipProbability
 }
