@@ -101,7 +101,7 @@ export class WeatherService {
             currentWeather: {
                 summary: response.currently.summary,
                 icon: response.currently.icon,
-                precip: response.currently.precipProbability,
+                precip: response.daily.data[0].precipProbability,
                 temperature: response.currently.temperature,
                 windSpeed: response.currently.windSpeed,
                 forecast: response.hourly.summary
