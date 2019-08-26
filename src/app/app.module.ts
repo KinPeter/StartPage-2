@@ -29,6 +29,8 @@ import { WeatherComponent } from './components/weather/weather.component';
 import { ContentBoxComponent } from './components/content-box/content-box.component';
 import { CurrentWeatherComponent } from './components/weather/current-weather/current-weather.component';
 import { DailyWeatherComponent } from './components/weather/daily-weather/daily-weather.component';
+import { DevToComponent } from './components/dev-to/dev-to.component';
+import { DevToPostComponent } from './components/dev-to/dev-to-post/dev-to-post.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { DailyWeatherComponent } from './components/weather/daily-weather/daily-
     WeatherComponent,
     ContentBoxComponent,
     CurrentWeatherComponent,
-    DailyWeatherComponent
+    DailyWeatherComponent,
+    DevToComponent,
+    DevToPostComponent
   ],
   imports: [
     BrowserModule,

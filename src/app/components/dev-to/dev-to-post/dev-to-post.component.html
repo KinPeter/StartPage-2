@@ -1,0 +1,19 @@
+<div class="dev-to-post">
+    <div class="title">
+        <a href="{{ post.url }}" target="_blank">{{ post.title }}</a>
+    </div>
+    <div class="tag-list">
+        <span 
+            class="tag"
+            *ngFor="let tag of post.tagList"
+            (click)="onTagClick(tag)">
+            #{{ tag }}
+        </span>
+    </div>
+    <footer>
+        <span>
+            <i class="fas fa-heart"></i>{{ post.likes }}
+        </span>
+        <p>{{ post.published | date:'MMM. d.' }}</p>
+    </footer>
+</div>
