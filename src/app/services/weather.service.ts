@@ -32,7 +32,7 @@ export class WeatherService {
             const coords: Coordinates = await this.getLocation();
             const locResponse = await this.getCity(coords);
             this.city.next(locResponse.address.city);
-            this.getWeather(coords);
+            await this.getWeather(coords);
         } catch (error) {
             this.alert.show('Error fetching location or weather. ' + error.message, 'danger');
             console.log('getWeather() Error: ', error.message);
@@ -92,7 +92,6 @@ export class WeatherService {
         };
         const weatherResponse = await this.http.get(URL, { params: weatherParams }).toPromise();
         const newWeather = this.transformWeather(weatherResponse);
-        console.log(newWeather);
         this.weather.next(newWeather);
     }
 
