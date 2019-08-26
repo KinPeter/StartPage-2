@@ -1,28 +1,43 @@
 @import '~src/_variables';
 
-header {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: -.6rem;
-    margin-bottom: .5rem;
-    span.tag {
-        cursor: pointer;
-        display: inline-block;
-        padding: 0 .6rem;
-        border-right: 1px solid $lightBlue;
-        &:last-child {
-            border-right: none;
-        }
-        &:hover {
-            text-decoration: underline;
+.dev-to {
+
+    header {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -.6rem;
+        margin-bottom: .5rem;
+        span.tag {
+            cursor: pointer;
+            display: inline-block;
+            padding: 0 .6rem;
+            border-right: 1px solid $lightBlue;
+            &:last-child {
+                border-right: none;
+            }
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
-}
-main {
-    max-height: 300px;
-    overflow: auto;
-    margin-bottom: 1rem;
-    &::-webkit-scrollbar {
-        display: none;
+    main {
+        max-height: 300px;
+        overflow: auto;
+        margin-bottom: 1rem;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    position: relative;
+    width: 100%;
+    &:after {
+        position: absolute;
+        content: '';
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 15px;
+        background: linear-gradient(to top, #ffffffcc 0%, transparent 100%);
+        z-index: 10;
     }
 }
