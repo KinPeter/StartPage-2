@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpClientModule } from '@angular/common/http';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
@@ -31,6 +32,8 @@ import { CurrentWeatherComponent } from './components/weather/current-weather/cu
 import { DailyWeatherComponent } from './components/weather/daily-weather/daily-weather.component';
 import { DevToComponent } from './components/dev-to/dev-to.component';
 import { DevToPostComponent } from './components/dev-to/dev-to-post/dev-to-post.component';
+import { KoreanComponent } from './components/korean/korean.component';
+import { DictComponent } from './components/korean/dict/dict.component';
 
 @NgModule({
   declarations: [
@@ -57,15 +60,19 @@ import { DevToPostComponent } from './components/dev-to/dev-to-post/dev-to-post.
     CurrentWeatherComponent,
     DailyWeatherComponent,
     DevToComponent,
-    DevToPostComponent
+    DevToPostComponent,
+    KoreanComponent,
+    DictComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase, 'firebaseApp'),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    HttpClientModule
+    HttpClientModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

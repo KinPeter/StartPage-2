@@ -1,0 +1,21 @@
+<app-dict></app-dict>
+<section class="word-of-the-day" *ngIf="cardFront && cardBack">
+    <header>
+        <p>Word for today:</p>
+        <i class="fas fa-sync-alt" (click)="dict.getRandomWord()"></i>
+    </header>
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <div class="card-text-wrapper">
+                    <div class="card-text card-front-text">{{ cardFront }}</div>
+                </div>
+            </div>
+            <div class="flip-card-back">
+                <div class="card-text-wrapper">
+                    <div class="card-text card-back-text">{{ cardBack }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
