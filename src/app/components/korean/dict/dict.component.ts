@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { startWith, map } from 'rxjs/operators';
+import { startWith, map, debounceTime } from 'rxjs/operators';
 import { DictionaryService } from 'src/app/services/dictionary.service';
 import { ResultData } from 'src/app/interfaces/dictionary';
 import { AlertService } from 'src/app/services/alert.service';
@@ -30,7 +30,8 @@ export class DictComponent implements OnInit {
         });
         this.filteredWords = this.input.valueChanges.pipe(
             startWith(''),
-            map(value => this._filter(value))
+            map(value => this._filter(value)),
+            debounceTime(500)
         );
     }
 
@@ -44,6 +45,7 @@ export class DictComponent implements OnInit {
             return;
         }
         this.results = newResults;
+        this.input.setValue('');
     }
 
     onCloseResults() {
