@@ -13,6 +13,7 @@ export class DevToService {
     private apiUrl = 'https://dev.to/api/articles';
     public posts: BehaviorSubject<DevToPost[]>;
     private defaultTag = 'javascript';
+    public topOnly = false;
 
     constructor(
         private http: HttpClient,
@@ -24,10 +25,8 @@ export class DevToService {
     }
 
     async fetchPostsByTag(tag?: string): Promise<any> {
-        const devToParams = {
-            tag,
-            top: '2'
-        };
+        const devToParams: any = { tag };
+        if (this.topOnly) { devToParams.top = 3; }
         this.spinner.show();
         try {
             const newPosts: DevToPost[] = [];
@@ -48,6 +47,10 @@ export class DevToService {
         } finally {
             this.spinner.hide();
         }
+    }
+
+    public toggleTopOnly(): void {
+        this.topOnly = !this.topOnly;
     }
 
 }

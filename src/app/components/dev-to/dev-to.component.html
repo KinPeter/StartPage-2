@@ -1,4 +1,11 @@
 <div class="dev-to">
+    <aside 
+        class="toggle-top" 
+        (click)="devToService.toggleTopOnly()" 
+        [class.toggled]="devToService.topOnly">
+        <span>Top posts only</span>
+        <div class="toggle-button"></div>
+    </aside>
     <header>
         <span 
             class="tag" 
