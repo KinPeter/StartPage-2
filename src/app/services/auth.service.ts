@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AngularFireAuth } from '@angular/fire/auth';
 import { LoginData } from '../interfaces/login-data';
 import { SpinnerService } from './spinner.service';
 import { AlertService } from './alert.service';
@@ -15,7 +14,6 @@ export class AuthService {
     loggedIn: BehaviorSubject<boolean>;
 
     constructor(
-            public fireAuth: AngularFireAuth,
             public spinner: SpinnerService,
             public alert: AlertService
         ) {
@@ -33,7 +31,7 @@ export class AuthService {
             this.uid.next(storedId);
             this.displayName.next(storedName);
         } else {
-            this.fireAuth.auth.signOut();
+            this.mockSignOut();
             this.loggedIn.next(false);
             this.uid.next(null);
             this.displayName.next(null);
@@ -42,14 +40,14 @@ export class AuthService {
 
     async login(loginData: LoginData): Promise<void> {
         this.spinner.show();
-        let response: firebase.auth.UserCredential;
+        let response: boolean;
         try {
-            response = await this.fireAuth.auth.signInWithEmailAndPassword(loginData.email, loginData.password);
-            this.uid.next(response.user.uid);
-            this.displayName.next(response.user.displayName);
+            response = await this.mockSignIn(loginData.email, loginData.password);
+            this.uid.next('d3m0u5er123');
+            this.displayName.next('Demo User');
             this.loggedIn.next(true);
-            sessionStorage.setItem('startpageUid', response.user.uid);
-            sessionStorage.setItem('startpageDisplayName', response.user.displayName);
+            sessionStorage.setItem('startpageUid', 'd3m0u5er123');
+            sessionStorage.setItem('startpageDisplayName', 'Demo User');
             this.alert.show('Logged in successfully', 'success');
         } catch (error) {
             this.alert.show('Login failed. ' + error.message, 'danger');
@@ -62,7 +60,7 @@ export class AuthService {
     async logout(): Promise<void> {
         this.spinner.show();
         try {
-            await this.fireAuth.auth.signOut();
+            await this.mockSignOut();
             this.uid.next(null);
             this.displayName.next(null);
             this.loggedIn.next(false);
@@ -75,5 +73,24 @@ export class AuthService {
         } finally {
             this.spinner.hide();
         }
+    }
+
+    private mockSignIn(email: string, password: string): Promise<boolean> {
+        return new Promise((res, rej) => {
+            setTimeout(() => {
+                if (Math.random() > 0.2) {
+                    res(true);
+                } else {
+                    rej(new Error('You were just unlucky. Try again!'));
+                }
+            }, 500);
+        });
+    }
+    private mockSignOut(): Promise<boolean> {
+        return new Promise((res, rej) => {
+            setTimeout(() => {
+                res(true);
+            }, 500);
+        });
     }
 }
