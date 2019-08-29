@@ -1,4 +1,9 @@
 <header>
     <app-logo></app-logo>
+    <div class="alert alert-info" *ngIf="demoAlertShown">
+        <i class="fas fa-info-circle"></i>
+        This is a demo version with no database access, but you can still try all functionalities.
+        <i class="fas fa-times" (click)="demoAlertShown = false"></i>
+    </div>
     <app-login></app-login>
 </header>
