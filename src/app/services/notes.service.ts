@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, QuerySnapshot, QueryDocumentSnapshot, DocumentReference, CollectionReference } from '@angular/fire/firestore';
-import { Observable, Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { Note } from '../interfaces/note';
 import { AlertService } from './alert.service';
 import { SpinnerService } from './spinner.service';
@@ -10,42 +9,85 @@ import { SpinnerService } from './spinner.service';
 })
 export class NotesService {
 
-    public notesCollection = this.db.collection<Note>('notes');
-    public notes: Subject<QuerySnapshot<any>>;
+    public notes: Subject<Note[]>;
+    private mockNotes: Note[] = [
+        {
+            id: '001',
+            text: 'This is an old note.',
+            links: null,
+            archived: false,
+            added: new Date(1558640521000)
+        },
+        {
+            id: '002',
+            text: 'Key to the main door: 12 # 3452',
+            links: null,
+            archived: false,
+            added: new Date(1562926260000)
+        },
+        {
+            id: '004',
+            text: 'Check out these sites:',
+            links: [
+                { name: 'A cool framework', url: 'https://angular.io' },
+                { name: 'Want backend?', url: 'https://firebase.google.com' }
+            ],
+            archived: false,
+            added: new Date(1564411800000)
+        },
+        {
+            id: '005',
+            text: '',
+            links: [
+                { name: 'Wanna watch this movie...', url: 'https://www.imdb.com/title/tt2527338/' }
+            ],
+            archived: false,
+            added: new Date(1564085160000)
+        },
+        {
+            id: '007',
+            text: 'This is an archived note.',
+            links: null,
+            archived: true,
+            added: new Date(1565601960000)
+        },
+        {
+            id: '008',
+            text: 'Something that is still good keeping but might not be interesting anymore.',
+            links: null,
+            archived: true,
+            added: new Date(1559734380000)
+        },
+        {
+            id: '009',
+            text: 'Something more down here from last year :)',
+            links: null,
+            archived: true,
+            added: new Date(1523964720000)
+        }
+    ];
 
     constructor(
-            public db: AngularFirestore,
             public alert: AlertService,
             public spinner: SpinnerService
         ) {
-        this.notes = new Subject();
+        this.notes = new BehaviorSubject(null);
         this.fetchNotes();
     }
 
-    async fetchNotes(): Promise<void> {
-        let data: QuerySnapshot<any>;
-        const query = (ref: CollectionReference) => ref.orderBy('added', 'desc');
-        try {
-            data = await this.db.collection<Note>('notes', query).get().toPromise();
-            if (data.empty) {
-                this.notes.error(new Error('No notes found.'));
-            } else {
-                this.notes.next(data);
-            }
-        } catch (error) {
-            this.notes.error(error);
-        }
+    fetchNotes(): void {
+        this.notes.next(this.mockNotes);
     }
 
-    distributeAndSortNotes(data: QuerySnapshot<any>): Note[] {
+    distributeAndSortNotes(data: Note[]): Note[] {
         const active: Note[] = [];
         const archived: Note[] = [];
-        data.docs.forEach((doc) => {
-            const obj = doc.data();
+        this.mockNotes.sort((a: Note, b: Note) => b.added.getTime() - a.added.getTime());
+        data.forEach((obj) => {
             const note: Note = {
-                id: doc.id,
+                id: obj.id,
                 text: obj.text,
-                added: new Date(obj.added.seconds * 1000),
+                added: obj.added,
                 archived: obj.archived,
                 links: obj.links ? [...obj.links] : null
             };
@@ -54,65 +96,64 @@ export class NotesService {
         return active.concat(archived);
     }
 
-    async addNewNote(note: Note): Promise<void> {
+    addNewNote(note: Note): void {
         this.spinner.show();
-        let response: DocumentReference;
-        try {
-            response = await this.notesCollection.add(note);
-            this.alert.show('Note added successfully.', 'success');
-            this.fetchNotes();
-        } catch (error) {
-            console.log(error);
-            this.alert.show('Error adding note. ' + error.message, 'danger');
-        } finally {
+        setTimeout(() => {
+            if (Math.random() > 0.2) {
+                this.mockNotes.push(note);
+                this.fetchNotes();
+                this.alert.show('Note added successfully.', 'success');
+            } else {
+                this.alert.show('Error adding note. You were just unlucky, try again!', 'danger');
+            }
             this.spinner.hide();
-        }
+        }, 500);
     }
 
-    async deleteNote(id: string): Promise<void> {
+    deleteNote(id: string): void {
         this.spinner.show();
-        try {
-            await this.notesCollection.doc(id).delete();
-            this.alert.show('Note deleted successfully.', 'success');
-            this.fetchNotes();
-        } catch (error) {
-            console.log(error);
-            this.alert.show('Error deleting note. ' + error.message, 'danger');
-        } finally {
+        setTimeout(() => {
+            if (Math.random() > 0.2) {
+                this.mockNotes = this.mockNotes.filter(note => note.id !== id);
+                this.fetchNotes();
+                this.alert.show('Note deleted successfully.', 'success');
+            } else {
+                this.alert.show('Error deleting note. You were just unlucky, try again!', 'danger');
+            }
             this.spinner.hide();
-        }
+        }, 500);
     }
 
-    async archiveNote(id: string, archived: boolean): Promise<void> {
+    archiveNote(id: string, archived: boolean): void {
         this.spinner.show();
-        try {
-            await this.notesCollection.doc(id).update({
-                archived: !archived
-            });
-            this.alert.show('Note updated successfully.', 'success');
-            this.fetchNotes();
-        } catch (error) {
-            console.log(error);
-            this.alert.show('Error updating note. ' + error.message, 'danger');
-        } finally {
+        setTimeout(() => {
+            if (Math.random() > 0.2) {
+                this.mockNotes.forEach(note => {
+                    if (note.id === id) {
+                        note.archived = !archived;
+                    }
+                });
+                this.fetchNotes();
+                this.alert.show('Note updated successfully.', 'success');
+            } else {
+                this.alert.show('Error updating note. You were just unlucky, try again!', 'danger');
+            }
             this.spinner.hide();
-        }
+        }, 500);
     }
 
-    async updateNote(id: string, note: Note): Promise<void> {
+    updateNote(id: string, note: Note): void {
         this.spinner.show();
-        delete note.id;
-        try {
-            await this.notesCollection.doc(id).set({
-                ...note
-            });
-            this.alert.show('Note updated successfully.', 'success');
-            this.fetchNotes();
-        } catch (error) {
-            console.log(error);
-            this.alert.show('Error updating note. ' + error.message, 'danger');
-        } finally {
+        setTimeout(() => {
+            if (Math.random() > 0.2) {
+                this.mockNotes = this.mockNotes.filter(elem => elem.id !== id);
+                this.mockNotes.push(note);
+                this.fetchNotes();
+                this.alert.show('Note updated successfully.', 'success');
+            } else {
+                this.alert.show('Error updating note. You were just unlucky, try again!', 'danger');
+            }
             this.spinner.hide();
-        }
+        }, 500);
     }
 }
