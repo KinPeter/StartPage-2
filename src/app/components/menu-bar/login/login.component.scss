@@ -1,16 +1,39 @@
 @import "~src/variables";
 
-a {
-    color: #fff !important;
-    text-transform: uppercase;
-    cursor: pointer;
-    i {
-        margin-left: .3rem;
+.menu-right {
+    display: flex;
+    a {
+        color: #fff !important;
+        text-transform: uppercase;
+        cursor: pointer;
+        i {
+            margin-left: .3rem;
+        }
+        &:hover {
+            color: $orange !important;
+        }
     }
-    &:hover {
-        color: $orange !important;
+    .user-info {
+        color: #fff;
+        margin-right: 1rem;
+        span {
+            position: relative;
+            top: -4px;
+            font-size: 1.2rem;
+        }
+        i {
+            margin-left: 0.5rem;
+            border: 2px solid #fff;
+        border-radius: 50%;
+        width: 22px;
+        height: 22px;
+        overflow: hidden;
+        padding-left: 2px;
+        padding-top: 3px;
+        }
     }
 }
+
 
 .login-modal {
     position: fixed;

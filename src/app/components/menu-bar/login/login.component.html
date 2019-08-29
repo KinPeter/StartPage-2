@@ -1,13 +1,19 @@
-<a (click)="onLoginClicked()"
-    *ngIf="!isLoggedIn">
-    Log in
-    <i class="fas fa-sign-in-alt"></i>
-</a>
-<a (click)="onLogoutClicked()"
-    *ngIf="isLoggedIn">
-    Log out
-    <i class="fas fa-sign-out-alt"></i>
-</a>
+<div class="menu-right">
+    <div class="user-info" *ngIf="isLoggedIn">
+        <span>{{ auth.displayName.value }}</span>
+        <i class="fas fa-user"></i>
+    </div>
+    <a (click)="onLoginClicked()"
+        *ngIf="!isLoggedIn">
+        Log in
+        <i class="fas fa-sign-in-alt"></i>
+    </a>
+    <a (click)="onLogoutClicked()"
+        *ngIf="isLoggedIn">
+        Log out
+        <i class="fas fa-sign-out-alt"></i>
+    </a>
+</div>
 <div class="login-modal">
     <div class="overlay" [class.open]="isLoggingIn" (click)="isLoggingIn = false"></div>
     <div class="modal-body" [class.open]="isLoggingIn">
