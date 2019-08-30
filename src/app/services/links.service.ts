@@ -24,6 +24,7 @@ export class LinksService {
     ) {
         this.links = new BehaviorSubject([]);
         this.linkResults = new Subject();
+        this.fetchAllLinks();
     }
 
     async fetchAllLinks(): Promise<void> {
@@ -57,66 +58,29 @@ export class LinksService {
         this.linkResults.next(null);
     }
 
-    async forceFetchAllLinks(): Promise<void> {
-        if (sessionStorage.getItem('localLinks')) {
-            sessionStorage.removeItem('localLinks');
-        }
-        this.linkResults.next(null);
-        this.links.next(null);
+    fetchLinksByTag(tag: string): void {
         this.spinner.show();
-        let data: QuerySnapshot<any>;
-        try {
-            data = await this.linksCollection.get().toPromise();
-            if (data.empty) {
-                this.links.error(new Error('No links found.'));
-            } else {
-                const linksArray = this.transformData(data);
-                this.links.next(linksArray);
-                sessionStorage.setItem('localLinks', JSON.stringify(linksArray));
-            }
-        } catch (error) {
-            console.log(error);
-            this.links.error(error);
-            this.alert.show('Unable to fetch links.', 'danger');
-        } finally {
+        let results: Link[];
+        setTimeout(() => {
+            results = this.links.value.filter((link) => link.tags.includes(tag));
+            results.sort((a: Link, b: Link) => this.sortByName(a, b));
+            this.linkResults.next(results);
             this.spinner.hide();
-        }
+        }, 500);
     }
 
-    async fetchLinksByTag(tag: string): Promise<void> {
+    addNewLink(link: Link): void {
         this.spinner.show();
-        const query = (ref: CollectionReference) => ref.where('tags', 'array-contains', tag).orderBy('name', 'asc');
-        let data: QuerySnapshot<any>;
-        try {
-            data = await this.db.collection<Link>('links', query).get().toPromise();
-            if (data.empty) {
-                this.linkResults.error(new Error('No links found.'));
+        setTimeout(() => {
+            if (Math.random() > 0.2) {
+                this.links.next([...this.links.value, link]);
+                this.alert.show('Link added successfully.', 'success');
+                sessionStorage.setItem('localLinks', JSON.stringify(this.links.value));
             } else {
-                const linksArray = this.transformData(data);
-                this.linkResults.next(linksArray);
+                this.alert.show('Error adding link. You were just unlucky, try again! ', 'danger');
             }
-        } catch (error) {
-            console.log(error);
-            this.linkResults.error(error);
-            this.alert.show('Unable to fetch links.', 'danger');
-        } finally {
             this.spinner.hide();
-        }
-    }
-
-    async addNewLink(link: Link): Promise<void> {
-        this.spinner.show();
-        let response: DocumentReference;
-        try {
-            response = await this.linksCollection.add(link);
-            this.alert.show('Link added successfully.', 'success');
-            this.forceFetchAllLinks();
-        } catch (error) {
-            console.log(error);
-            this.alert.show('Error adding link. ' + error.message, 'danger');
-        } finally {
-            this.spinner.hide();
-        }
+        }, 500);
     }
 
     searchLink(text: string): void {
