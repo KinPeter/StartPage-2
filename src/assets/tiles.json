@@ -7,20 +7,6 @@
     "name": "Wolt"
   },
   {
-    "priority": "1",
-    "name": "RarBG",
-    "icon": "rarbg.png",
-    "link": "https://rarbg.to/index8.php",
-    "category": "fun"
-  },
-  {
-    "priority": "5",
-    "name": "RawDict",
-    "icon": "gsheets.png",
-    "link": "https://docs.google.com/spreadsheets/d/1tzTAaziRi6mTW-XD6QS2_HEiwYpBRXA0-cQcAB3aeUU/edit#gid=0",
-    "category": "top"
-  },
-  {
     "name": "WebDict",
     "icon": "webdict.png",
     "link": "https://www.p-kin.com/webdict/",
@@ -49,13 +35,6 @@
     "name": "Dev.to"
   },
   {
-    "priority": "7",
-    "name": "Eco Web H.",
-    "icon": "ecoweb.png",
-    "link": "https://www.ecowebhosting.co.uk/cp/login",
-    "category": "others"
-  },
-  {
     "icon": "privatehd.png",
     "link": "https://privatehd.to/",
     "category": "fun",
@@ -63,25 +42,11 @@
     "name": "PrivateHD"
   },
   {
-    "priority": "3",
-    "name": "VocabCards",
-    "icon": "vocabcards.png",
-    "link": "https://www.p-kin.com/vocabcards/",
-    "category": "others"
-  },
-  {
     "priority": "2",
     "name": "LinkedIn",
     "icon": "linkedin.png",
-    "link": "https://www.linkedin.com/in/peter-kin/",
-    "category": "top"
-  },
-  {
-    "priority": "10",
-    "name": "Progmatic Drive",
-    "icon": "gdrive.png",
-    "link": "https://drive.google.com/drive/folders/1wQHsP6JH4vqgDQacq5NU5jhPmGbiUU1e",
-    "category": "coding"
+    "link": "https://www.linkedin.com/",
+    "category": "others"
   },
   {
     "priority": "7",
@@ -112,20 +77,6 @@
     "name": "Translate"
   },
   {
-    "icon": "tarhelypark.png",
-    "link": "https://ugyfel.tarhelypark.hu/",
-    "category": "others",
-    "priority": "5",
-    "name": "Tárhelypark"
-  },
-  {
-    "priority": "5",
-    "name": "My Words",
-    "icon": "gsheets.png",
-    "link": "https://docs.google.com/spreadsheets/d/1c94ihdm3axDx08NwoNGeo-CZGAVGcVd0G_NTS7n4V40/edit#gid=0",
-    "category": "top"
-  },
-  {
     "priority": "6",
     "name": "Flickr",
     "icon": "flickr.png",
@@ -154,25 +105,11 @@
     "priority": "2"
   },
   {
-    "name": "Tiles admin",
-    "icon": "ptkin.png",
-    "link": "https://www.p-kin.com/start/admin/",
-    "category": "others",
-    "priority": "1"
-  },
-  {
     "priority": "4",
     "name": "StackOverflow",
     "icon": "stacko.png",
     "link": "https://stackoverflow.com/",
     "category": "coding"
-  },
-  {
-    "name": "cPanel",
-    "icon": "cpanel.png",
-    "link": "https://login.tarhelypark.hu/",
-    "category": "coding",
-    "priority": "3"
   },
   {
     "icon": "gdocs.png",
@@ -192,7 +129,7 @@
     "name": "Naver Dict",
     "icon": "naver.png",
     "link": "https://endic.naver.com/?sLn=en",
-    "category": "top",
+    "category": "others",
     "priority": "4"
   },
   {
@@ -200,7 +137,7 @@
     "name": "Firebase",
     "icon": "gfirebase.png",
     "link": "https://console.firebase.google.com/",
-    "category": "google"
+    "category": "coding"
   },
   {
     "name": "OTP Direkt",
@@ -228,14 +165,7 @@
     "name": "Facebook",
     "icon": "facebook.png",
     "link": "https://www.facebook.com/",
-    "category": "others"
-  },
-  {
-    "icon": "gmaps.png",
-    "link": "https://www.google.com/maps/@36.1648103,127.3825044,6z/data=!4m2!6m1!1s1gCNBb9ATlYb-OYv_5dgHOcs3Flg",
-    "category": "top",
-    "priority": "6",
-    "name": "My Map"
+    "category": "top"
   },
   {
     "icon": "regexr.png",
@@ -245,25 +175,11 @@
     "name": "RegExr"
   },
   {
-    "name": "Links admin",
-    "icon": "ptkin.png",
-    "link": "https://www.p-kin.com/dbadmin/",
-    "category": "others",
-    "priority": "1"
-  },
-  {
     "icon": "gdrive.png",
     "link": "https://drive.google.com",
     "category": "google",
     "priority": "2",
     "name": "Drive"
-  },
-  {
-    "icon": "addicted.png",
-    "link": "http://www.addic7ed.com/",
-    "category": "fun",
-    "priority": "2",
-    "name": "Addic7ed"
   },
   {
     "icon": "stackblitz.png",
@@ -280,39 +196,18 @@
     "name": "AvistaZ"
   },
   {
-    "priority": "7",
-    "name": "StackCP",
-    "icon": "admin.png",
-    "link": "https://www.stackcp.com/login",
-    "category": "others"
-  },
-  {
     "priority": "4",
     "name": "DEV Console",
     "icon": "google.png",
     "link": "https://console.developers.google.com/",
-    "category": "google"
-  },
-  {
-    "icon": "eztv.png",
-    "link": "https://eztv.io/",
-    "category": "fun",
-    "priority": "1",
-    "name": "EzTv"
+    "category": "coding"
   },
   {
     "priority": "1",
     "name": "Udemy",
     "icon": "udemy.png",
     "link": "https://www.udemy.com/",
-    "category": "coding"
-  },
-  {
-    "priority": "4",
-    "name": "AsianWiki",
-    "icon": "asianwiki.png",
-    "link": "http://asianwiki.com/Main_Page",
-    "category": "fun"
+    "category": "top"
   },
   {
     "name": "P-Kin.com",
@@ -324,7 +219,7 @@
   {
     "icon": "dropbox.png",
     "link": "https://www.dropbox.com/",
-    "category": "others",
+    "category": "top",
     "priority": "4",
     "name": "Dropbox"
   },

@@ -25,7 +25,7 @@ export class AddTileComponent implements OnInit, AfterViewInit {
             name: '',
             link: '',
             category: '',
-            icon: '',
+            icon: 'ptkin.png',
             priority: null
         };
     }
