@@ -54,7 +54,8 @@ export class AddNoteComponent implements OnInit {
         this.currentLinkUrl = '';
     }
 
-    onRemoveLink(index: number): void {
+    onRemoveLink(index: number, e: MouseEvent): void {
+        e.stopPropagation();
         this.note.links.splice(index, 1);
     }
 
@@ -98,8 +99,7 @@ export class AddNoteComponent implements OnInit {
     }
 
     onClickOutside(event: any): void {
-        if (!this.eRef.nativeElement.contains(event.target) &&
-            !event.target.classList.contains('fa-times')) {
+        if (!this.eRef.nativeElement.contains(event.target)) {
             this.onCancel();
         }
     }
