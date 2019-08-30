@@ -17,6 +17,10 @@
 <div class="login-modal">
     <div class="overlay" [class.open]="isLoggingIn" (click)="isLoggingIn = false"></div>
     <div class="modal-body" [class.open]="isLoggingIn">
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i>
+            Log in with any random credentials :)
+        </div>
         <form (ngSubmit)="onSubmit()" #f="ngForm">
             <label for="email">Email</label>
             <input 

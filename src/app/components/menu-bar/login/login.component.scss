@@ -67,5 +67,9 @@
                 @include button($blue2, $blue4, right);
             }
         }
+        .alert {
+            padding: .25rem .5rem;
+            text-align: center;
+        }
     }
 }
