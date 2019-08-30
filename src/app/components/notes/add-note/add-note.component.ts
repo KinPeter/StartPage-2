@@ -97,8 +97,9 @@ export class AddNoteComponent implements OnInit {
         };
     }
 
-    onClickOutside(event: MouseEvent): void {
-        if (!this.eRef.nativeElement.contains(event.target)) {
+    onClickOutside(event: any): void {
+        if (!this.eRef.nativeElement.contains(event.target) &&
+            !event.target.classList.contains('fa-times')) {
             this.onCancel();
         }
     }
