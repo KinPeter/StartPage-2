@@ -42,7 +42,7 @@
             </div>
             <ul>
                 <li *ngFor="let link of note.links; let i = index">
-                    <i class="fas fa-times" (click)="onRemoveLink(i)"></i>
+                    <i class="fas fa-times" (click)="onRemoveLink(i, $event)"></i>
                     <i class="fas fa-link"></i>
                     {{ link.name }}
                 </li>
