@@ -41,7 +41,6 @@ export class AddTileComponent implements OnInit, AfterViewInit {
     }
 
     onSubmit() {
-        console.log(this.tile);
         this.tileService.addNewTile(this.tile);
         this.onCloseAddTile();
     }

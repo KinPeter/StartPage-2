@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TileService } from 'src/app/services/tile.service';
-import { Tiles } from 'src/app/interfaces/tile';
+import { Tiles, Tile } from 'src/app/interfaces/tile';
 import { QuerySnapshot } from '@angular/fire/firestore';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { AlertService } from 'src/app/services/alert.service';
@@ -35,7 +35,7 @@ export class TilesContainerComponent implements OnInit {
 
     ngOnInit() {
         this.spinner.show();
-        this.tileService.tiles.subscribe((data: QuerySnapshot<any>) => {
+        this.tileService.tiles.subscribe((data: Tile[]) => {
             Object.keys(this.tiles).forEach((key) => { this.tiles[key] = []; });
             this.tileService.distributeTilesFromQuerySnapshot(data, this.tiles);
             this.tileService.sortTilesByPriority(this.tiles);

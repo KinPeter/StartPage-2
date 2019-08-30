@@ -1,0 +1,366 @@
+[
+  {
+    "icon": "wolt.png",
+    "link": "https://wolt.com/hu/",
+    "category": "top",
+    "priority": "3",
+    "name": "Wolt"
+  },
+  {
+    "priority": "1",
+    "name": "RarBG",
+    "icon": "rarbg.png",
+    "link": "https://rarbg.to/index8.php",
+    "category": "fun"
+  },
+  {
+    "priority": "5",
+    "name": "RawDict",
+    "icon": "gsheets.png",
+    "link": "https://docs.google.com/spreadsheets/d/1tzTAaziRi6mTW-XD6QS2_HEiwYpBRXA0-cQcAB3aeUU/edit#gid=0",
+    "category": "top"
+  },
+  {
+    "name": "WebDict",
+    "icon": "webdict.png",
+    "link": "https://www.p-kin.com/webdict/",
+    "category": "others",
+    "priority": "3"
+  },
+  {
+    "priority": "2",
+    "name": "CodePen",
+    "icon": "codepen.png",
+    "link": "https://codepen.io/dashboard/",
+    "category": "coding"
+  },
+  {
+    "icon": "gmaps.png",
+    "link": "https://maps.google.com",
+    "category": "google",
+    "priority": "3",
+    "name": "Maps"
+  },
+  {
+    "icon": "devto.png",
+    "link": "https://dev.to/",
+    "category": "coding",
+    "priority": "2",
+    "name": "Dev.to"
+  },
+  {
+    "priority": "7",
+    "name": "Eco Web H.",
+    "icon": "ecoweb.png",
+    "link": "https://www.ecowebhosting.co.uk/cp/login",
+    "category": "others"
+  },
+  {
+    "icon": "privatehd.png",
+    "link": "https://privatehd.to/",
+    "category": "fun",
+    "priority": "2",
+    "name": "PrivateHD"
+  },
+  {
+    "priority": "3",
+    "name": "VocabCards",
+    "icon": "vocabcards.png",
+    "link": "https://www.p-kin.com/vocabcards/",
+    "category": "others"
+  },
+  {
+    "priority": "2",
+    "name": "LinkedIn",
+    "icon": "linkedin.png",
+    "link": "https://www.linkedin.com/in/peter-kin/",
+    "category": "top"
+  },
+  {
+    "priority": "10",
+    "name": "Progmatic Drive",
+    "icon": "gdrive.png",
+    "link": "https://drive.google.com/drive/folders/1wQHsP6JH4vqgDQacq5NU5jhPmGbiUU1e",
+    "category": "coding"
+  },
+  {
+    "priority": "7",
+    "name": "Youtube",
+    "icon": "youtube.png",
+    "link": "https://www.youtube.com/",
+    "category": "google"
+  },
+  {
+    "priority": "2",
+    "name": "JavaScript MDN",
+    "icon": "mdn.png",
+    "link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference",
+    "category": "coding"
+  },
+  {
+    "icon": "ncore.png",
+    "link": "https://ncore.cc/torrents.php",
+    "category": "fun",
+    "priority": "3",
+    "name": "nCore"
+  },
+  {
+    "icon": "gtranslate.png",
+    "link": "https://translate.google.com/",
+    "category": "google",
+    "priority": "3",
+    "name": "Translate"
+  },
+  {
+    "icon": "tarhelypark.png",
+    "link": "https://ugyfel.tarhelypark.hu/",
+    "category": "others",
+    "priority": "5",
+    "name": "Tárhelypark"
+  },
+  {
+    "priority": "5",
+    "name": "My Words",
+    "icon": "gsheets.png",
+    "link": "https://docs.google.com/spreadsheets/d/1c94ihdm3axDx08NwoNGeo-CZGAVGcVd0G_NTS7n4V40/edit#gid=0",
+    "category": "top"
+  },
+  {
+    "priority": "6",
+    "name": "Flickr",
+    "icon": "flickr.png",
+    "link": "https://www.flickr.com/",
+    "category": "others"
+  },
+  {
+    "icon": "gkeep.png",
+    "link": "https://keep.google.com/",
+    "category": "google",
+    "priority": "6",
+    "name": "Keep"
+  },
+  {
+    "priority": "5",
+    "name": "YahooMail",
+    "icon": "yahoomail.png",
+    "link": "https://mail.yahoo.com/",
+    "category": "others"
+  },
+  {
+    "name": "Raiffeisen",
+    "icon": "raiffeisen.png",
+    "link": "https://direktnet.raiffeisen.hu/cgi-bin/rai/direktnet/home.do",
+    "category": "top",
+    "priority": "2"
+  },
+  {
+    "name": "Tiles admin",
+    "icon": "ptkin.png",
+    "link": "https://www.p-kin.com/start/admin/",
+    "category": "others",
+    "priority": "1"
+  },
+  {
+    "priority": "4",
+    "name": "StackOverflow",
+    "icon": "stacko.png",
+    "link": "https://stackoverflow.com/",
+    "category": "coding"
+  },
+  {
+    "name": "cPanel",
+    "icon": "cpanel.png",
+    "link": "https://login.tarhelypark.hu/",
+    "category": "coding",
+    "priority": "3"
+  },
+  {
+    "icon": "gdocs.png",
+    "link": "https://docs.google.com/",
+    "category": "google",
+    "priority": "5",
+    "name": "Docs"
+  },
+  {
+    "priority": "1",
+    "name": "Calendar",
+    "icon": "gcalendar.png",
+    "link": "https://calendar.google.com",
+    "category": "google"
+  },
+  {
+    "name": "Naver Dict",
+    "icon": "naver.png",
+    "link": "https://endic.naver.com/?sLn=en",
+    "category": "top",
+    "priority": "4"
+  },
+  {
+    "priority": "4",
+    "name": "Firebase",
+    "icon": "gfirebase.png",
+    "link": "https://console.firebase.google.com/",
+    "category": "google"
+  },
+  {
+    "name": "OTP Direkt",
+    "icon": "otp.png",
+    "link": "https://www.otpbank.hu/portal/hu/OTPdirekt/Belepes",
+    "category": "top",
+    "priority": "2"
+  },
+  {
+    "name": "BitBucket",
+    "icon": "bitbucket.png",
+    "link": "https://bitbucket.org/KinPeter/",
+    "category": "coding",
+    "priority": "3"
+  },
+  {
+    "icon": "gsheets.png",
+    "link": "https://docs.google.com/spreadsheets/",
+    "category": "google",
+    "priority": "5",
+    "name": "Sheets"
+  },
+  {
+    "priority": "2",
+    "name": "Facebook",
+    "icon": "facebook.png",
+    "link": "https://www.facebook.com/",
+    "category": "others"
+  },
+  {
+    "icon": "gmaps.png",
+    "link": "https://www.google.com/maps/@36.1648103,127.3825044,6z/data=!4m2!6m1!1s1gCNBb9ATlYb-OYv_5dgHOcs3Flg",
+    "category": "top",
+    "priority": "6",
+    "name": "My Map"
+  },
+  {
+    "icon": "regexr.png",
+    "link": "https://regexr.com/",
+    "category": "coding",
+    "priority": "2",
+    "name": "RegExr"
+  },
+  {
+    "name": "Links admin",
+    "icon": "ptkin.png",
+    "link": "https://www.p-kin.com/dbadmin/",
+    "category": "others",
+    "priority": "1"
+  },
+  {
+    "icon": "gdrive.png",
+    "link": "https://drive.google.com",
+    "category": "google",
+    "priority": "2",
+    "name": "Drive"
+  },
+  {
+    "icon": "addicted.png",
+    "link": "http://www.addic7ed.com/",
+    "category": "fun",
+    "priority": "2",
+    "name": "Addic7ed"
+  },
+  {
+    "icon": "stackblitz.png",
+    "link": "https://stackblitz.com/",
+    "category": "coding",
+    "priority": "2",
+    "name": "StackBlitz"
+  },
+  {
+    "icon": "avistaz.png",
+    "link": "https://avistaz.to/",
+    "category": "fun",
+    "priority": "2",
+    "name": "AvistaZ"
+  },
+  {
+    "priority": "7",
+    "name": "StackCP",
+    "icon": "admin.png",
+    "link": "https://www.stackcp.com/login",
+    "category": "others"
+  },
+  {
+    "priority": "4",
+    "name": "DEV Console",
+    "icon": "google.png",
+    "link": "https://console.developers.google.com/",
+    "category": "google"
+  },
+  {
+    "icon": "eztv.png",
+    "link": "https://eztv.io/",
+    "category": "fun",
+    "priority": "1",
+    "name": "EzTv"
+  },
+  {
+    "priority": "1",
+    "name": "Udemy",
+    "icon": "udemy.png",
+    "link": "https://www.udemy.com/",
+    "category": "coding"
+  },
+  {
+    "priority": "4",
+    "name": "AsianWiki",
+    "icon": "asianwiki.png",
+    "link": "http://asianwiki.com/Main_Page",
+    "category": "fun"
+  },
+  {
+    "name": "P-Kin.com",
+    "icon": "ptkin.png",
+    "link": "https://www.p-kin.com/",
+    "category": "top",
+    "priority": "1"
+  },
+  {
+    "icon": "dropbox.png",
+    "link": "https://www.dropbox.com/",
+    "category": "others",
+    "priority": "4",
+    "name": "Dropbox"
+  },
+  {
+    "icon": "netpincer.png",
+    "link": "https://www.netpincer.hu/",
+    "category": "top",
+    "priority": "3",
+    "name": "Netpincer"
+  },
+  {
+    "name": "Contacts",
+    "icon": "gcontacts.png",
+    "link": "https://contacts.google.com",
+    "category": "google",
+    "priority": "3"
+  },
+  {
+    "icon": "github.png",
+    "link": "https://github.com/KinPeter",
+    "category": "coding",
+    "priority": "1",
+    "name": "GitHub"
+  },
+  {
+    "name": "Gmail",
+    "icon": "gmail.png",
+    "link": "https://mail.google.com",
+    "category": "google",
+    "priority": "1"
+  },
+  {
+    "name": "Git Docs",
+    "icon": "git.png",
+    "link": "https://git-scm.com/doc",
+    "category": "coding",
+    "priority": "2"
+  }
+]
