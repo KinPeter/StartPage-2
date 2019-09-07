@@ -34,6 +34,7 @@ import { DevToComponent } from './components/dev-to/dev-to.component';
 import { DevToPostComponent } from './components/dev-to/dev-to-post/dev-to-post.component';
 import { KoreanComponent } from './components/korean/korean.component';
 import { DictComponent } from './components/korean/dict/dict.component';
+import { NavComponent } from './components/menu-bar/nav/nav.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { DictComponent } from './components/korean/dict/dict.component';
     DevToComponent,
     DevToPostComponent,
     KoreanComponent,
-    DictComponent
+    DictComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
