@@ -13,15 +13,15 @@ const gmail = nodemailer.createTransport({
         pass: '--------------'
     }
 });
-const now = moment().format('YYYY-MM-DD');
-const emailData = {
-    from: '"My Startpage" <deeasind@gmail.com>',
-    to: 'kinpeter85@gmail.com',
-    subject: 'Startpage database backups @ ' + now,
-    attachments: []
-};
 
 exports.backupDatabases = functions.https.onRequest(async (request, response) => {
+    const now = moment().format('YYYY-MM-DD');
+    const emailData = {
+        from: '"My Startpage" <deeasind@gmail.com>',
+        to: 'kinpeter85@gmail.com',
+        subject: 'Startpage database backups @ ' + now,
+        attachments: []
+    };
     cors(request, response, async () => {
         let newElem;
         try {
