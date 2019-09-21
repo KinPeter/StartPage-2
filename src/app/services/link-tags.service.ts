@@ -47,6 +47,10 @@ export class LinkTagsService {
             tag: 'linux',
             name: 'Linux'
         },
+        node: {
+            tag: 'node',
+            name: 'Node.js'
+        },
         onlinecourses: {
             tag: 'onlinecourses',
             name: 'Online courses'
@@ -94,6 +98,10 @@ export class LinkTagsService {
         typescript: {
             tag: 'typescript',
             name: 'TypeScript'
+        },
+        vue: {
+            tag: 'vue',
+            name: 'Vue.js'
         }
     };
 
