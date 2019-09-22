@@ -13,6 +13,7 @@ export class DevToComponent implements OnInit {
     public tags = [
         'javascript',
         'angular',
+        'vue',
         'react',
         'typescript',
         'css',
