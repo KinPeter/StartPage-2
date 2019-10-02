@@ -22,7 +22,7 @@ export class CurrentWeatherComponent implements OnInit {
     }
 
     getWindScale(wSpeed: number): string {
-        let wScale = '';
+        let wScale = 'No wind';
         if (wSpeed > 1 && wSpeed <= 4) {
             wScale = 'Light breeze';
         } else if (wSpeed > 4 && wSpeed <= 9) {
