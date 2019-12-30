@@ -1,0 +1,25 @@
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+
+@Component({
+  selector: 'app-dev-to-search',
+  templateUrl: './dev-to-search.component.html',
+  styleUrls: ['./dev-to-search.component.scss']
+})
+export class DevToSearchComponent {
+
+  @ViewChild('search', { static: false }) searchForm: NgForm;
+
+  constructor() { }
+
+  onSubmit() {
+    const term = encodeURIComponent(this.searchForm.value.searchTerm).trim();
+    if (term) {
+      window.open('https://dev.to/search?q=' + term, '_blank');
+    } else {
+      window.open('https://dev.to', '_blank');
+    }
+    this.searchForm.reset();
+  }
+
+}
