@@ -17,12 +17,14 @@ export interface Weather {
 }
 
 export interface CurrentWeather {
-    summary: string;     // currently.summary
-    icon: string;        // currently.icon
-    precip: number;      // currently.precipProbability
-    temperature: number; // currently.temperature
-    windSpeed: number;   // currently.windSpeed
-    forecast: string;    // hourly.summary
+    summary: string;         // currently.summary
+    icon: string;            // currently.icon
+    precip: number;          // currently.precipProbability
+    temperature: number;     // currently.temperature
+    temperatureLow: number;  // daily.data[0].temperatureLow
+    temperatureHigh: number; // daily.data[0].temperatureHigh
+    windSpeed: number;       // currently.windSpeed
+    forecast: string;        // hourly.summary
 }
 
 export interface DailyWeather {

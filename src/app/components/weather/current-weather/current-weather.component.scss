@@ -1,4 +1,5 @@
 @import '~src/_weather-icons';
+@import '~src/_variables';
 
 .current-weather {
     p {
@@ -22,6 +23,20 @@
             .current-temp {
                 font-size: 2.2rem;
                 margin-right: 1rem;
+                .min-max {
+                    display: flex;
+                    justify-content: space-between;
+                    font-size: 1rem;
+                    position: relative;
+                    top: -10px;
+                    span:first-child {
+                        color: $danger;
+                        margin-right: 3px;
+                    }
+                    span:last-child {
+                        color: $blue5;
+                    }
+                }
             }
             i {
                 width: 70px;

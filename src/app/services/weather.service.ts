@@ -102,6 +102,8 @@ export class WeatherService {
                 icon: response.currently.icon,
                 precip: response.daily.data[0].precipProbability,
                 temperature: response.currently.temperature,
+                temperatureLow: response.daily.data[0].temperatureLow,
+                temperatureHigh: response.daily.data[0].temperatureHigh,
                 windSpeed: response.currently.windSpeed,
                 forecast: response.hourly.summary
             },

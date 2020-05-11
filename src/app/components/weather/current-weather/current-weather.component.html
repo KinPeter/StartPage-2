@@ -17,7 +17,11 @@
                 <i *ngIf="isLowTemp" class="weather-icon temp-low-warning"></i>
             </div>
             <div class="current-temp">
-                {{ weather.temperature | number:'1.0-0' }}&deg;C
+                <span>{{ weather.temperature | number:'1.0-0' }}&deg;C</span>
+                <div class="min-max">
+                    <span>{{ weather.temperatureHigh | number:'1.0-0' }}&deg;C</span>
+                    <span>{{ weather.temperatureLow | number:'1.0-0' }}&deg;C</span>
+                </div>
             </div>
             <i class="weather-icon" [ngClass]="weather.icon"></i>
         </div>
