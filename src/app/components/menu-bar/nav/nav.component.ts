@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CloudFunctionsService } from 'src/app/services/cloud-functions.service';
+import { DbBackupService } from 'src/app/services/db-backup.service';
 
 @Component({
     selector: 'app-nav',
@@ -9,7 +9,7 @@ import { CloudFunctionsService } from 'src/app/services/cloud-functions.service'
 export class NavComponent implements OnInit {
 
     constructor(
-        public cf: CloudFunctionsService
+        public dbbs: DbBackupService
     ) { }
 
     ngOnInit() {

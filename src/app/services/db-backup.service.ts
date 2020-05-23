@@ -7,9 +7,7 @@ import { dbBackupUrl } from '../../../keys';
 @Injectable({
     providedIn: 'root'
 })
-export class CloudFunctionsService {
-
-    private backupUrl = dbBackupUrl;
+export class DbBackupService {
 
     constructor(
         private http: HttpClient,
@@ -24,7 +22,7 @@ export class CloudFunctionsService {
             this.alert.show('Backup email sent successfully.', 'success');
         } catch (error) {
             console.log(error);
-            this.alert.show('An error occured during backup request.', 'danger');
+            this.alert.show('An error occurred during backup request.', 'danger');
         } finally {
             this.spinner.hide();
         }

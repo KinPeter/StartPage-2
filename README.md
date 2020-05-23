@@ -32,8 +32,8 @@ Custom dictionary search engine connected to my Korean wordlist stored in a Goog
 - **Weather forecast -**
 Thanks to the DarkSky API I have a beautiful custom weather forecast using my own custom SVG icons.
 
-- **Database backup cloud function -**
-Google Cloud Function to fetch all data from my Firestore databases and send them to me by email in JSON format.
+- **Database backup service -**
+Google Cloud web service (Node.js) to fetch all data from my Firestore databases and send them to me by email in JSON format.
 
 ### Technologies used:
 - Angular
@@ -41,4 +41,5 @@ Google Cloud Function to fetch all data from my Firestore databases and send the
 - SCSS
 - Firebase
 - AngularFire
-- Cloud functions
+- Node.js
+- Google App Engine
