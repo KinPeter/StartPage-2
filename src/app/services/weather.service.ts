@@ -15,6 +15,7 @@ export class WeatherService {
     private darkSkyUrl = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast';
     public city: BehaviorSubject<string>;
     public weather: BehaviorSubject<Weather>;
+    private timer: number = 0;
 
     constructor(
         private http: HttpClient,
@@ -33,6 +34,7 @@ export class WeatherService {
             const locResponse = await this.getCity(coords);
             this.city.next(locResponse.address.city);
             await this.getWeather(coords);
+            this.setFetchWeatherTimer(coords);
         } catch (error) {
             this.alert.show('Error fetching location or weather. ' + error.message, 'danger');
             console.log('getWeather() Error: ', error.message);
@@ -53,7 +55,7 @@ export class WeatherService {
                     resolve(coords);
                 },
                 (err: PositionError) => {
-                    const errorMessage: string = this.getLocationErrorMessage(err);
+                    const errorMessage: string = WeatherService.getLocationErrorMessage(err);
                     reject(new Error(errorMessage));
                 },
                 options
@@ -61,7 +63,7 @@ export class WeatherService {
         });
     }
 
-    private getLocationErrorMessage(err: PositionError): string {
+    private static getLocationErrorMessage(err: PositionError): string {
         switch (err.code) {
             case 1:
                 return '[Location] Permission denied.';
@@ -107,7 +109,8 @@ export class WeatherService {
                 windSpeed: response.currently.windSpeed,
                 forecast: response.hourly.summary
             },
-            dailyWeather: []
+            dailyWeather: [],
+            lastUpdated: new Date()
         };
         response.daily.data.forEach((data: any, i: number) => {
             if (i > 0 && i < 6) {
@@ -122,5 +125,22 @@ export class WeatherService {
             }
         });
         return weather;
+    }
+
+    private setFetchWeatherTimer(coords: Coordinates): void {
+        if (this.timer !== 0) {
+            clearInterval(this.timer);
+        }
+        this.timer = setInterval(
+            async () => {
+                try {
+                    await this.getWeather(coords)
+                }
+                catch (e) {
+                    console.error('WeatherService.timer: Could not update weather');
+                }
+            },
+            1000 * 60 * 60
+        );
     }
 }

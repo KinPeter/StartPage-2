@@ -9,13 +9,31 @@
         margin: 0;
     }
 }
-.refresh-weather {
-    display: block;
-    text-align: right;
-    cursor: pointer;
+
+aside {
     position: relative;
     top: -63px;
+    display: flex;
+    justify-content: flex-end;
+
+    span {
+        font-size: 0.8rem;
+        transform: translateX(50px);
+        opacity: 0;
+        transition: all .2s ease;
+    }
+
+    i {
+        cursor: pointer;
+        &:hover {
+            color: $orange;
+        }
+    }
+
     &:hover {
-        color: $orange;
+        span {
+            transform: translateX(-7px);
+            opacity: 1;
+        }
     }
 }

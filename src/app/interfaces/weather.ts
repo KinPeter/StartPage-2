@@ -14,6 +14,7 @@ export type WeatherParams = {
 export interface Weather {
     currentWeather: CurrentWeather;
     dailyWeather: DailyWeather[];
+    lastUpdated: Date;
 }
 
 export interface CurrentWeather {
