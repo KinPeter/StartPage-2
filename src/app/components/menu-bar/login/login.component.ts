@@ -10,7 +10,7 @@ import { myPassword } from 'keys';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    @ViewChild('f', { static: true }) loginForm: NgForm;
+    @ViewChild('f') loginForm: NgForm;
 
     isLoggingIn = false;
     isLoggedIn: boolean;
@@ -20,11 +20,6 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.checkAuthStatus();
-
-        // FOR TESTING
-        setTimeout(() => {
-            this.loginForm.setValue({email: 'kinpeter85@gmail.com', password: myPassword});
-        }, 1000);
     }
 
     checkAuthStatus(): void {
@@ -35,6 +30,9 @@ export class LoginComponent implements OnInit {
 
     onLoginClicked(): void {
         this.isLoggingIn = true;
+        requestAnimationFrame(() => {
+            this.loginForm.setValue({email: 'kinpeter85@gmail.com', password: myPassword});
+        })
     }
 
     onLogoutClicked(): void {
