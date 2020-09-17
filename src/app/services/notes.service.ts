@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  QuerySnapshot,
-  QueryDocumentSnapshot,
-  DocumentReference,
-  CollectionReference,
-} from '@angular/fire/firestore';
-import { Observable, Subject } from 'rxjs';
+import { AngularFirestore, QuerySnapshot, CollectionReference } from '@angular/fire/firestore';
+import { Subject } from 'rxjs';
 import { Note } from '../interfaces/note';
 import { AlertService } from './alert.service';
 import { SpinnerService } from './spinner.service';
@@ -16,7 +10,7 @@ import { SpinnerService } from './spinner.service';
 })
 export class NotesService {
   public notesCollection = this.db.collection<Note>('notes');
-  public notes: Subject<QuerySnapshot<any>>;
+  public notes: Subject<QuerySnapshot<unknown>>;
 
   constructor(
     public db: AngularFirestore,
@@ -28,7 +22,7 @@ export class NotesService {
   }
 
   async fetchNotes(): Promise<void> {
-    let data: QuerySnapshot<any>;
+    let data: QuerySnapshot<unknown>;
     const query = (ref: CollectionReference) => ref.orderBy('added', 'desc');
     try {
       data = await this.db.collection<Note>('notes', query).get().toPromise();
@@ -42,6 +36,7 @@ export class NotesService {
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   distributeAndSortNotes(data: QuerySnapshot<any>): Note[] {
     const active: Note[] = [];
     const archived: Note[] = [];
@@ -65,11 +60,10 @@ export class NotesService {
 
   async addNewNote(note: Note): Promise<void> {
     this.spinner.show();
-    let response: DocumentReference;
     try {
-      response = await this.notesCollection.add(note);
+      await this.notesCollection.add(note);
       this.alert.show('Note added successfully.', 'success');
-      this.fetchNotes();
+      await this.fetchNotes();
     } catch (error) {
       console.log(error);
       this.alert.show('Error adding note. ' + error.message, 'danger');
@@ -83,7 +77,7 @@ export class NotesService {
     try {
       await this.notesCollection.doc(id).delete();
       this.alert.show('Note deleted successfully.', 'success');
-      this.fetchNotes();
+      await this.fetchNotes();
     } catch (error) {
       console.log(error);
       this.alert.show('Error deleting note. ' + error.message, 'danger');
@@ -99,7 +93,7 @@ export class NotesService {
         archived: !archived,
       });
       this.alert.show('Note updated successfully.', 'success');
-      this.fetchNotes();
+      await this.fetchNotes();
     } catch (error) {
       console.log(error);
       this.alert.show('Error updating note. ' + error.message, 'danger');
@@ -116,7 +110,7 @@ export class NotesService {
         ...note,
       });
       this.alert.show('Note updated successfully.', 'success');
-      this.fetchNotes();
+      await this.fetchNotes();
     } catch (error) {
       console.log(error);
       this.alert.show('Error updating note. ' + error.message, 'danger');

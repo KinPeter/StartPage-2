@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
@@ -23,7 +24,7 @@ export class DevToService {
     this.fetchPostsByTag(this.defaultTag);
   }
 
-  async fetchPostsByTag(tag?: string): Promise<any> {
+  async fetchPostsByTag(tag?: string): Promise<void> {
     const devToParams: any = { tag };
     if (this.topOnly) {
       devToParams.top = 3;

@@ -1,15 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject, BehaviorSubject, Subscription } from 'rxjs';
 import { Link } from '../interfaces/link';
-import {
-  AngularFirestore,
-  QuerySnapshot,
-  CollectionReference,
-  DocumentReference,
-} from '@angular/fire/firestore';
+import { AngularFirestore, QuerySnapshot, CollectionReference } from '@angular/fire/firestore';
 import { AlertService } from './alert.service';
 import { SpinnerService } from './spinner.service';
-import { LinkTagsService } from './link-tags.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +17,7 @@ export class LinksService {
   constructor(
     public db: AngularFirestore,
     public alert: AlertService,
-    public spinner: SpinnerService,
-    public lt: LinkTagsService
+    public spinner: SpinnerService
   ) {
     this.links = new BehaviorSubject([]);
     this.linkResults = new Subject();
@@ -34,7 +27,7 @@ export class LinksService {
     const localLinks = sessionStorage.getItem('localLinks');
     if (!localLinks) {
       this.spinner.show();
-      let data: QuerySnapshot<any>;
+      let data: QuerySnapshot<unknown>;
       try {
         data = await this.linksCollection.get().toPromise();
         if (data.empty) {
@@ -67,7 +60,7 @@ export class LinksService {
     this.linkResults.next(null);
     this.links.next(null);
     this.spinner.show();
-    let data: QuerySnapshot<any>;
+    let data: QuerySnapshot<unknown>;
     try {
       data = await this.linksCollection.get().toPromise();
       if (data.empty) {
@@ -90,7 +83,7 @@ export class LinksService {
     this.spinner.show();
     const query = (ref: CollectionReference) =>
       ref.where('tags', 'array-contains', tag).orderBy('name', 'asc');
-    let data: QuerySnapshot<any>;
+    let data: QuerySnapshot<unknown>;
     try {
       data = await this.db.collection<Link>('links', query).get().toPromise();
       if (data.empty) {
@@ -110,11 +103,10 @@ export class LinksService {
 
   async addNewLink(link: Link): Promise<void> {
     this.spinner.show();
-    let response: DocumentReference;
     try {
-      response = await this.linksCollection.add(link);
+      await this.linksCollection.add(link);
       this.alert.show('Link added successfully.', 'success');
-      this.forceFetchAllLinks();
+      await this.forceFetchAllLinks();
     } catch (error) {
       console.log(error);
       this.alert.show('Error adding link. ' + error.message, 'danger');
@@ -144,6 +136,7 @@ export class LinksService {
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   transformData(data: QuerySnapshot<any>): Link[] {
     const links: Link[] = [];
     data.docs.forEach(doc => {

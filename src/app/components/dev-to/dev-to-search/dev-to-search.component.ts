@@ -11,7 +11,7 @@ export class DevToSearchComponent {
 
   constructor() {}
 
-  onSubmit() {
+  onSubmit(): void {
     const term = encodeURIComponent(this.searchForm.value.searchTerm).trim();
     if (term) {
       window.open('https://dev.to/search?q=' + term, '_blank');

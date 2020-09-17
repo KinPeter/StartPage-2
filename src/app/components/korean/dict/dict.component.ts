@@ -31,7 +31,7 @@ export class DictComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const newResults = this.dict.wordLookup(this.input.value);
     if (newResults.length > 50) {
       this.alert.show('Too many results, please narrow your search.', 'danger');
@@ -44,7 +44,7 @@ export class DictComponent implements OnInit {
     this.input.setValue('');
   }
 
-  onCloseResults() {
+  onCloseResults(): void {
     this.closingResults = true;
     setTimeout(() => {
       this.results = [];

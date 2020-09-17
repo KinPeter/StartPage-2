@@ -14,7 +14,7 @@ export class DbBackupService {
     private spinner: SpinnerService
   ) {}
 
-  async requestDatabaseBackups() {
+  async requestDatabaseBackups(): Promise<void> {
     this.spinner.show();
     try {
       await this.http.get(dbBackupUrl).toPromise();

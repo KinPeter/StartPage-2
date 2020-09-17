@@ -24,7 +24,8 @@ export class AddTileComponent implements OnInit, AfterViewInit {
   @ViewChild('f', { static: true }) searchForm: NgForm;
   @ViewChild('tileNameInput', { static: true }) tileNameInput: ElementRef;
   @ViewChild('elementRef', { static: true }) eRef: ElementRef;
-  @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent) => {};
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent): void => {};
 
   constructor(public tileService: TileService) {
     this.tile = {
@@ -46,7 +47,7 @@ export class AddTileComponent implements OnInit, AfterViewInit {
     this.tileNameInput.nativeElement.focus();
   }
 
-  onSubmit() {
+  onSubmit(): void {
     console.log(this.tile);
     this.tileService.addNewTile(this.tile);
     this.onCloseAddTile();

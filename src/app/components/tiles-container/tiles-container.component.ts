@@ -35,7 +35,7 @@ export class TilesContainerComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.tileService.tiles.subscribe(
-      (data: QuerySnapshot<any>) => {
+      (data: QuerySnapshot<unknown>) => {
         Object.keys(this.tiles).forEach(key => {
           this.tiles[key] = [];
         });
@@ -43,7 +43,7 @@ export class TilesContainerComponent implements OnInit {
         this.tileService.sortTilesByPriority(this.tiles);
         this.spinner.hide();
       },
-      (error: any) => {
+      error => {
         this.spinner.hide();
         this.alert.show('Fetch of tiles failed.', 'danger');
         console.log(error);
@@ -58,7 +58,7 @@ export class TilesContainerComponent implements OnInit {
     this.addingTile = true;
   }
 
-  onCancel() {
+  onCancel(): void {
     this.addingTile = false;
   }
 }

@@ -21,13 +21,14 @@ import { LinkTagsService } from 'src/app/services/link-tags.service';
 export class AddLinkComponent implements OnInit, AfterViewInit {
   public closing = false;
   public tags: { [tag: string]: Tag };
-  public tagsArray: Array<any>;
+  public tagsArray: [string, Tag][];
   public link: Link;
   @Output() closeAddLink = new EventEmitter<void>();
   @ViewChild('f', { static: true }) searchForm: NgForm;
   @ViewChild('linkNameInput', { static: true }) linkNameInput: ElementRef;
   @ViewChild('elementRef', { static: true }) eRef: ElementRef;
-  @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent) => {};
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent): void => {};
 
   constructor(public linkService: LinksService, public lt: LinkTagsService) {
     this.link = {
@@ -62,7 +63,7 @@ export class AddLinkComponent implements OnInit, AfterViewInit {
     return this.link.tags.includes(tag);
   }
 
-  onSubmit() {
+  onSubmit(): void {
     console.log(this.link);
     this.linkService.addNewLink(this.link);
     this.onCloseAddLink();

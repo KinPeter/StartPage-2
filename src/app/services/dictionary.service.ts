@@ -9,7 +9,6 @@ import { Subject, BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class DictionaryService {
-  // tslint:disable-next-line: max-line-length
   private dictUrl =
     'https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vST-KJ2L6WJJLRw9phcMslOIumSFrjPXY9UUnzw3X9Urq1vwRrDoVhlTiGwuPSda8XRJPolPR65XBD7/pub?gid=0&single=true&output=tsv';
   public dictionary = {
@@ -27,10 +26,10 @@ export class DictionaryService {
     this.fetchWordsFromGSheet();
   }
 
-  async fetchWordsFromGSheet(): Promise<any> {
+  async fetchWordsFromGSheet(): Promise<void> {
     this.spinner.show();
     try {
-      const result: any = await this.http.get(this.dictUrl, { responseType: 'text' }).toPromise();
+      const result = await this.http.get(this.dictUrl, { responseType: 'text' }).toPromise();
       const lines = result.split(/\r\n/);
       lines.forEach((line: string) => {
         const pair = line.split(/\t/);

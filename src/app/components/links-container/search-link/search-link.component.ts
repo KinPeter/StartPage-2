@@ -23,7 +23,8 @@ export class SearchLinkComponent implements OnInit, AfterViewInit {
   @ViewChild('f', { static: true }) searchForm: NgForm;
   @ViewChild('searchInput', { static: true }) searchInput: ElementRef;
   @ViewChild('elementRef', { static: true }) eRef: ElementRef;
-  @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent) => {};
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent): void => {};
 
   constructor(public linkService: LinksService) {}
 
@@ -38,7 +39,7 @@ export class SearchLinkComponent implements OnInit, AfterViewInit {
     this.searchInput.nativeElement.focus();
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.linkService.searchLink(this.searchTerm);
     this.onCloseSearch();
   }

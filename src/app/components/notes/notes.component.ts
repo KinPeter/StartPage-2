@@ -34,7 +34,7 @@ export class NotesComponent implements OnInit {
         this.spinner.hide();
         this.notes = this.notesService.distributeAndSortNotes(response);
       },
-      (error: any) => {
+      error => {
         this.spinner.hide();
         this.alert.show('Fetch of notes failed. ' + error.message, 'danger');
         console.log(error);
@@ -45,12 +45,12 @@ export class NotesComponent implements OnInit {
     });
   }
 
-  onAddNote() {
+  onAddNote(): void {
     this.noteToEdit = null;
     this.addingNote = true;
   }
 
-  onCancel() {
+  onCancel(): void {
     this.addingNote = false;
   }
 

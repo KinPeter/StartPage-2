@@ -21,7 +21,8 @@ export class LinkResultsComponent implements OnInit {
   @Input() results: Link[];
   @Output() closeResults = new EventEmitter<void>();
   @ViewChild('elementRef', { static: true }) eRef: ElementRef;
-  @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent) => {};
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent): void => {};
 
   constructor(public linkService: LinksService) {}
 

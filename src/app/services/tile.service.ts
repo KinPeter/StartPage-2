@@ -1,10 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestore,
-  QuerySnapshot,
-  QueryDocumentSnapshot,
-  DocumentReference,
-} from '@angular/fire/firestore';
+import { AngularFirestore, QuerySnapshot, QueryDocumentSnapshot } from '@angular/fire/firestore';
 import { Subject } from 'rxjs';
 import { Tile, Tiles } from '../interfaces/tile';
 import { SpinnerService } from './spinner.service';
@@ -15,7 +11,7 @@ import { AlertService } from './alert.service';
 })
 export class TileService {
   public tilesCollection = this.db.collection<Tile>('tiles');
-  public tiles: Subject<QuerySnapshot<any>>;
+  public tiles: Subject<QuerySnapshot<unknown>>;
 
   constructor(
     public db: AngularFirestore,
@@ -28,10 +24,10 @@ export class TileService {
 
   fetchTiles(): void {
     this.tilesCollection.get().subscribe(
-      (value: QuerySnapshot<any>) => {
+      (value: QuerySnapshot<unknown>) => {
         this.tiles.next(value);
       },
-      (error: any) => {
+      error => {
         this.tiles.error(new Error(error));
       }
     );
@@ -57,9 +53,8 @@ export class TileService {
 
   async addNewTile(tile: Tile): Promise<void> {
     this.spinner.show();
-    let response: DocumentReference;
     try {
-      response = await this.tilesCollection.add(tile);
+      await this.tilesCollection.add(tile);
       this.alert.show('Tile added successfully.', 'success');
       this.fetchTiles();
     } catch (error) {

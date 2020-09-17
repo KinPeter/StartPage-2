@@ -14,7 +14,7 @@ export class DevToPostComponent implements OnInit {
 
   ngOnInit() {}
 
-  onTagClick(tag: string) {
+  onTagClick(tag: string): void {
     this.tagClicked.emit(tag);
   }
 }

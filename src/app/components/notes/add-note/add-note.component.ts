@@ -32,7 +32,7 @@ export class AddNoteComponent implements OnInit {
   };
   currentLinkName = '';
   currentLinkUrl = '';
-  @HostListener('document:click', ['$event']) clickOutside = (event: MouseEvent) => {};
+  @HostListener('document:click', ['$event']) clickOutside = (): void => {};
 
   constructor(public noteService: NotesService) {}
 
@@ -105,7 +105,7 @@ export class AddNoteComponent implements OnInit {
     };
   }
 
-  onClickOutside(event: any): void {
+  onClickOutside(): void {
     if (!this.eRef.nativeElement.contains(event.target)) {
       this.onCancel();
     }

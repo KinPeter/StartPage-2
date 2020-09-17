@@ -30,7 +30,7 @@ export class NoteComponent implements OnInit {
     this.noteService.archiveNote(this.note.id, this.note.archived);
   }
 
-  onDeleteClicked() {
+  onDeleteClicked(): void {
     this.isConfirmingDeletion = !this.isConfirmingDeletion;
   }
 

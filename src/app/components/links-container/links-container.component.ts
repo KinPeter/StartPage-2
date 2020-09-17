@@ -3,8 +3,7 @@ import { LinksService } from 'src/app/services/links.service';
 import { LinkTagsService } from 'src/app/services/link-tags.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
-import { Link } from 'src/app/interfaces/link';
-import { Subject } from 'rxjs';
+import { Link, Tag } from 'src/app/interfaces/link';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,7 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LinksContainerComponent implements OnInit {
   public isOpen: boolean;
-  public tagsArray: Array<any>;
+  public tagsArray: [string, Tag][];
   public results: Link[];
   public hasResults: boolean;
   public isLoggedIn: boolean;

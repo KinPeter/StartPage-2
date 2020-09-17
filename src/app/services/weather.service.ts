@@ -6,6 +6,12 @@ import { AlertService } from './alert.service';
 import { SpinnerService } from './spinner.service';
 import { BehaviorSubject } from 'rxjs';
 
+interface LocationResponse {
+  address: {
+    city: string;
+  };
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -14,7 +20,7 @@ export class WeatherService {
   private darkSkyUrl = 'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast';
   public city: BehaviorSubject<string>;
   public weather: BehaviorSubject<Weather>;
-  private timer: number = 0;
+  private timer = 0;
 
   constructor(
     private http: HttpClient,
@@ -73,17 +79,19 @@ export class WeatherService {
     }
   }
 
-  private getCity(coords: Coordinates): Promise<any> {
+  private getCity(coords: Coordinates): Promise<LocationResponse> {
     const locationParams: LocationParams = {
       key: locationIqApiKey,
       lat: coords.latitude.toString(),
       lon: coords.longitude.toString(),
       format: 'json',
     };
-    return this.http.get(this.locationIqUrl, { params: locationParams }).toPromise();
+    return this.http
+      .get<LocationResponse>(this.locationIqUrl, { params: locationParams })
+      .toPromise();
   }
 
-  private async getWeather(coords: Coordinates): Promise<any> {
+  private async getWeather(coords: Coordinates): Promise<void> {
     const lat = coords.latitude.toString();
     const lon = coords.longitude.toString();
     const URL = `${this.darkSkyUrl}/${darkSkyApiKey}/${lat},${lon}`;
@@ -96,6 +104,7 @@ export class WeatherService {
     this.weather.next(newWeather);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private transformWeather(response: any): Weather {
     const weather: Weather = {
       currentWeather: {
@@ -111,6 +120,7 @@ export class WeatherService {
       dailyWeather: [],
       lastUpdated: new Date(),
     };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     response.daily.data.forEach((data: any, i: number) => {
       if (i > 0 && i < 6) {
         const daily: DailyWeather = {
