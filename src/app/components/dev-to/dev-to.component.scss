@@ -1,97 +1,96 @@
 @import '~src/_variables';
 
 .dev-to {
-
-    header {
-        display: flex;
-        flex-wrap: wrap;
-        margin-left: -.6rem;
-        margin-bottom: .5rem;
-        span.tag {
-            cursor: pointer;
-            display: inline-block;
-            padding: 0 .6rem;
-            border-right: 1px solid $lightBlue;
-            &:last-child {
-                border-right: none;
-            }
-            &:hover {
-                text-decoration: underline;
-            }
-        }
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -0.6rem;
+    margin-bottom: 0.5rem;
+    span.tag {
+      cursor: pointer;
+      display: inline-block;
+      padding: 0 0.6rem;
+      border-right: 1px solid $lightBlue;
+      &:last-child {
+        border-right: none;
+      }
+      &:hover {
+        text-decoration: underline;
+      }
     }
-    main {
-        max-height: 300px;
-        overflow: auto;
-        margin-bottom: 1rem;
-        &::-webkit-scrollbar {
-            display: none;
-        }
+  }
+  main {
+    max-height: 300px;
+    overflow: auto;
+    margin-bottom: 1rem;
+    &::-webkit-scrollbar {
+      display: none;
     }
-    position: relative;
+  }
+  position: relative;
+  width: 100%;
+  &:after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
     width: 100%;
-    &:after {
+    height: 15px;
+    background: linear-gradient(to top, #ffffffcc 0%, transparent 100%);
+    z-index: 10;
+  }
+
+  aside {
+    position: absolute;
+    top: -37px;
+    right: 0;
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    span {
+      font-size: 0.8rem;
+      transform: translateX(50px);
+      opacity: 0;
+      transition: all 0.2s ease;
+    }
+    .toggle-button {
+      position: relative;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid $blue2;
+      transition: all 0.2s ease;
+      &:after {
         position: absolute;
-        content: '';
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 15px;
-        background: linear-gradient(to top, #ffffffcc 0%, transparent 100%);
         z-index: 10;
+        content: '';
+        top: 2px;
+        left: 2px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $orange;
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
     }
 
-    aside {
-        position: absolute;
-        top: -37px;
-        right: 0;
-        width: 40%;
-        display: flex;
-        justify-content: flex-end;
-        cursor: pointer;
-        span {
-            font-size: 0.8rem;
-            transform: translateX(50px);
-            opacity: 0;
-            transition: all .2s ease;
-        }
-        .toggle-button {
-            position: relative;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            border: 2px solid $blue2;
-            transition: all .2s ease;
-            &:after {
-                position: absolute;
-                z-index: 10;
-                content: '';
-                top: 2px;
-                left: 2px;
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background-color: $orange;
-                opacity: 0;
-                transition: all .3s ease;
-            }
-        }
-
-        &:hover {
-            span {
-                transform: translateX(-7px);
-                opacity: 1;
-            }
-            .toggle-button {
-                box-shadow: 0 0 3px 3px $orange;
-                background-color: #FE7F0133;
-            }
-        }
-
-        &.toggled {
-            .toggle-button:after {
-                opacity: 1;
-            }
-        }
+    &:hover {
+      span {
+        transform: translateX(-7px);
+        opacity: 1;
+      }
+      .toggle-button {
+        box-shadow: 0 0 3px 3px $orange;
+        background-color: #fe7f0133;
+      }
     }
+
+    &.toggled {
+      .toggle-button:after {
+        opacity: 1;
+      }
+    }
+  }
 }

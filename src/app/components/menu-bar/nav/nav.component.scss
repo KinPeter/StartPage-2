@@ -1,25 +1,26 @@
-@import "~src/variables";
+@import '~src/variables';
 
 nav {
-    display: flex;
-    justify-content: flex-end;
-    color: #fff;
-    margin-right: 7rem;
-    .nav-item {
-        padding: 0 1rem;
-        cursor: pointer;
-        i {
-            margin-right: .5rem;
-        }
-        a {
-            font-family: 'Open Sans Condensed', sans-serif;
-            color: #fff;
-            text-decoration: none;
-        }
-        &:hover {
-            a, i {
-                color: $orange;
-            }
-        }
+  display: flex;
+  justify-content: flex-end;
+  color: #fff;
+  margin-right: 7rem;
+  .nav-item {
+    padding: 0 1rem;
+    cursor: pointer;
+    i {
+      margin-right: 0.5rem;
     }
+    a {
+      font-family: 'Open Sans Condensed', sans-serif;
+      color: #fff;
+      text-decoration: none;
+    }
+    &:hover {
+      a,
+      i {
+        color: $orange;
+      }
+    }
+  }
 }

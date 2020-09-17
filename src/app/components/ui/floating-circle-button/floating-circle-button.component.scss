@@ -1,94 +1,94 @@
-@import "~src/variables";
+@import '~src/variables';
 
 $size: 55px;
 
 button {
-    position: relative;
-    z-index: 1;
-    overflow: hidden;    
-    background-color: white;
-    border-radius: 50%;
-    border: none;
-    outline: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background-color: white;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $size;
+  height: $size;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  animation: hopIn 0.3s ease-in-out;
+  i {
+    font-size: 1.8rem;
+    color: $blue1;
+    transition: all 0.3s ease;
+  }
+  &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: $size;
     height: $size;
-    box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
-    transition: all .3s ease;
-    animation: hopIn .3s ease-in-out;
-    i {
-        font-size: 1.8rem;
-        color: $blue1;
-        transition: all .3s ease;
-    }
+    content: '';
+    transition: all 0.3s ease;
+    background: rgb(226, 94, 17);
+    z-index: -1;
+    border-radius: 50%;
+    transform: scale(0);
+  }
+
+  &:hover {
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.6);
     &:after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: $size;
-        height: $size;                
-        content: '';
-        transition: all .3s ease;
-        background: rgb(226, 94, 17);
-        z-index: -1;
-        border-radius: 50%;
-        transform: scale(0);
+      transform: scale(1.1);
     }
+    i {
+      color: rgba(255, 255, 255, 0.9);
+      transform: rotate(90deg);
+    }
+    & + div.to-right,
+    & + div.to-left {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
 
-    &:hover {
-        box-shadow: 5px 5px 8px rgba(0,0,0,0.6);
-        &:after {
-            transform: scale(1.1);
-        }
-        i {
-            color: rgba(255, 255, 255, 0.9);
-            transform: rotate(90deg);
-        }
-        &+div.to-right, &+div.to-left  {
-            transform: translateX(0);
-            opacity: 1;
-        }
+  @keyframes hopIn {
+    from {
+      transform: translateY(100px) scale(0);
+      opacity: 0;
     }
-
-    @keyframes hopIn {
-        from {
-            transform: translateY(100px) scale(0);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0) scale(1);
-            opacity: 1;
-        }
+    to {
+      transform: translateY(0) scale(1);
+      opacity: 1;
     }
+  }
 }
 
 div {
-    position: absolute;
-    transition: all .3s ease;
-    p {
-        margin: 0;
-        width: 200px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: white;
-        text-shadow: 2px 2px 2px rgba(0,0,0,0.8);
-    }
-    &.to-right {
-        top: -5px;
-        left: $size;
-        transform-origin: left center;
-        transform: translateX(-25%);
-        opacity: 0;
-    }
-    &.to-left {
-        text-align: right;
-        top: -5px;
-        right: $size;
-        transform-origin: center right;
-        transform: translateX(25%);
-        opacity: 0;
-    }
+  position: absolute;
+  transition: all 0.3s ease;
+  p {
+    margin: 0;
+    width: 200px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.8);
+  }
+  &.to-right {
+    top: -5px;
+    left: $size;
+    transform-origin: left center;
+    transform: translateX(-25%);
+    opacity: 0;
+  }
+  &.to-left {
+    text-align: right;
+    top: -5px;
+    right: $size;
+    transform-origin: center right;
+    transform: translateX(25%);
+    opacity: 0;
+  }
 }
-

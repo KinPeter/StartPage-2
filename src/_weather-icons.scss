@@ -1,27 +1,74 @@
 i.weather-icon {
-    display: inline-block;
-    height: 50px;
-    width: 50px;
-    
-    &.clear-day { background: url('/assets/images/weather-icons/clear-day.svg'); }
-    &.clear-night { background: url('/assets/images/weather-icons/clear-night.svg'); }
-    &.cloudy { background: url('/assets/images/weather-icons/cloudy.svg'); }
-    &.fog { background: url('/assets/images/weather-icons/fog.svg'); }
-    &.future { background: url('/assets/images/weather-icons/future.svg'); }
-    &.hail { background: url('/assets/images/weather-icons/hail.svg'); }
-    &.partly-cloudy-day { background: url('/assets/images/weather-icons/partly-cloudy-day.svg'); }
-    &.partly-cloudy-night { background: url('/assets/images/weather-icons/partly-cloudy-night.svg'); }
-    &.precip { background: url('/assets/images/weather-icons/precip.svg'); }
-    &.rain { background: url('/assets/images/weather-icons/rain.svg'); }
-    &.sleet { background: url('/assets/images/weather-icons/sleet.svg'); }
-    &.snow { background: url('/assets/images/weather-icons/snow.svg'); }
-    &.temp-high-warning { background: url('/assets/images/weather-icons/temp-high-warning.svg'); }
-    &.temp-low-warning { background: url('/assets/images/weather-icons/temp-low-warning.svg'); }
-    &.thunderstorm { background: url('/assets/images/weather-icons/thunderstorm.svg'); }
-    &.wind { background: url('/assets/images/weather-icons/wind.svg'); }
+  display: inline-block;
+  height: 50px;
+  width: 50px;
 
-    &.clear-day, &.clear-night, &.cloudy, &.fog, &.future, &.hail, &.partly-cloudy-day, &.partly-cloudy-night, &.precip, &.rain, &.sleet, &.snow, &.temp-high-warning, &.temp-low-warning, &.thunderstorm, &.wind {
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
+  &.clear-day {
+    background: url('/assets/images/weather-icons/clear-day.svg');
+  }
+  &.clear-night {
+    background: url('/assets/images/weather-icons/clear-night.svg');
+  }
+  &.cloudy {
+    background: url('/assets/images/weather-icons/cloudy.svg');
+  }
+  &.fog {
+    background: url('/assets/images/weather-icons/fog.svg');
+  }
+  &.future {
+    background: url('/assets/images/weather-icons/future.svg');
+  }
+  &.hail {
+    background: url('/assets/images/weather-icons/hail.svg');
+  }
+  &.partly-cloudy-day {
+    background: url('/assets/images/weather-icons/partly-cloudy-day.svg');
+  }
+  &.partly-cloudy-night {
+    background: url('/assets/images/weather-icons/partly-cloudy-night.svg');
+  }
+  &.precip {
+    background: url('/assets/images/weather-icons/precip.svg');
+  }
+  &.rain {
+    background: url('/assets/images/weather-icons/rain.svg');
+  }
+  &.sleet {
+    background: url('/assets/images/weather-icons/sleet.svg');
+  }
+  &.snow {
+    background: url('/assets/images/weather-icons/snow.svg');
+  }
+  &.temp-high-warning {
+    background: url('/assets/images/weather-icons/temp-high-warning.svg');
+  }
+  &.temp-low-warning {
+    background: url('/assets/images/weather-icons/temp-low-warning.svg');
+  }
+  &.thunderstorm {
+    background: url('/assets/images/weather-icons/thunderstorm.svg');
+  }
+  &.wind {
+    background: url('/assets/images/weather-icons/wind.svg');
+  }
+
+  &.clear-day,
+  &.clear-night,
+  &.cloudy,
+  &.fog,
+  &.future,
+  &.hail,
+  &.partly-cloudy-day,
+  &.partly-cloudy-night,
+  &.precip,
+  &.rain,
+  &.sleet,
+  &.snow,
+  &.temp-high-warning,
+  &.temp-low-warning,
+  &.thunderstorm,
+  &.wind {
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 }

@@ -1,67 +1,59 @@
 <div class="add-note" [class.closing]="closing" #elementRef>
-    <header>
-        <span *ngIf="!isEditing">Add new note</span>
-        <span *ngIf="isEditing">Edit note</span>
-        <i (click)="onCancel()" class="fas fa-times"></i>
-    </header>
-    <form (ngSubmit)="onSubmit()" #f="ngForm">
-        <textarea 
-            id="text" 
-            name="text"
-            placeholder="Text" 
-            [(ngModel)]="note.text" 
-            required>
-        </textarea>
-        
-        <section class="add-links-section">
-            <label for="linkName">Add links:</label>
-            <div class="row">
-                <div class="col-sm-10">
-                    <input 
-                        type="text" 
-                        id="linkName" 
-                        name="currentLinkName"
-                        placeholder="Link name" 
-                        [(ngModel)]="currentLinkName">
-                    <input 
-                        type="text" 
-                        id="linkUrl" 
-                        name="currentLinkUrl" 
-                        placeholder="Link URL" 
-                        [(ngModel)]="currentLinkUrl">
-                </div>
-                <div class="col-sm-2">
-                    <button
-                        type="button"
-                        class="add-link-btn"
-                        [disabled]="!currentLinkName || currentLinkName.length < 1 || !currentLinkUrl || currentLinkUrl.length < 1"
-                        (click)="onAddLink()">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                </div>
-            </div>
-            <ul>
-                <li *ngFor="let link of note.links; let i = index">
-                    <i class="fas fa-times" (click)="onRemoveLink(i, $event)"></i>
-                    <i class="fas fa-link"></i>
-                    {{ link.name }}
-                </li>
-            </ul>
-        </section>
+  <header>
+    <span *ngIf="!isEditing">Add new note</span>
+    <span *ngIf="isEditing">Edit note</span>
+    <i (click)="onCancel()" class="fas fa-times"></i>
+  </header>
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <textarea id="text" name="text" placeholder="Text" [(ngModel)]="note.text" required></textarea>
 
-        <footer>
-            <button 
-                class="cancel-btn"
-                type="button"
-                (click)=onCancel()>
-                Cancel
-            </button>
-            <button 
-                class="save-btn"
-                type="submit" 
-                [disabled]="!f.valid">
-                Save
-            </button>
-        </footer>
-    </form>
+    <section class="add-links-section">
+      <label for="linkName">Add links:</label>
+      <div class="row">
+        <div class="col-sm-10">
+          <input
+            type="text"
+            id="linkName"
+            name="currentLinkName"
+            placeholder="Link name"
+            [(ngModel)]="currentLinkName"
+          />
+          <input
+            type="text"
+            id="linkUrl"
+            name="currentLinkUrl"
+            placeholder="Link URL"
+            [(ngModel)]="currentLinkUrl"
+          />
+        </div>
+        <div class="col-sm-2">
+          <button
+            type="button"
+            class="add-link-btn"
+            [disabled]="
+              !currentLinkName ||
+              currentLinkName.length < 1 ||
+              !currentLinkUrl ||
+              currentLinkUrl.length < 1
+            "
+            (click)="onAddLink()"
+          >
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      <ul>
+        <li *ngFor="let link of note.links; let i = index">
+          <i class="fas fa-times" (click)="onRemoveLink(i, $event)"></i>
+          <i class="fas fa-link"></i>
+          {{ link.name }}
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <button class="cancel-btn" type="button" (click)="onCancel()">Cancel</button>
+      <button class="save-btn" type="submit" [disabled]="!f.valid">Save</button>
+    </footer>
+  </form>
 </div>

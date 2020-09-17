@@ -2,17 +2,14 @@ import { Component, OnInit, Input } from '@angular/core';
 import { DailyWeather } from 'src/app/interfaces/weather';
 
 @Component({
-    selector: 'app-daily-weather',
-    templateUrl: './daily-weather.component.html',
-    styleUrls: ['./daily-weather.component.scss']
+  selector: 'app-daily-weather',
+  templateUrl: './daily-weather.component.html',
+  styleUrls: ['./daily-weather.component.scss'],
 })
 export class DailyWeatherComponent implements OnInit {
+  @Input() weather: DailyWeather;
 
-    @Input() weather: DailyWeather;
+  constructor() {}
 
-    constructor() { }
-
-    ngOnInit() {
-    }
-
+  ngOnInit() {}
 }

@@ -1,156 +1,156 @@
-@import "~src/variables";
+@import '~src/variables';
 
 .links-container {
+  position: fixed;
+  bottom: 0;
+  left: 300px;
+  width: calc(100vw - 600px);
+  height: 70px;
+  background-color: $blue1;
+  z-index: 80;
+  border-top: 1px solid #fff;
+  box-shadow: 0 -3px 2px rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  transition: all 0.3s ease;
+
+  header {
+    text-align: right;
+    @extend %tabTitle;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+    small {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      $iSize: 25px;
+      width: $iSize;
+      height: $iSize;
+      font-size: 1.3rem;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+      i {
+        transform: translateY(-1px);
+      }
+    }
+  }
+  app-floating-circle-button {
     position: fixed;
-    bottom: 0;
-    left: 300px;
-    width: calc(100vw - 600px);
-    height: 70px;
-    background-color: $blue1;
-    z-index: 80;
-    border-top: 1px solid #fff;
-    box-shadow: 0 -3px 2px rgba(0, 0, 0, 0.3);
-    padding: 1rem;
-    transition: all .3s ease;
-
-    header {
-        text-align: right;
-        @extend %tabTitle;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        cursor: pointer;
-        small {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            $iSize: 25px;
-            width: $iSize;
-            height: $iSize;
-            font-size: 1.3rem;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            margin-left: 0.5rem;
-            transition: transform .3s ease;
-            i {
-                transform: translateY(-1px);
-            }
-        }
+    bottom: 2rem;
+    transition: transform 0.3s 0.05s ease;
+    &.search-link-circle.logged-out {
+      left: calc(300px + 1rem);
     }
-    app-floating-circle-button {
-        position: fixed;
-        bottom: 2rem;
-        transition: transform .3s .05s ease;
-        &.search-link-circle.logged-out {
-            left: calc(300px + 1rem);            
-        }
-        &.search-link-circle.logged-in {
-            left: 370px;            
-        }
-        &.add-link-circle {
-            left: 435px; 
-        }
+    &.search-link-circle.logged-in {
+      left: 370px;
     }
-    .tag-cloud {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: 1rem;
-        article {
-            @extend %lightBackgroundWhiteBorder;
-            color: $blue1;
-            font-weight: bold;
-            margin: .2rem;
-            display: flex;
-            align-items: center;
-            padding: .1rem .5rem;
-            cursor: pointer;
-            span.dot {
-                display: inline-block;
-                width: 6px;
-                height: 6px;
-                background-color: $blue1;
-                border-radius: 50%;
-                margin-right: 0.3rem;
-            }
-            
-            position: relative;
-            overflow: hidden;
-            z-index: 100;
-            transition: all .2s ease;
-            @extend %tilePseudoAfterLightblueRadial;
-
-            &:hover {
-                transform: scale(1.05);
-                &:after {
-                    transform: scale(1.5);
-                    opacity: .6;
-                }
-            }
-        }
+    &.add-link-circle {
+      left: 435px;
     }
-
-    &.open {
-        @mixin linkContainerMediaQuery($minWidth, $containerHeight) {
-            @media (min-width: $minWidth) {
-                height: $containerHeight + px;
-                app-floating-circle-button {
-                    transform: translateY(-($containerHeight - 95) + px) scale(0.8);
-                }
-                app-link-results {
-                    bottom: ($containerHeight - 16) + px;
-                }
-                app-search-link, app-add-link {
-                    bottom: ($containerHeight + 16) + px;
-                }
-            }
-        }
-        @media (max-width: 1023px) {
-            height: 500px;
-            app-floating-circle-button {
-                transform: translateY(-405px) scale(0.8);
-            }
-        }
-        @include linkContainerMediaQuery(1024px, 300);
-        @include linkContainerMediaQuery(1140px, 230);
-        @include linkContainerMediaQuery(1360px, 190);
-        @include linkContainerMediaQuery(1610px, 160);
-   
-        header small {
-            transform: rotate(180deg);
-        }
-    }
-
-    %linkModalsShared {
-        position: fixed;
-        z-index: 1000;
+  }
+  .tag-cloud {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    article {
+      @extend %lightBackgroundWhiteBorder;
+      color: $blue1;
+      font-weight: bold;
+      margin: 0.2rem;
+      display: flex;
+      align-items: center;
+      padding: 0.1rem 0.5rem;
+      cursor: pointer;
+      span.dot {
         display: inline-block;
-        transition: all .3s .1s ease;
-        bottom: calc(70px - 1rem);
-    }
+        width: 6px;
+        height: 6px;
+        background-color: $blue1;
+        border-radius: 50%;
+        margin-right: 0.3rem;
+      }
 
-    app-search-link {
-        @extend %linkModalsShared;
-        bottom: calc(70px + 1rem);
-        left: calc(300px + 1rem);
-        width: 300px;
-        height: 110px;        
-    }
+      position: relative;
+      overflow: hidden;
+      z-index: 100;
+      transition: all 0.2s ease;
+      @extend %tilePseudoAfterLightblueRadial;
 
-    app-add-link {
-        @extend %linkModalsShared;
-        bottom: calc(70px + 1rem);
-        left: calc(300px + 1rem);
-        width: 400px;
-        height: auto;  
+      &:hover {
+        transform: scale(1.05);
+        &:after {
+          transform: scale(1.5);
+          opacity: 0.6;
+        }
+      }
     }
-    
-    app-link-results {
-        @extend %linkModalsShared;
-        bottom: calc(70px - 1rem);
-        right: calc(300px + 1rem);
-        width: 400px;
-        max-height: 400px;       
-    }
+  }
 
+  &.open {
+    @mixin linkContainerMediaQuery($minWidth, $containerHeight) {
+      @media (min-width: $minWidth) {
+        height: $containerHeight + px;
+        app-floating-circle-button {
+          transform: translateY(-($containerHeight - 95) + px) scale(0.8);
+        }
+        app-link-results {
+          bottom: ($containerHeight - 16) + px;
+        }
+        app-search-link,
+        app-add-link {
+          bottom: ($containerHeight + 16) + px;
+        }
+      }
+    }
+    @media (max-width: 1023px) {
+      height: 500px;
+      app-floating-circle-button {
+        transform: translateY(-405px) scale(0.8);
+      }
+    }
+    @include linkContainerMediaQuery(1024px, 300);
+    @include linkContainerMediaQuery(1140px, 230);
+    @include linkContainerMediaQuery(1360px, 190);
+    @include linkContainerMediaQuery(1610px, 160);
+
+    header small {
+      transform: rotate(180deg);
+    }
+  }
+
+  %linkModalsShared {
+    position: fixed;
+    z-index: 1000;
+    display: inline-block;
+    transition: all 0.3s 0.1s ease;
+    bottom: calc(70px - 1rem);
+  }
+
+  app-search-link {
+    @extend %linkModalsShared;
+    bottom: calc(70px + 1rem);
+    left: calc(300px + 1rem);
+    width: 300px;
+    height: 110px;
+  }
+
+  app-add-link {
+    @extend %linkModalsShared;
+    bottom: calc(70px + 1rem);
+    left: calc(300px + 1rem);
+    width: 400px;
+    height: auto;
+  }
+
+  app-link-results {
+    @extend %linkModalsShared;
+    bottom: calc(70px - 1rem);
+    right: calc(300px + 1rem);
+    width: 400px;
+    max-height: 400px;
+  }
 }

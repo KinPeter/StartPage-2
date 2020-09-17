@@ -1,109 +1,122 @@
-@import "~src/variables";
+@import '~src/variables';
 
 .note-wrapper {
-    perspective: 1000px;
-    .note {
-        position: relative;
-        width: 100%;
-        height: auto;
-        @extend %lightBackgroundWhiteBorder;
-        margin-bottom: .5rem;
-        padding: 0.5rem;
-        color: $blue1;
-        transform-style: preserve-3d;
-        transform-origin: top center;
-        animation: flipIn .5s ease-in-out;
-        @keyframes flipIn {
-            from { transform: rotateX(180deg); opacity: 0; }
-            to   { transform: rotateX(360deg); opacity: 1; }
-        }
-
-        .note-text {
-            font-weight: bold;
-            margin: 0;
-            white-space: pre-wrap;
-        }
-        .note-links {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-            a {
-                color: $orange;
-                text-decoration: none;
-                font-weight: bold;
-                i {
-                    margin: 0 0.2rem;
-                    font-size: .9rem;
-                    transition: all .2s ease;
-                }
-                &:hover {
-                    color: $blue5;
-                    i {
-                        transform: scale(1.2);
-                    }
-                }
-            }
-        }
-        footer {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-        }
-        .note-buttons i {
-            cursor: pointer;
-            margin-left: 0.2rem;
-            &:hover {
-                color: $blue5;
-            }
-        }
-
-        &.archived {
-            background: linear-gradient(135deg, #fff 0%, $lightGrey 50%, $lightGrey 100%);
-            color: grey;
-            opacity: .5;
-            .note-buttons i:hover {
-                color: $darkGrey;
-            }
-        }
-
-        .delete-confirm-wrapper {
-            position: absolute;
-            bottom: 1.9rem;
-            right: 0.2rem;
-
-            transform: translateY(50px); opacity: 0;
-            animation: slideUp .2s ease forwards;
-            @keyframes slideUp {
-                from { transform: translateY(50px); opacity: 0; }
-                to   { transform: translateY(0); opacity: 1; }
-            }
-            div {
-                cursor: pointer;
-                width: 25px;
-                height: 25px;
-                margin-bottom: 5px;
-                border-radius: 50%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: white;
-                font-size: .8rem;
-                box-shadow: 2px 2px 2px rgba(0,0,0,0.6);
-                &.confirm-delete {
-                    background-color: $danger;
-                    &:hover {
-                        background-color: white;
-                        color: $danger;
-                    }
-                }
-                &.cancel-delete {
-                    background-color: $lightGrey;
-                    &:hover {
-                        background-color: white;
-                        color: $lightGrey;
-                    }
-                }
-            }
-        }
+  perspective: 1000px;
+  .note {
+    position: relative;
+    width: 100%;
+    height: auto;
+    @extend %lightBackgroundWhiteBorder;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    color: $blue1;
+    transform-style: preserve-3d;
+    transform-origin: top center;
+    animation: flipIn 0.5s ease-in-out;
+    @keyframes flipIn {
+      from {
+        transform: rotateX(180deg);
+        opacity: 0;
+      }
+      to {
+        transform: rotateX(360deg);
+        opacity: 1;
+      }
     }
+
+    .note-text {
+      font-weight: bold;
+      margin: 0;
+      white-space: pre-wrap;
+    }
+    .note-links {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      a {
+        color: $orange;
+        text-decoration: none;
+        font-weight: bold;
+        i {
+          margin: 0 0.2rem;
+          font-size: 0.9rem;
+          transition: all 0.2s ease;
+        }
+        &:hover {
+          color: $blue5;
+          i {
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+    footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+    .note-buttons i {
+      cursor: pointer;
+      margin-left: 0.2rem;
+      &:hover {
+        color: $blue5;
+      }
+    }
+
+    &.archived {
+      background: linear-gradient(135deg, #fff 0%, $lightGrey 50%, $lightGrey 100%);
+      color: grey;
+      opacity: 0.5;
+      .note-buttons i:hover {
+        color: $darkGrey;
+      }
+    }
+
+    .delete-confirm-wrapper {
+      position: absolute;
+      bottom: 1.9rem;
+      right: 0.2rem;
+
+      transform: translateY(50px);
+      opacity: 0;
+      animation: slideUp 0.2s ease forwards;
+      @keyframes slideUp {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      div {
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        margin-bottom: 5px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 0.8rem;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+        &.confirm-delete {
+          background-color: $danger;
+          &:hover {
+            background-color: white;
+            color: $danger;
+          }
+        }
+        &.cancel-delete {
+          background-color: $lightGrey;
+          &:hover {
+            background-color: white;
+            color: $lightGrey;
+          }
+        }
+      }
+    }
+  }
 }

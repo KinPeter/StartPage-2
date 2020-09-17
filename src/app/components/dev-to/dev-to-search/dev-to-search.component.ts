@@ -4,13 +4,12 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-dev-to-search',
   templateUrl: './dev-to-search.component.html',
-  styleUrls: ['./dev-to-search.component.scss']
+  styleUrls: ['./dev-to-search.component.scss'],
 })
 export class DevToSearchComponent {
-
   @ViewChild('search') searchForm: NgForm;
 
-  constructor() { }
+  constructor() {}
 
   onSubmit() {
     const term = encodeURIComponent(this.searchForm.value.searchTerm).trim();
@@ -21,5 +20,4 @@ export class DevToSearchComponent {
     }
     this.searchForm.reset();
   }
-
 }

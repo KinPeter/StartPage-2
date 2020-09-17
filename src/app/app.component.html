@@ -1,25 +1,24 @@
-
 <app-alert></app-alert>
 <app-menu-bar></app-menu-bar>
 <app-notes></app-notes>
 <app-tiles-container></app-tiles-container>
 <app-links-container></app-links-container>
 <main>
-    <section class="column left">
-        <app-content-box [title]="'Dev.to'">
-            <app-dev-to></app-dev-to>
-        </app-content-box>
-        <app-content-box [title]="'Korean'">
-            <app-korean></app-korean>
-        </app-content-box>
-    </section>
-    <section class="column right">
-        <app-content-box [title]="'Weather'">
-            <app-weather></app-weather>
-        </app-content-box>
-        <!-- <app-content-box [title]="'Something else'">
+  <section class="column left">
+    <app-content-box [title]="'Dev.to'">
+      <app-dev-to></app-dev-to>
+    </app-content-box>
+    <app-content-box [title]="'Korean'">
+      <app-korean></app-korean>
+    </app-content-box>
+  </section>
+  <section class="column right">
+    <app-content-box [title]="'Weather'">
+      <app-weather></app-weather>
+    </app-content-box>
+    <!-- <app-content-box [title]="'Something else'">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt reprehenderit consequuntur quis consectetur! Rerum, exercitationem veniam? </p>
         </app-content-box> -->
-    </section>
+  </section>
 </main>
 <app-spinner *ngIf="isAppLoading"></app-spinner>

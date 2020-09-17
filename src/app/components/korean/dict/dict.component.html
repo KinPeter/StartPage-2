@@ -1,31 +1,32 @@
 <form class="dict-input" (submit)="onSubmit()">
-    <div class="row">
-        <div class="col-sm-10">
-            <input 
-                type="text" 
-                [matAutocomplete]="auto" 
-                [formControl]="input"
-                placeholder="Search my dictionary">
-            <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let word of filteredWords | async" [value]="word">
-                    {{ word }}
-                </mat-option>
-            </mat-autocomplete>
-        </div>
-        <div class="col-sm-2">
-            <button type="submit">Search</button>
-        </div>
+  <div class="row">
+    <div class="col-sm-10">
+      <input
+        type="text"
+        [matAutocomplete]="auto"
+        [formControl]="input"
+        placeholder="Search my dictionary"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let word of filteredWords | async" [value]="word">
+          {{ word }}
+        </mat-option>
+      </mat-autocomplete>
     </div>
+    <div class="col-sm-2">
+      <button type="submit">Search</button>
+    </div>
+  </div>
 </form>
 <section class="results" *ngIf="results.length" [class.closing]="closingResults">
-    <header>
-        <h5>Search results:</h5>
-        <i class="fa fa-times" (click)="onCloseResults()"></i>
-    </header>
-    <div class="results-wrapper">
-        <article class="result" *ngFor="let result of results">
-            <p>{{ result.word }}</p>
-            <p>{{ result.translate }}</p>
-        </article>
-    </div>
+  <header>
+    <h5>Search results:</h5>
+    <i class="fa fa-times" (click)="onCloseResults()"></i>
+  </header>
+  <div class="results-wrapper">
+    <article class="result" *ngFor="let result of results">
+      <p>{{ result.word }}</p>
+      <p>{{ result.translate }}</p>
+    </article>
+  </div>
 </section>

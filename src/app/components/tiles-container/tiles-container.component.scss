@@ -1,13 +1,13 @@
 .tiles-container {
+  position: fixed;
+  top: 40px;
+  right: 0;
+  z-index: 90;
+  display: flex;
+  flex-direction: row-reverse;
+  footer {
     position: fixed;
-    top: 40px;
-    right: 0;
-    z-index: 90;
-    display: flex;
-    flex-direction: row-reverse;
-    footer {
-        position: fixed;
-        bottom: 2rem;
-        right: 2rem;
-    }
+    bottom: 2rem;
+    right: 2rem;
+  }
 }

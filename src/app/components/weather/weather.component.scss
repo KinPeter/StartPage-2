@@ -1,39 +1,39 @@
 @import '~src/_variables';
 
 .date-city {
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    p {
-        font-size: 1.1rem;
-        margin: 0;
-    }
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  p {
+    font-size: 1.1rem;
+    margin: 0;
+  }
 }
 
 aside {
-    position: relative;
-    top: -63px;
-    display: flex;
-    justify-content: flex-end;
+  position: relative;
+  top: -63px;
+  display: flex;
+  justify-content: flex-end;
 
-    span {
-        font-size: 0.8rem;
-        transform: translateX(50px);
-        opacity: 0;
-        transition: all .2s ease;
-    }
+  span {
+    font-size: 0.8rem;
+    transform: translateX(50px);
+    opacity: 0;
+    transition: all 0.2s ease;
+  }
 
-    i {
-        cursor: pointer;
-        &:hover {
-            color: $orange;
-        }
-    }
-
+  i {
+    cursor: pointer;
     &:hover {
-        span {
-            transform: translateX(-7px);
-            opacity: 1;
-        }
+      color: $orange;
     }
+  }
+
+  &:hover {
+    span {
+      transform: translateX(-7px);
+      opacity: 1;
+    }
+  }
 }

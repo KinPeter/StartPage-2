@@ -1,55 +1,55 @@
-@import "~src/variables";
+@import '~src/variables';
 
 .add-note {
-    position: fixed;
-    left: 62px;
-    bottom: 62px;
-    width: 270px;
-    @extend %whiteModalBasics;
-    @extend %whiteModalHeader;
+  position: fixed;
+  left: 62px;
+  bottom: 62px;
+  width: 270px;
+  @extend %whiteModalBasics;
+  @extend %whiteModalHeader;
 
-    @include whiteModalAnimations(left);
+  @include whiteModalAnimations(left);
 
-    form {
-        @include form();
+  form {
+    @include form();
 
-        .add-links-section {
-            @include customInlineInputWithButton();
-            
-            ul {
-                padding: 0;
-                list-style: none;
-                margin-top: 1rem;
-                max-height: 70px;
-                overflow-y: auto;
-                li {
-                    font-weight: bold;
-                    color: $orange;
-                    i {
-                        margin-right: 0.2rem;
-                        &.fa-times {
-                            color: $lightGrey;
-                            margin-right: .5rem;
-                            cursor: pointer;
-                            &:hover {
-                                color: $darkGrey;
-                            }
-                        }
-                    }
-                }
+    .add-links-section {
+      @include customInlineInputWithButton();
+
+      ul {
+        padding: 0;
+        list-style: none;
+        margin-top: 1rem;
+        max-height: 70px;
+        overflow-y: auto;
+        li {
+          font-weight: bold;
+          color: $orange;
+          i {
+            margin-right: 0.2rem;
+            &.fa-times {
+              color: $lightGrey;
+              margin-right: 0.5rem;
+              cursor: pointer;
+              &:hover {
+                color: $darkGrey;
+              }
             }
+          }
         }
-
-        footer {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 1.5rem;
-            .cancel-btn {
-                @include button($darkGrey, $lightGrey, none);
-            }
-            .save-btn {
-                @include button($blue2, $blue4, none);
-            }
-        }
+      }
     }
+
+    footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+      .cancel-btn {
+        @include button($darkGrey, $lightGrey, none);
+      }
+      .save-btn {
+        @include button($blue2, $blue4, none);
+      }
+    }
+  }
 }

@@ -1,11 +1,11 @@
 @import '~src/_variables';
 
 form {
-    margin-bottom: .5rem;
-    @include form();
-    @include customInlineInputWithButton();
-    input {
-        margin-bottom: 0 !important;
-        color: $blue2;
-    }
+  margin-bottom: 0.5rem;
+  @include form();
+  @include customInlineInputWithButton();
+  input {
+    margin-bottom: 0 !important;
+    color: $blue2;
+  }
 }

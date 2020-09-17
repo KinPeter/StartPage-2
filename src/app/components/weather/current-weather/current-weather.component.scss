@@ -2,56 +2,57 @@
 @import '~src/_variables';
 
 .current-weather {
-    p {
-        margin: 0;
-    }
-    .current-flex {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .right {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            .temp-warning i {
-                width: 30px;
-                height: 30px;
-                position: relative;
-                top: 5px;
-                left: -.5rem;
-            }
-            .current-temp {
-                font-size: 2.2rem;
-                margin-right: 1rem;
-                .min-max {
-                    display: flex;
-                    justify-content: space-between;
-                    font-size: 1rem;
-                    position: relative;
-                    top: -10px;
-                    span:first-child {
-                        color: $danger;
-                        margin-right: 3px;
-                    }
-                    span:last-child {
-                        color: $blue5;
-                    }
-                }
-            }
-            i {
-                width: 70px;
-                height: 70px;
-            }
-        }
-    }
-    .current-flex .left i, .current-forecast i {
+  p {
+    margin: 0;
+  }
+  .current-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .right {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      .temp-warning i {
+        width: 30px;
+        height: 30px;
         position: relative;
-        top: 2px;
-        width: 15px;
-        height: 15px;
-        margin-right: 0.5rem;
+        top: 5px;
+        left: -0.5rem;
+      }
+      .current-temp {
+        font-size: 2.2rem;
+        margin-right: 1rem;
+        .min-max {
+          display: flex;
+          justify-content: space-between;
+          font-size: 1rem;
+          position: relative;
+          top: -10px;
+          span:first-child {
+            color: $danger;
+            margin-right: 3px;
+          }
+          span:last-child {
+            color: $blue5;
+          }
+        }
+      }
+      i {
+        width: 70px;
+        height: 70px;
+      }
     }
-    .current-forecast {
-        margin-bottom: 1rem;
-    }
+  }
+  .current-flex .left i,
+  .current-forecast i {
+    position: relative;
+    top: 2px;
+    width: 15px;
+    height: 15px;
+    margin-right: 0.5rem;
+  }
+  .current-forecast {
+    margin-bottom: 1rem;
+  }
 }

@@ -1,58 +1,50 @@
 <section class="links-container" [class.open]="isOpen">
-    <app-search-link
-        *ngIf="isSearching"
-        (closeSearch)="onCloseSearch()">
-    </app-search-link>
-    
-    <app-add-link
-        *ngIf="isAdding"
-        (closeAddLink)="onCloseAddLink()">
-    </app-add-link>
-    
-    <app-link-results 
-        *ngIf="hasResults" 
-        (closeResults)="onCloseResults()"
-        [results]="results">
-    </app-link-results>
+  <app-search-link *ngIf="isSearching" (closeSearch)="onCloseSearch()"></app-search-link>
 
-    <header (click)="toggleView()">
-        Links
-        <small>
-            <i class="fas fa-caret-up"></i>
-        </small>
-    </header>
+  <app-add-link *ngIf="isAdding" (closeAddLink)="onCloseAddLink()"></app-add-link>
 
-    <app-floating-circle-button
-        *ngIf="isLoggedIn"
-        class="search-link-circle logged-in"
-        [message]="'Search'" 
-        [side]="'to-left'"
-        [icon]="'search'"
-        (click)="onSearchLink()">
-    </app-floating-circle-button>
-    <app-floating-circle-button
-        *ngIf="!isLoggedIn"
-        class="search-link-circle logged-out"
-        [message]="'Search'" 
-        [side]="'to-right'"
-        [icon]="'search'"
-        (click)="onSearchLink()">
-    </app-floating-circle-button>
-    <app-floating-circle-button
-        *ngIf="isLoggedIn"
-        class="add-link-circle"
-        [message]="'Add new link'" 
-        [side]="'to-right'"
-        [icon]="'plus'"
-        (click)="onAddLink()">
-    </app-floating-circle-button>
+  <app-link-results
+    *ngIf="hasResults"
+    (closeResults)="onCloseResults()"
+    [results]="results"
+  ></app-link-results>
 
-    <main class="tag-cloud">
-        <article
-            *ngFor="let tag of tagsArray"
-            (click)="loadLinksByTag(tag[0])">
-            <span class="dot"></span>
-            {{ tag[1].name }}
-        </article>
-    </main>
+  <header (click)="toggleView()">
+    Links
+    <small>
+      <i class="fas fa-caret-up"></i>
+    </small>
+  </header>
+
+  <app-floating-circle-button
+    *ngIf="isLoggedIn"
+    class="search-link-circle logged-in"
+    [message]="'Search'"
+    [side]="'to-left'"
+    [icon]="'search'"
+    (click)="onSearchLink()"
+  ></app-floating-circle-button>
+  <app-floating-circle-button
+    *ngIf="!isLoggedIn"
+    class="search-link-circle logged-out"
+    [message]="'Search'"
+    [side]="'to-right'"
+    [icon]="'search'"
+    (click)="onSearchLink()"
+  ></app-floating-circle-button>
+  <app-floating-circle-button
+    *ngIf="isLoggedIn"
+    class="add-link-circle"
+    [message]="'Add new link'"
+    [side]="'to-right'"
+    [icon]="'plus'"
+    (click)="onAddLink()"
+  ></app-floating-circle-button>
+
+  <main class="tag-cloud">
+    <article *ngFor="let tag of tagsArray" (click)="loadLinksByTag(tag[0])">
+      <span class="dot"></span>
+      {{ tag[1].name }}
+    </article>
+  </main>
 </section>

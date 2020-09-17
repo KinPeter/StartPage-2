@@ -1,44 +1,47 @@
 <section class="add-link" [class.closing]="closing" #elementRef>
-    <header>
-        Add new link:
-        <i (click)="onCloseAddLink()" class="fas fa-times"></i>
-    </header>
-    <form (ngSubmit)="onSubmit()" #f="ngForm">
-        <div class="row">
-            <div class="col-sm-10">
-                <input 
-                    #linkNameInput 
-                    type="text" 
-                    id="linkName" 
-                    name="linkName" 
-                    placeholder="Name"
-                    [(ngModel)]="link.name" 
-                    required>
-                <input 
-                    #linkUrlInput 
-                    type="text" 
-                    id="linkUrl" 
-                    name="linkUrl" 
-                    placeholder="Url"
-                    [(ngModel)]="link.url" 
-                    required>
-            </div>
-            <div class="col-sm-2">
-                <button type="submit" [disabled]="!f.valid || link.tags.length < 1">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-        </div>
-        <section class="add-tags">
-            <p>Choose tags:</p>
-            <ul>
-                <li
-                    *ngFor="let tag of tagsArray"
-                    [class.added]="isTagAdded(tag[0])"
-                    (click)="toggleTag(tag[0])">
-                    {{ tag[1].name }}
-                </li>
-            </ul>
-        </section>
-    </form>
+  <header>
+    Add new link:
+    <i (click)="onCloseAddLink()" class="fas fa-times"></i>
+  </header>
+  <form (ngSubmit)="onSubmit()" #f="ngForm">
+    <div class="row">
+      <div class="col-sm-10">
+        <input
+          #linkNameInput
+          type="text"
+          id="linkName"
+          name="linkName"
+          placeholder="Name"
+          [(ngModel)]="link.name"
+          required
+        />
+        <input
+          #linkUrlInput
+          type="text"
+          id="linkUrl"
+          name="linkUrl"
+          placeholder="Url"
+          [(ngModel)]="link.url"
+          required
+        />
+      </div>
+      <div class="col-sm-2">
+        <button type="submit" [disabled]="!f.valid || link.tags.length < 1">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    </div>
+    <section class="add-tags">
+      <p>Choose tags:</p>
+      <ul>
+        <li
+          *ngFor="let tag of tagsArray"
+          [class.added]="isTagAdded(tag[0])"
+          (click)="toggleTag(tag[0])"
+        >
+          {{ tag[1].name }}
+        </li>
+      </ul>
+    </section>
+  </form>
 </section>

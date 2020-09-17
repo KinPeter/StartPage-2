@@ -1,20 +1,19 @@
 <section class="date-city" *ngIf="city">
-    <p>{{ city }}</p>
-    <p>{{ today | date:'EEEE, yyyy. LLLL d.' }}</p>
+  <p>{{ city }}</p>
+  <p>{{ today | date: 'EEEE, yyyy. LLLL d.' }}</p>
 </section>
 <aside
-    class="toggle-top"
-    (click)="weatherService.fetchLocationAndWeatherData()"
-    (mouseenter)="getLastUpdated()">
-    <span>{{ lastUpdated }}</span>
-    <i class="fas fa-sync-alt" ></i>
+  class="toggle-top"
+  (click)="weatherService.fetchLocationAndWeatherData()"
+  (mouseenter)="getLastUpdated()"
+>
+  <span>{{ lastUpdated }}</span>
+  <i class="fas fa-sync-alt"></i>
 </aside>
 <section *ngIf="weather">
-    <app-current-weather
-        [weather]="weather.currentWeather">
-    </app-current-weather>
-    <app-daily-weather
-        *ngFor="let daily of weather.dailyWeather"
-        [weather]="daily">
-    </app-daily-weather>
+  <app-current-weather [weather]="weather.currentWeather"></app-current-weather>
+  <app-daily-weather
+    *ngFor="let daily of weather.dailyWeather"
+    [weather]="daily"
+  ></app-daily-weather>
 </section>

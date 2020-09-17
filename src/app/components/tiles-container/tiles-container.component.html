@@ -1,41 +1,18 @@
 <section class="tiles-container">
-    <app-tiles-tab 
-        [tabTitle]="'Others'" 
-        [tabNumber]="'tab1'"
-        [tiles]="tiles.others">
-    </app-tiles-tab>
-    <app-tiles-tab 
-        [tabTitle]="'Fun'" 
-        [tabNumber]="'tab2'"
-        [tiles]="tiles.fun">
-    </app-tiles-tab>
-    <app-tiles-tab 
-        [tabTitle]="'Google'" 
-        [tabNumber]="'tab3'"
-        [tiles]="tiles.google">
-    </app-tiles-tab>
-    <app-tiles-tab 
-        [tabTitle]="'Coding'" 
-        [tabNumber]="'tab4'"
-        [tiles]="tiles.coding">
-    </app-tiles-tab>
-    <app-tiles-tab 
-        [tabTitle]="'Top'" 
-        [tabNumber]="'tab5'"
-        [tiles]="tiles.top">
-    </app-tiles-tab>
+  <app-tiles-tab [tabTitle]="'Others'" [tabNumber]="'tab1'" [tiles]="tiles.others"></app-tiles-tab>
+  <app-tiles-tab [tabTitle]="'Fun'" [tabNumber]="'tab2'" [tiles]="tiles.fun"></app-tiles-tab>
+  <app-tiles-tab [tabTitle]="'Google'" [tabNumber]="'tab3'" [tiles]="tiles.google"></app-tiles-tab>
+  <app-tiles-tab [tabTitle]="'Coding'" [tabNumber]="'tab4'" [tiles]="tiles.coding"></app-tiles-tab>
+  <app-tiles-tab [tabTitle]="'Top'" [tabNumber]="'tab5'" [tiles]="tiles.top"></app-tiles-tab>
 
-    <app-add-tile
-        *ngIf="addingTile && isLoggedIn"
-        (canceling)="onCancel()">
-    </app-add-tile>
+  <app-add-tile *ngIf="addingTile && isLoggedIn" (canceling)="onCancel()"></app-add-tile>
 
-    <footer *ngIf="isLoggedIn">
-        <app-floating-circle-button 
-            [message]="'Add new tile'" 
-            [side]="'to-left'"
-            [icon]="'plus'"
-            (click)="onAddTile()">
-        </app-floating-circle-button>
-    </footer>
+  <footer *ngIf="isLoggedIn">
+    <app-floating-circle-button
+      [message]="'Add new tile'"
+      [side]="'to-left'"
+      [icon]="'plus'"
+      (click)="onAddTile()"
+    ></app-floating-circle-button>
+  </footer>
 </section>

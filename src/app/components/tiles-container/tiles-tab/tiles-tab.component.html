@@ -1,23 +1,23 @@
-<section 
-    class="tiles-tab" 
-    (mouseenter)="isOpen = true" 
-    (mouseleave)="isOpen = false"
-    ngClass="{{tabNumber}}">
-    <header>
-        <div class="tab-title-open" >{{ tabTitle }}</div>
-        <div class="tab-title-closed">{{ tabTitle }}</div>
-    </header>
+<section
+  class="tiles-tab"
+  (mouseenter)="isOpen = true"
+  (mouseleave)="isOpen = false"
+  ngClass="{{ tabNumber }}"
+>
+  <header>
+    <div class="tab-title-open">{{ tabTitle }}</div>
+    <div class="tab-title-closed">{{ tabTitle }}</div>
+  </header>
 
-    <div class="tiles-wrapper">
-        <div class="tile-perspective" *ngFor="let tile of tiles">
-            <a  class="tile" 
-                href="{{ tile.link }}" 
-                target="_blank">
-                <div class="tile-content">
-                    <img src="https://stuff.p-kin.com/start-tile-icons/{{ tile.icon }}"><br>
-                    {{ tile.name }}
-                </div>
-            </a>
+  <div class="tiles-wrapper">
+    <div class="tile-perspective" *ngFor="let tile of tiles">
+      <a class="tile" href="{{ tile.link }}" target="_blank">
+        <div class="tile-content">
+          <img src="https://stuff.p-kin.com/start-tile-icons/{{ tile.icon }}" />
+          <br />
+          {{ tile.name }}
         </div>
+      </a>
     </div>
+  </div>
 </section>

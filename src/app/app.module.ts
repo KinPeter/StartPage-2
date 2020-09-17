@@ -66,7 +66,7 @@ import { DevToSearchComponent } from './components/dev-to/dev-to-search/dev-to-s
     KoreanComponent,
     DictComponent,
     NavComponent,
-    DevToSearchComponent
+    DevToSearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,9 +76,9 @@ import { DevToSearchComponent } from './components/dev-to/dev-to-search/dev-to-s
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

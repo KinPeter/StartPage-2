@@ -1,15 +1,15 @@
-@import "~src/variables";
+@import '~src/variables';
 
 .search-link {
-    @extend %whiteModalBasics;
-    @extend %whiteModalHeader;
-    height: 100%;
+  @extend %whiteModalBasics;
+  @extend %whiteModalHeader;
+  height: 100%;
 
-    @include whiteModalAnimations(left);
+  @include whiteModalAnimations(left);
 
-    form {
-        @include form();
-        @include customInlineInputWithButton();
-        margin-top: 1rem;
-    }
+  form {
+    @include form();
+    @include customInlineInputWithButton();
+    margin-top: 1rem;
+  }
 }

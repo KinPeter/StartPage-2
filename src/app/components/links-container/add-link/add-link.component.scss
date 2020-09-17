@@ -1,48 +1,48 @@
-@import "~src/variables";
+@import '~src/variables';
 
 .add-link {
-    @extend %whiteModalBasics;
-    @extend %whiteModalHeader;
-    height: 100%;
+  @extend %whiteModalBasics;
+  @extend %whiteModalHeader;
+  height: 100%;
 
-    @include whiteModalAnimations(left);
+  @include whiteModalAnimations(left);
 
-    form {
-        @include form();
-        @include customInlineInputWithButton();
-        margin-top: 1rem;
+  form {
+    @include form();
+    @include customInlineInputWithButton();
+    margin-top: 1rem;
 
-        p {
-            margin: .5rem 0;
-            color: $blue1;
-        }
-        ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            border-top: 1px solid $blue5;
-            border-left: 1px solid $blue5;
-            li {
-                flex-grow: 1;
-                padding: 0.05rem 0.4rem;
-                border-bottom: 1px solid $blue5;
-                border-right: 1px solid $blue5;
-                text-align: center;
-                cursor: pointer;
-                transition: all .5s ease;
-                &:hover {
-                    background-color: $lightGrey;
-                }
-                &.added {
-                    background-color: $blue5;
-                    color: #fff;
-                    &:hover {
-                        background-color: $darkGrey;
-                    }
-                }
-            }
-        }
+    p {
+      margin: 0.5rem 0;
+      color: $blue1;
     }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      border-top: 1px solid $blue5;
+      border-left: 1px solid $blue5;
+      li {
+        flex-grow: 1;
+        padding: 0.05rem 0.4rem;
+        border-bottom: 1px solid $blue5;
+        border-right: 1px solid $blue5;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.5s ease;
+        &:hover {
+          background-color: $lightGrey;
+        }
+        &.added {
+          background-color: $blue5;
+          color: #fff;
+          &:hover {
+            background-color: $darkGrey;
+          }
+        }
+      }
+    }
+  }
 }

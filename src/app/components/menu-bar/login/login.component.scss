@@ -1,71 +1,71 @@
-@import "~src/variables";
+@import '~src/variables';
 
 .menu-right {
-    display: flex;
-    a {
-        color: #fff !important;
-        text-transform: uppercase;
-        cursor: pointer;
-        i {
-            margin-left: .3rem;
-        }
-        &:hover {
-            color: $orange !important;
-        }
+  display: flex;
+  a {
+    color: #fff !important;
+    text-transform: uppercase;
+    cursor: pointer;
+    i {
+      margin-left: 0.3rem;
     }
-    .user-info {
-        color: #fff;
-        margin-right: 1rem;
-        span {
-            position: relative;
-            top: -4px;
-            font-size: 1.2rem;
-        }
-        i {
-            margin-left: 0.5rem;
-            border: 2px solid #fff;
-        border-radius: 50%;
-        width: 22px;
-        height: 22px;
-        overflow: hidden;
-        padding-left: 2px;
-        padding-top: 3px;
-        }
+    &:hover {
+      color: $orange !important;
     }
+  }
+  .user-info {
+    color: #fff;
+    margin-right: 1rem;
+    span {
+      position: relative;
+      top: -4px;
+      font-size: 1.2rem;
+    }
+    i {
+      margin-left: 0.5rem;
+      border: 2px solid #fff;
+      border-radius: 50%;
+      width: 22px;
+      height: 22px;
+      overflow: hidden;
+      padding-left: 2px;
+      padding-top: 3px;
+    }
+  }
 }
 
-
 .login-modal {
+  position: fixed;
+  .overlay,
+  .modal-body {
     position: fixed;
-    .overlay, .modal-body {
-        position: fixed;
-        transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+  }
+  .overlay {
+    @extend %overlay;
+    display: none;
+    &.open {
+      display: block;
     }
-    .overlay {
-        @extend %overlay;
-        display: none;
-        &.open {
-            display: block;
-        }
+  }
+  .modal-body {
+    top: 55px;
+    right: 10px;
+    width: 300px;
+    height: 202px;
+    background-color: #fff;
+    opacity: 0;
+    transform: translateX(350px);
+    &.open {
+      opacity: 1;
+      transform: translateX(0);
     }
-    .modal-body {
-        top: 55px;
-        right: 10px;
-        width: 300px;
-        height: 202px;
-        background-color: #fff;
-        opacity: 0;
-        transform: translateX(350px);
-        &.open {
-            opacity: 1;
-            transform: translateX(0);
-        }
 
-        form {
-            @include form();
-            button {
-                @include button($blue2, $blue4, right);
-            }
-        }
+    form {
+      @include form();
+      button {
+        @include button($blue2, $blue4, right);
+      }
     }
+  }
 }
