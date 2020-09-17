@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class DevToSearchComponent {
 
-  @ViewChild('search', { static: false }) searchForm: NgForm;
+  @ViewChild('search') searchForm: NgForm;
 
   constructor() { }
 
