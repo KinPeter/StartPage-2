@@ -7,7 +7,8 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "eslint . --ext .js,.ts",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "node pk-deploy.js"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +23,7 @@
     "@angular/platform-browser": "~10.1.2",
     "@angular/platform-browser-dynamic": "~10.1.2",
     "@angular/router": "~10.1.2",
+    "basic-ftp": "^4.6.2",
     "bootstrap": "^4.3.1",
     "firebase": "^7.20.0",
     "rxjs": "~6.6.3",

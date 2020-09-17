@@ -1,5 +1,6 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 keys.ts
+pk-deploy.config.js
 /.firebase
 
 # compiled output
