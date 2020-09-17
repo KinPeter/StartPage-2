@@ -33,7 +33,7 @@ export class AuthService {
             this.uid.next(storedId);
             this.displayName.next(storedName);
         } else {
-            this.fireAuth.auth.signOut();
+            this.fireAuth.signOut();
             this.loggedIn.next(false);
             this.uid.next(null);
             this.displayName.next(null);
@@ -44,7 +44,7 @@ export class AuthService {
         this.spinner.show();
         let response: firebase.auth.UserCredential;
         try {
-            response = await this.fireAuth.auth.signInWithEmailAndPassword(loginData.email, loginData.password);
+            response = await this.fireAuth.signInWithEmailAndPassword(loginData.email, loginData.password);
             this.uid.next(response.user.uid);
             this.displayName.next(response.user.displayName);
             this.loggedIn.next(true);
@@ -62,7 +62,7 @@ export class AuthService {
     async logout(): Promise<void> {
         this.spinner.show();
         try {
-            await this.fireAuth.auth.signOut();
+            await this.fireAuth.signOut();
             this.uid.next(null);
             this.displayName.next(null);
             this.loggedIn.next(false);
