@@ -1,4 +1,6 @@
+import { Dayjs } from 'dayjs';
+
 export interface BirthdayItem {
   name: string;
-  date: Date;
+  date: string | Dayjs;
 }

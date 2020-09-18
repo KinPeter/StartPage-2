@@ -1,1 +1,20 @@
 @import '~src/_variables';
+
+.bday-section__title {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.bday-section__list {
+  padding-left: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.bday-section__list li {
+  list-style-type: none;
+}
+
+.bday-section__list li span {
+  opacity: 0.7;
+  margin-left: 0.5rem;
+}

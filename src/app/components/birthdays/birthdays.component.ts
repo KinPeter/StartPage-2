@@ -7,7 +7,7 @@ import BirthdaysService from '../../services/birthdays.service';
   styleUrls: ['./birthdays.component.scss'],
 })
 export class BirthdaysComponent implements OnInit {
-  constructor(private birthdaysService: BirthdaysService) {}
+  constructor(public birthdaysService: BirthdaysService) {}
 
   ngOnInit() {}
 }
