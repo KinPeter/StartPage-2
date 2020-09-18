@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { ResultData, PreResults } from '../interfaces/dictionary';
 import { HttpClient } from '@angular/common/http';
+import { Subject, BehaviorSubject } from 'rxjs';
+import { ResultData, PreResults } from '../interfaces/dictionary';
 import { SpinnerService } from './spinner.service';
 import { AlertService } from './alert.service';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { dictUrl } from '../../../keys';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DictionaryService {
-  private dictUrl =
-    'https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vST-KJ2L6WJJLRw9phcMslOIumSFrjPXY9UUnzw3X9Urq1vwRrDoVhlTiGwuPSda8XRJPolPR65XBD7/pub?gid=0&single=true&output=tsv';
   public dictionary = {
     kor: [],
     hun: [],
@@ -29,7 +28,7 @@ export class DictionaryService {
   async fetchWordsFromGSheet(): Promise<void> {
     this.spinner.show();
     try {
-      const result = await this.http.get(this.dictUrl, { responseType: 'text' }).toPromise();
+      const result = await this.http.get(dictUrl, { responseType: 'text' }).toPromise();
       const lines = result.split(/\r\n/);
       lines.forEach((line: string) => {
         const pair = line.split(/\t/);
