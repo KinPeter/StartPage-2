@@ -50,9 +50,14 @@ export default class BirthdaysService {
       const result = await this.fetchFromGSheet();
       this.birthdays = BirthdaysService.convertTsvToBirthdays(result);
       localStorage.setItem('start-bdays', JSON.stringify(this.birthdays));
+      localStorage.setItem('start-bdays-last-fetch', JSON.stringify(new Date()));
     } else {
       this.birthdays = JSON.parse(saved);
     }
+    this.filterBirthdays();
+  }
+
+  public refresh(): void {
     this.filterBirthdays();
   }
 

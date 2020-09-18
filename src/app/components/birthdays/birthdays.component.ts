@@ -7,6 +7,8 @@ import BirthdaysService from '../../services/birthdays.service';
   styleUrls: ['./birthdays.component.scss'],
 })
 export class BirthdaysComponent implements OnInit {
+  public isUpcomingOpen = false;
+
   constructor(public birthdaysService: BirthdaysService) {}
 
   ngOnInit() {}

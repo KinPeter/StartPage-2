@@ -1,6 +1,9 @@
+<div class="birthdays-refresh" (click)="birthdaysService.refresh()">
+  <i class="fas fa-sync-alt"></i>
+</div>
 <section class="birthdays">
   <div *ngIf="(birthdaysService.sameDay | async).length" class="bday-section">
-    <h1 class="bday-section__title">Today:</h1>
+    <h1 class="bday-section__title">Today</h1>
     <ul class="bday-section__list">
       <li *ngFor="let bday of birthdaysService.sameDay | async">{{ bday.name }}</li>
     </ul>
@@ -11,8 +14,16 @@
   </div>
 
   <div *ngIf="(birthdaysService.upcoming | async).length" class="bday-section">
-    <h1 class="bday-section__title">Upcoming:</h1>
-    <ul class="bday-section__list">
+    <h1
+      class="bday-section__title bday-section__title_clickable"
+      (click)="isUpcomingOpen = !isUpcomingOpen"
+    >
+      Upcoming ({{ (birthdaysService.upcoming | async).length }})
+      <i *ngIf="isUpcomingOpen" class="fas fa-caret-down"></i>
+      <i *ngIf="!isUpcomingOpen" class="fas fa-caret-right"></i>
+    </h1>
+
+    <ul *ngIf="isUpcomingOpen" class="bday-section__list">
       <li *ngFor="let bday of birthdaysService.upcoming | async">
         {{ bday.name }}
         <span>({{ bday.date }})</span>
