@@ -24,6 +24,14 @@ export default class BirthdaysService {
     return this._upcoming.asObservable();
   }
 
+  get isFetchExpired(): boolean {
+    const lastFetchStored = localStorage.getItem('start-bdays-last-fetch');
+    if (!lastFetchStored) return true;
+    const lastFetch = dayjs(lastFetchStored);
+    const now = dayjs();
+    return now.diff(lastFetch, 'day') >= 7;
+  }
+
   constructor(
     private http: HttpClient,
     private spinner: SpinnerService,
@@ -32,7 +40,11 @@ export default class BirthdaysService {
     this.getBirthdays();
   }
 
-  async fetchFromGSheet(): Promise<string> {
+  public refresh(): void {
+    this.getBirthdays(true);
+  }
+
+  private async fetchFromGSheet(): Promise<string> {
     this.spinner.show();
     try {
       return await this.http.get(birthdaysUrl, { responseType: 'text' }).toPromise();
@@ -44,20 +56,16 @@ export default class BirthdaysService {
     }
   }
 
-  private async getBirthdays(): Promise<void> {
+  private async getBirthdays(forced = false): Promise<void> {
     const saved = localStorage.getItem('start-bdays');
-    if (!saved) {
+    if (!saved || forced || this.isFetchExpired) {
       const result = await this.fetchFromGSheet();
       this.birthdays = BirthdaysService.convertTsvToBirthdays(result);
       localStorage.setItem('start-bdays', JSON.stringify(this.birthdays));
-      localStorage.setItem('start-bdays-last-fetch', JSON.stringify(new Date()));
+      localStorage.setItem('start-bdays-last-fetch', new Date().toISOString());
     } else {
       this.birthdays = JSON.parse(saved);
     }
-    this.filterBirthdays();
-  }
-
-  public refresh(): void {
     this.filterBirthdays();
   }
 
