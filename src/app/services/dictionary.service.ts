@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject, BehaviorSubject } from 'rxjs';
+import * as dayjs from 'dayjs';
+
 import { ResultData, PreResults } from '../interfaces/dictionary';
 import { SpinnerService } from './spinner.service';
 import { AlertService } from './alert.service';
@@ -17,32 +19,55 @@ export class DictionaryService {
   public wordList: Subject<string[]> = new BehaviorSubject<string[]>([]);
   public randomWord: Subject<ResultData> = new Subject<ResultData>();
 
+  get isFetchExpired(): boolean {
+    const lastFetchStored = localStorage.getItem('start-korean-last-fetch');
+    if (!lastFetchStored) return true;
+    const lastFetch = dayjs(lastFetchStored);
+    const now = dayjs();
+    return now.diff(lastFetch, 'day') >= 7;
+  }
+
   constructor(
     private http: HttpClient,
     private spinner: SpinnerService,
     private alert: AlertService
   ) {
-    this.fetchWordsFromGSheet();
+    this.getWordList();
   }
 
-  async fetchWordsFromGSheet(): Promise<void> {
+  async fetchWordsFromGSheet(): Promise<string> {
     this.spinner.show();
     try {
-      const result = await this.http.get(dictUrl, { responseType: 'text' }).toPromise();
-      const lines = result.split(/\r\n/);
-      lines.forEach((line: string) => {
-        const pair = line.split(/\t/);
-        this.dictionary.kor.push(pair[0]);
-        this.dictionary.hun.push(pair[1]);
-      });
-      this.wordList.next([...this.dictionary.hun, ...this.dictionary.kor]);
-      this.getRandomWord();
+      return await this.http.get(dictUrl, { responseType: 'text' }).toPromise();
     } catch (error) {
       console.log(error);
       this.alert.show('Fetching of dictionary failed.', 'danger');
     } finally {
       this.spinner.hide();
     }
+  }
+
+  private async getWordList(forced = false): Promise<void> {
+    const saved = localStorage.getItem('start-korean');
+    if (!saved || forced || this.isFetchExpired) {
+      const result = await this.fetchWordsFromGSheet();
+      this.createDictionaries(result);
+      localStorage.setItem('start-korean', result);
+      localStorage.setItem('start-korean-last-fetch', new Date().toISOString());
+    } else {
+      this.createDictionaries(saved);
+    }
+    this.getRandomWord();
+  }
+
+  private createDictionaries(result: string): void {
+    const lines = result.split(/\r\n/);
+    lines.forEach((line: string) => {
+      const pair = line.split(/\t/);
+      this.dictionary.kor.push(pair[0]);
+      this.dictionary.hun.push(pair[1]);
+    });
+    this.wordList.next([...this.dictionary.hun, ...this.dictionary.kor]);
   }
 
   wordLookup(word: string): ResultData[] {
@@ -111,9 +136,11 @@ export class DictionaryService {
   getRandomWord(): void {
     const max = this.dictionary.hun.length;
     const rnd = Math.floor(Math.random() * max);
-    this.randomWord.next({
-      word: this.dictionary.kor[rnd],
-      translate: this.dictionary.hun[rnd],
+    requestAnimationFrame(() => {
+      this.randomWord.next({
+        word: this.dictionary.kor[rnd],
+        translate: this.dictionary.hun[rnd],
+      });
     });
   }
 }
