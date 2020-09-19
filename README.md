@@ -32,6 +32,9 @@ A complete remake of my previous jQuery powered startpage but now it's much more
 - **Weather forecast -**
   Thanks to the DarkSky API I have a beautiful custom weather forecast using my own custom SVG icons.
 
+- **Birthday calendar -**
+  Showing current and upcoming birthdays of my friends and family for the next two weeks. The data is fetched from a Google Sheet.
+
 - **Database backup service -**
   Google Cloud web service (Node.js) to fetch all data from my Firestore databases and send them to me by email in JSON format.
 
